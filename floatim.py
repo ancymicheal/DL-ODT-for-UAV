@@ -1,6 +1,7 @@
 from kivy.app import App
 #kivy.require("1.8.0")
 from kivy.uix.floatlayout import FloatLayout
+from kivy.config import Config
 
 class simple(App):
     def build(self):
