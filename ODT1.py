@@ -34,6 +34,10 @@ Builder.load_string("""
 		on_release: app.root.current = 'third'
 		text: 'Next'
 		pos: 800, 0
+	Button:
+		on_release: app.root.current = 'first'
+		text: 'Prev'
+		pos: 30, 0
 	Label:
 	    text: "Object Detection and Tracking"
 	    font_size: 30
@@ -45,6 +49,10 @@ Builder.load_string("""
 		on_release: app.root.current = 'fourth'
 		text: 'Next'
 		pos: 800, 0
+	Button:
+		on_release: app.root.current = 'second'
+		text: 'Prev'
+		pos: 30, 0
 	Label:
 	    text: "Upload Video"
 	    font_size: 30
@@ -55,6 +63,10 @@ Builder.load_string("""
 		on_release: app.root.current = 'fifth'
 		text: 'Next'
 		pos: 800, 0
+	Button:
+		on_release: app.root.current = 'third'
+		text: 'Prev'
+		pos: 30, 0
 	Label:
 	    text: "Frame Conversion"
 	    font_size: 30
@@ -65,6 +77,10 @@ Builder.load_string("""
 		on_release: app.root.current = 'fifth'
 		text: 'Next'
 		pos: 800, 0
+	Button:
+		on_release: app.root.current = 'fourth'
+		text: 'Prev'
+		pos: 30, 0
 	Label:
 	    text: "Annotate"
 	    font_size: 30
@@ -88,7 +104,7 @@ class FifthScreen(Screen):
 
 # Create the screen manager
 sm = ScreenManager()
-sm.add_widget(MainScreen(name='main'))
+sm.add_widget(MainScreen(name='first'))
 sm.add_widget(SecondScreen(name='second'))
 sm.add_widget(ThirdScreen(name='third'))
 sm.add_widget(FourthScreen(name='fourth'))
