@@ -8,6 +8,7 @@ from kivy.properties import StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
 from kivy.config import Config
+from kivy.uix.videoplayer import VideoPlayer
 import os
 Config.set('graphics', 'resizable', '0')
 Config.set('graphics', 'width', '900')
@@ -16,6 +17,7 @@ Config.set('graphics', 'width', '900')
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_string("""
+
 <Button>:
     font_size: 30
 	color: 0,1,0,1
@@ -93,12 +95,17 @@ Builder.load_string("""
 	    text: "Upload Video"
 	    font_size: 30
 	    pos_hint: {"x": 0, 'y': .4}	
+	
 	Button:
 		text: 'Load'
 		pos:400,450
 		on_release: root.show_load()
-		
-	  
+
+	Button:
+		text: 'Play'
+		pos: 300,450
+		on_press: root.video()
+  
 
 
 <FourthScreen>:
@@ -164,8 +171,15 @@ class root(Screen):#thridscreen
 
         self.dismiss_popup()
 
-   
+    def video(self):
+	player = VideoPlayer(source='/home/ancymicheal/boat5.avi',  state='play', options={'allow_stretch': True})
+	self._popup = Popup(title="Load file", content=player,
+                            size_hint=(0.9, 0.9),auto_dismiss=True )
 
+	self._popup.open()
+
+    	
+	
 class FourthScreen(Screen):
     pass
 class FifthScreen(Screen):
