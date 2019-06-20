@@ -19,5 +19,9 @@ Deep Learning based Object detection and tracking for UAV videos
     `source venv/bin/activate`
 5. To install the dependencies,
     `pip install -r requirements.txt`
-6. To deactivate,
+6. Make the run.py file executable
+    `chmod +x run.py`
+7. To run,
+    `./run.py`
+8. To deactivate,
     `deactivate`
