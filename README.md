@@ -10,14 +10,14 @@ Deep Learning based Object detection and tracking for UAV videos
 
 # Steps
 1. Make sure "pipenv" and "virtualenv" is installed
-    pip install --user pipenv
-    pip install virtualenv
+    `pip install --user pipenv`
+    `pip install virtualenv`
 2. cd into the DL-ODT-for-UAV folder
 3. create a new virtual environment 
-    virtualenv -p /usr/bin/python2.7 venv
+    `virtualenv -p /usr/bin/python2.7 venv`
 4. Activate the environment
-    source venv/bin/activate
+    `source venv/bin/activate`
 5. To install the dependencies,
-    pip install -r requirements.txt
+    `pip install -r requirements.txt`
 6. To deactivate,
-    deactivate
+    `deactivate`
