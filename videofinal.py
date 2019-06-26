@@ -7,7 +7,7 @@ import time
 class App:
 	def __init__(self, window, video_source=0):
 		self.window = window
-		self.video_source = '/home/ancymicheal/gui/boat5.avi'
+		self.video_source = '/home/ashok/Downloads/data/boat.avi'
 	# open video surce
 		self.vid = MyVideoCapture(self.video_source)
 	
@@ -30,7 +30,7 @@ class App:
 		while success:
 			#function extractes frame
 			success, image = vidObj.read()
-			cv2.imwrite("/home/ancymicheal/gui/frame conversion/frame%d.jpg" %count, image)
+			cv2.imwrite("/home/ashok/Downloads/data/frame%d.jpg" %count, image)
 			count +=1
 
 	def update(self):

@@ -4,7 +4,7 @@ from Tkinter import *
 root = Tk()
 
 def video1():
-	cap = cv2.VideoCapture('/home/ancymicheal/ROLO/nocar18zigzag.avi')
+	cap = cv2.VideoCapture('/home/ashok/Data/videos/boat5.avi')
 	while(cap.isOpened()):
 		ret, frame = cap.read()
 		cv2.imshow('frame',frame)
@@ -14,11 +14,11 @@ def video1():
 	cv2.destroyAllWindows()
 
 def frameconv():
-	vidObj = cv2.VideoCapture('/home/ancymicheal/ROLO/nocar18zigzag.avi')
+	vidObj = cv2.VideoCapture('/home/ashok/Data/videos/boat5.avi')
 	count = 0
 	success = 1
 	while success:
-		#function extracts frame 
+		#function extracts frame
 		success, image = vidObj.read()
 		cv2.imwrite("/home/ancymicheal/ROLO/frameconversion/000%d.jpg" %count, image)
 		count +=1

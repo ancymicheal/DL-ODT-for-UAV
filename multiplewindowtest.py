@@ -245,9 +245,9 @@ class LabelTool(tk.Frame):
             self.category = int(s)
         else:
             #s = r'D:\workspace\python\labelGUI'
-	    s = r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images' 
+	    s = r'/home/ashok/Data/videos/boat5'
 
-        self.imageDir = os.path.join(r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images', '%03d' %(self.category))
+        self.imageDir = os.path.join(r'/home/ashok/Data/videos/boat5', '%03d' %(self.category))
         self.unorderedImageList = sorted(glob.glob(os.path.join(self.imageDir, '*.jpg')))
 
         self.imageList = [""]*len(self.unorderedImageList)
