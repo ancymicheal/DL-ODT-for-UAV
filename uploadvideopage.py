@@ -8,11 +8,13 @@ from PIL import Image, ImageTk
 import PIL
 
 LARGE_FONT = ("Verdana", 12)
-
+SIZE = (192, 162)
 
 class UploadVideoPage(tk.Frame):
-    def __init__(self, master, **kw):
-        Frame.__init__(self, master, **kw)
+    def __init__(self, master, controller):
+        Frame.__init__(self, master)
+
+        self.controller = controller
 
         self.file_name = "/home/ashok/Data/videos/boat5.avi"
         self.vid = None
@@ -50,12 +52,19 @@ class UploadVideoPage(tk.Frame):
             # function extracts frame
             success, image = vidObj.read()
             if success:
-                cv2.imwrite(self.frame_dir + "/000%d.jpg" % count, image)
+                scale_percent = 60  # percent of original size
+                width = int(256)
+                height = int(256)
+                dim = (width, height)
+                resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+                cv2.imwrite(self.frame_dir + "/000%d.jpg" % count, resized)
             count += 1
 
         tkMessageBox.showinfo("Success", "Converted to frames successfully.\n Saved in " + self.frame_dir)
 
         self.show_n_frames()
+
+        self.controller.set_frame_directory(self.frame_dir)
 
     def file_browser(self):
         self.file_name = filedialog.askopenfilename(initialdir="/home",

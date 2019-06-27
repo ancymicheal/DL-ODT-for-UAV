@@ -19,7 +19,6 @@ steps = [
     'steps',
     'odt_type',
     'upload_video',
-    'frame_conversion',
     'annotate'
 ]
 stepIndex = 0
@@ -33,6 +32,7 @@ class ODTTool:
         self.parent = master
         self.parent.title(title)
         self.frames = {}
+        self.frames_dir = ""
 
         # Main Frame - Main GUI Content
         self.mainFrame = Frame(
@@ -55,7 +55,7 @@ class ODTTool:
         self.footerFrame.pack(fill=BOTH, expand=1)
 
         for F in (StartPage, OdtTypePage, UploadVideoPage, AnnotationPage):
-            frame = F(self.mainFrame)
+            frame = F(self.mainFrame, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
@@ -64,6 +64,13 @@ class ODTTool:
 
         # Show Footer Frame contents
         self.show_footer_frame_contents()
+
+    def set_frame_directory(self, frames_dir):
+        print("setting frames dir.." + frames_dir)
+        self.frames_dir = frames_dir
+
+    def get_frame_directory(self):
+        return self.frames_dir
 
     def show_main_frame_contents(self):
         self.show_frame(StartPage)
@@ -128,8 +135,10 @@ class ODTTool:
 
 
 class OdtTypePage(tk.Frame):
-    def __init__(self, master, **kw):
-        Frame.__init__(self, master, **kw)
+    def __init__(self, master, controller):
+        Frame.__init__(self, master)
+
+        self.controller = controller
 
         # Title
         self.pageTitle = Label(self, text="ODT Type page", font=LARGE_FONT)

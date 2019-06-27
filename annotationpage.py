@@ -10,15 +10,19 @@ import glob
 
 LARGE_FONT = ("Verdana", 12)
 
-
 # colors for the bboxes
 COLORS = ['red', 'blue', 'yellow', 'pink', 'cyan', 'green', 'black']
 # image sizes for the examples
 SIZE = 256, 256
 
+
 class AnnotationPage(tk.Frame):
-    def __init__(self, master, **kw):
-        Frame.__init__(self, master, **kw)
+    def __init__(self, master, controller):
+        Frame.__init__(self, master)
+
+        self.controller = controller
+
+        self.bind("<Expose>", self.print_event)
 
         # Title
         self.pageTitle = Label(self, text="Annotation Page", font=LARGE_FONT)
@@ -94,16 +98,6 @@ class AnnotationPage(tk.Frame):
         self.goBtn = Button(self.ctrPanel, text='Go', command=self.gotoImage)
         self.goBtn.pack(side=LEFT)
 
-        # example pannel for illustration
-        self.egPanel = Frame(self, border=10)
-        self.egPanel.grid(row=1, column=0, rowspan=5, sticky=N)
-        self.tmpLabel2 = Label(self.egPanel, text="Examples:")
-        self.tmpLabel2.pack(side=TOP, pady=5)
-        self.egLabels = []
-        for i in range(3):
-            self.egLabels.append(Label(self.egPanel))
-            self.egLabels[-1].pack(side=TOP)
-
         # display mouse position
         self.disp = Label(self.ctrPanel, text='')
         self.disp.pack(side=RIGHT)
@@ -115,22 +109,37 @@ class AnnotationPage(tk.Frame):
         ##        self.setImage()
         ##        self.loadDir()
 
-    def loadDir(self, dbg=False):
-        if not dbg:
-            s = self.entry.get()
-            self.parent.focus()
-            self.category = int(s)
-        else:
-            # s = r'D:\workspace\python\labelGUI'
-            s = r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images'
+    def print_event(self, event):
+        position = "(x={}, y={})".format(event.x, event.y)
+        print(event.type, "event", position)
+        if self.imageDir == '':
+            self.loadDir(self.controller.get_frame_directory())
 
-        self.imageDir = os.path.join(r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images', '%03d' % (self.category))
+    def loadDir(self, image_dir):
+
+        print("loading images..." + image_dir)
+
+        # if not dbg:
+        #     s = self.entry.get()
+        #     self.parent.focus()
+        #     self.category = int(s)
+        # else:
+        #     # s = r'D:\workspace\python\labelGUI'
+        #     s = r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images'
+
+        # self.imageDir = os.path.join(r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images', '%03d'
+        # % (self.category))
+        self.imageDir = image_dir
         self.unorderedImageList = sorted(glob.glob(os.path.join(self.imageDir, '*.jpg')))
 
         self.imageList = [""] * len(self.unorderedImageList)
 
-        for i in self.unorderedImageList:
-            self.imageList[int(i[58:-4])] = i
+        print(self.unorderedImageList)
+
+        # todo, sort image list
+        # for i in self.unorderedImageList:
+        #     self.imageList[int(i[58:-4])] = i
+        self.imageList = self.unorderedImageList
 
         print(self.imageList)
         if len(self.imageList) == 0:
@@ -141,31 +150,25 @@ class AnnotationPage(tk.Frame):
         self.cur = 1
         self.total = len(self.imageList)
 
+        # create labels directory
+        self.label_dir = self.controller.get_frame_directory() + "/labels"
+        if not os.path.isdir(self.label_dir):
+            os.mkdir(self.label_dir)
+
         # set up output dir
-        self.outDir = os.path.join(r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Labels', '%03d' % (self.category))
-        if not os.path.exists(self.outDir):
-            os.mkdir(self.outDir)
+        # self.outDir = os.path.join(r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Labels', '%03d' % (self.category))
+        # if not os.path.exists(self.outDir):
+        #     os.mkdir(self.outDir)
+
+        self.outDir = self.label_dir
 
         # load example bboxes
-        self.egDir = os.path.join(r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images', '%03d' % (self.category))
-        if not os.path.exists(self.egDir):
-            return
-        filelist = glob.glob(os.path.join(self.egDir, '*.jpg'))
-        self.tmp = []
-        self.egList = []
-        # random.shuffle(filelist)-ancy
-        for (i, f) in enumerate(filelist):
-            if i == 3:
-                break
-            im = Image.open(f)
-            r = min(SIZE[0] / im.size[0], SIZE[1] / im.size[1])
-            new_size = int(r * im.size[0]), int(r * im.size[1])
-            self.tmp.append(im.resize(new_size, Image.ANTIALIAS))
-            self.egList.append(ImageTk.PhotoImage(self.tmp[-1]))
-            self.egLabels[i].config(image=self.egList[-1], width=SIZE[0], height=SIZE[1])
+        # self.egDir = os.path.join(r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images', '%03d' % (self.category))
+        # if not os.path.exists(self.egDir):
+        #     return
 
         self.loadImage()
-        print '%d images loaded from %s' % (self.total, s)
+        print '%d images loaded from %s' % (self.total, self.imageDir)
 
     def loadImage(self):
         # load image

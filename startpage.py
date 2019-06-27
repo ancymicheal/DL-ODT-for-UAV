@@ -6,8 +6,10 @@ LARGE_FONT = ("Verdana", 12)
 
 
 class StartPage(tk.Frame):
-    def __init__(self, master, **kw):
-        Frame.__init__(self, master, **kw)
+    def __init__(self, master, controller):
+        Frame.__init__(self, master)
+
+        self.controller = controller
 
         # Title
         self.pageTitle = Label(self, text="STEPS", font=LARGE_FONT)
