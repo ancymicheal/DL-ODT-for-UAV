@@ -1,15 +1,6 @@
 #!venv/bin/python
-import time
-from Tkinter import *
-import tkMessageBox
-from PIL import Image, ImageTk
-import os
-import glob
-import tkFileDialog as filedialog
-import numpy as np
-import cv2
 import Tkinter as tk
-import PIL.Image, PIL.ImageTk
+from Tkinter import *
 
 #
 from annotationpage import AnnotationPage
