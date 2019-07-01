@@ -7,8 +7,8 @@ classes = ["boat6"]
 cls = "boat6"
 
 workingDirectory = "BBox-Label-Tool-master"
-mypath = "/home/ancymicheal/ROLO/" + workingDirectory + "/Labels/" + cls + "/"
-outpath = "/home/ancymicheal/ROLO/" + workingDirectory + "/labels-yolo/" + cls + "/"
+mypath = "/home/ancy/ROLO/" + workingDirectory + "/Labels/" + cls + "/"
+outpath = "/home/ancy/ROLO/" + workingDirectory + "/labels-yolo/" + cls + "/"
 
 ground_truths = []
 
