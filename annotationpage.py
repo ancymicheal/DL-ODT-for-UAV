@@ -2,11 +2,15 @@ import tkMessageBox
 from Tkinter import *
 import Tkinter as tk
 import os
+from os import walk, getcwd
 import tkFileDialog as filedialog
 import cv2
 from PIL import Image, ImageTk
 import PIL
 import glob
+
+from os import walk, getcwd
+import re
 
 LARGE_FONT = ("Verdana", 12)
 
@@ -81,6 +85,8 @@ class AnnotationPage(tk.Frame):
         self.btnDel.grid(row=3, column=2, sticky=W + E + N)
         self.btnClear = Button(self, text='ClearAll', command=self.clearBBox)
         self.btnClear.grid(row=4, column=2, sticky=W + E + N)
+        self.btnGroundTruth = Button(self, text='Generate groundtruth', command=self.groundtruth)
+        self.btnGroundTruth.grid(row=6, column=2, sticky=W + E + N)
 
         # control panel for image navigation
         self.ctrPanel = Frame(self)
@@ -117,6 +123,7 @@ class AnnotationPage(tk.Frame):
 
     def loadDir(self, image_dir):
 
+
         print("loading images..." + image_dir)
 
         # if not dbg:
@@ -134,14 +141,14 @@ class AnnotationPage(tk.Frame):
 
         self.imageList = [""] * len(self.unorderedImageList)
 
-        print(self.unorderedImageList)
+        #print(self.unorderedImageList)
 
         # todo, sort image list
         # for i in self.unorderedImageList:
         #     self.imageList[int(i[58:-4])] = i
         self.imageList = self.unorderedImageList
 
-        print(self.imageList)
+        #print(self.imageList)
         if len(self.imageList) == 0:
             print 'No .JPG images found in the specified dir!'
             return
@@ -249,6 +256,25 @@ class AnnotationPage(tk.Frame):
                 self.bboxId = None
                 self.STATE['click'] = 0
 
+    def groundtruth(self):
+        ground_truths = []
+        all_files = os.listdir(self.label_dir )
+        sorted_list = sorted(all_files)
+        print(sorted_list)
+        for file in sorted_list:
+            txt_path = self.label_dir + "/"
+            txt_path1 = txt_path + file
+            fh = open(txt_path1, "r")
+            lines = fh.read().split("\n")
+            ground_truth = re.sub("\s+", ",", lines[1].strip())
+            ground_truths.append(ground_truth)
+        txt_outfile = open(txt_path + "groundtruth_rect.txt", "w+")
+        for i in ground_truths:
+            txt_outfile.write(str(i) + "\n")
+
+        txt_outfile.close()
+        
+
     def delBBox(self):
         sel = self.listbox.curselection()
         if len(sel) != 1:
@@ -258,6 +284,7 @@ class AnnotationPage(tk.Frame):
         self.bboxIdList.pop(idx)
         self.bboxList.pop(idx)
         self.listbox.delete(idx)
+
 
     def clearBBox(self):
         for idx in range(len(self.bboxIdList)):
