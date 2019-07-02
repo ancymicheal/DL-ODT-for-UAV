@@ -109,21 +109,6 @@ class ODTTool:
         else:
             self.show_frame(StartPage)
 
-    def show_steps_page(self):
-        StartPage(self.mainFrame)
-
-    def show_odt_type_page(self):
-        pass
-
-    def show_upload_video_page(self):
-        pass
-
-    def show_frame_conversion_page(self):
-        pass
-
-    def show_annotation_page(self):
-        pass
-
     def show_footer_frame_contents(self):
         Button(
             self.footerFrame, text="Previous", command=self.go_to_previous_step
