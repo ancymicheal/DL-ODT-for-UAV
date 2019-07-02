@@ -10,6 +10,7 @@ import PIL
 LARGE_FONT = ("Verdana", 12)
 SIZE = (192, 162)
 
+
 class UploadVideoPage(tk.Frame):
     def __init__(self, master, controller):
         Frame.__init__(self, master)
@@ -79,7 +80,7 @@ class UploadVideoPage(tk.Frame):
         self.images = {}
 
         for i in range(0, num_of_frames):
-            canvas_key = "canvas"+str(i)
+            canvas_key = "canvas" + str(i)
             self.canvases[canvas_key] = Canvas(self, cursor='tcross', width=100, height=100)
             self.canvases[canvas_key].grid(row=3, column=i)
 
@@ -89,8 +90,10 @@ class UploadVideoPage(tk.Frame):
             img = Image.open(img_path)
             img = img.resize((100, 100), Image.ANTIALIAS)
             self.images[img_key] = ImageTk.PhotoImage(img)
-            # self.canvases[canvas_key].config(width=max(self.images[img_key].width(), 400), height=max(self.images[img_key].height(), 400))
+            # self.canvases[canvas_key].config(width=max(self.images[img_key].width(), 400),
+            # height=max(self.images[img_key].height(), 400))
             self.canvases[canvas_key].create_image(0, 0, anchor=NW, image=self.images[img_key])
+
 
 if __name__ == '__main__':
     root = Tk()
