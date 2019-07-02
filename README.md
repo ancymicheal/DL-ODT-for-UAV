@@ -3,6 +3,11 @@ Deep Learning based Object detection and tracking for UAV videos
 
 # TODO
 - [ ] Create mockup screens - https://drive.google.com/file/d/1yy86lZZ4gLDnyp_oiNmoiufngoSfyGVv/view?usp=sharing
+- [ ] place converted frames at videofilename(folder)->img(folder)->converted frames
+- [ ] during annotation images should be read in order
+- [ ] place annotated .txt at  videofilename(folder)->labels(folder)->individual frameslabels(txtfiles)
+- [ ] place groundtruth at videofilename(folder)->groundtruth_rect.txt
+- [ ] 
 
 
 # Steps
@@ -22,3 +27,5 @@ Deep Learning based Object detection and tracking for UAV videos
     `./run.py`
 8. To deactivate,
     `deactivate`
+9. Install tensorflow 0.8  
+python2.7 -m pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.8.0-cp27-none-linux_x86_64.whl
