@@ -41,12 +41,15 @@ class UploadVideoPage(tk.Frame):
         success = 1
 
         base_name = os.path.basename(self.file_name)
+
         filename = os.path.splitext(base_name)[0]
+
         self.frame_dir = os.path.dirname(self.file_name) + "/" + filename
 
+
         # create directory
-        if not os.path.isdir(self.frame_dir):
-            os.mkdir(self.frame_dir)
+        if not os.path.exists(self.frame_dir):
+            self.img_folder = os.makedirs(self.frame_dir+'/img')
 
         while success:
             # function extracts frame
@@ -58,9 +61,10 @@ class UploadVideoPage(tk.Frame):
                 dim = (width, height)
                 resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
                 cv2.imwrite(self.frame_dir + "/000%d.jpg" % count, resized)
+
             count += 1
 
-        tkMessageBox.showinfo("Success", "Converted to frames successfully.\n Saved in " + self.frame_dir)
+      #  tkMessageBox.showinfo("Success", "Converted to frames successfully.\n Saved in " + self.img_folder)
 
         self.show_n_frames()
 
