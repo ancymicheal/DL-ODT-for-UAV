@@ -6,6 +6,7 @@ from Tkinter import *
 from annotationpage import AnnotationPage
 from startpage import StartPage
 from uploadvideopage import UploadVideoPage
+from single_obj_detection import Single_Obj_Detection
 
 title = "Object Detection And Tracking"
 mainFrameBorder = "black"
@@ -19,7 +20,8 @@ steps = [
     'steps',
     'odt_type',
     'upload_video',
-    'annotate'
+    'annotate',
+    'single_obj_detection'
 ]
 stepIndex = 0
 currentStep = steps[stepIndex]
@@ -54,7 +56,7 @@ class ODTTool:
         self.mainFrame.pack(fill=BOTH, expand=1)
         self.footerFrame.pack(fill=BOTH, expand=1)
 
-        for F in (StartPage, OdtTypePage, UploadVideoPage, AnnotationPage):
+        for F in (StartPage, OdtTypePage, UploadVideoPage, AnnotationPage, Single_Obj_Detection):
             frame = F(self.mainFrame, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -106,6 +108,8 @@ class ODTTool:
             self.show_frame(UploadVideoPage)
         elif currentStep == "annotate":
             self.show_frame(AnnotationPage)
+	elif currentStep == "single_obj_detection":
+            self.show_frame(Single_Obj_Detection)
         else:
             self.show_frame(StartPage)
 
