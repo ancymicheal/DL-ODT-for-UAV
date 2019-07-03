@@ -3,11 +3,13 @@ Deep Learning based Object detection and tracking for UAV videos
 
 # TODO
 - [ ] Create mockup screens - https://drive.google.com/file/d/1yy86lZZ4gLDnyp_oiNmoiufngoSfyGVv/view?usp=sharing
+
+
 - [ ] place converted frames at videofilename(folder)->img(folder)->converted frames
 - [ ] during annotation images should be read in order
 - [ ] place annotated .txt at  videofilename(folder)->labels(folder)->individual frameslabels(txtfiles)
 - [ ] place groundtruth at videofilename(folder)->groundtruth_rect.txt
-- [ ] 
+- [ ] for single obj detection place ROLO->weights-> YOLO_small.ckpt and run DL-ODT-for-UAV->YOLO_network
 
 
 # Steps
