@@ -425,6 +425,11 @@ class YOLO_TF:
 		''' Pass the data through YOLO, and get the fc_17 layer as features, and get the fc_19 layer as locations
 		 Save the features and locations into file for training LSTM'''
 		# Reshape the input image
+		root_folder = '/home/ancy/DL-ODT-for-UAV/ROLO/DATA/boat5'
+        # root_folder = '/home/ancy/ROLO/rolo-data/DATA'
+		img_fold = os.path.join(root_folder, 'img/')#
+		gt_file = os.path.join(root_folder,'groundtruth_rect.txt')#
+		out_fold = os.path.join(root_folder,'yolo_out/')#
 		paths= self.load_folder(img_fold)
 		gt_locations= self.load_dataset_gt(gt_file)
 
