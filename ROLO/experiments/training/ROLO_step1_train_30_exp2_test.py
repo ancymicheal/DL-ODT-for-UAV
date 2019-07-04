@@ -1,5 +1,5 @@
 # Copyright (c) <2016> <GUANGHAN NING>. All Rights Reserved.
- 
+
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -24,7 +24,7 @@ Description:
 '''
 
 # Imports
-#import ROLO_utils as utils
+# import ROLO_utils as utils
 
 import tensorflow as tf
 from tensorflow.models.rnn import rnn, rnn_cell
@@ -35,12 +35,14 @@ import os.path
 import time
 import random
 import sys
+
 sys.path.append("/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/utils")
 import ROLO_utils as utils
 
+
 class ROLO_TF:
     disp_console = False
-    restore_weights = True#False
+    restore_weights = True  # False
 
     # YOLO parameters
     fromfile = None
@@ -56,30 +58,31 @@ class ROLO_TF:
     num_class = 20
     num_box = 2
     grid_size = 7
-    classes =  ["aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train","tvmonitor"]
+    classes = ["aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
+               "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"]
     w_img, h_img = [352, 240]
 
     # ROLO Network Parameters
     rolo_weights_file = '/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/output/ROLO_model/model_step1_exp2.ckpt'
-    #rolo_weights_file = '/u03/Guanghan/dev/ROLO-dev/output/ROLO_model/model_step1_exp2.ckpt'
+    # rolo_weights_file = '/u03/Guanghan/dev/ROLO-dev/output/ROLO_model/model_step1_exp2.ckpt'
     lstm_depth = 3
     num_steps = 1  # number of frames as an input sequence
     num_feat = 4096
-    num_predict = 6 # final output of LSTM 6 loc parameters
+    num_predict = 6  # final output of LSTM 6 loc parameters
     num_gt = 4
-    num_input = num_feat + num_predict # data input: 4096+6= 5002
+    num_input = num_feat + num_predict  # data input: 4096+6= 5002
 
     # ROLO Training Parameters
-    #learning_rate = 0.00001 #training
-    learning_rate = 0.00001 #testing
+    # learning_rate = 0.00001 #training
+    learning_rate = 0.00001  # testing
 
-    training_iters = 210#100000
-    batch_size = 1 #128
+    training_iters = 210  # 100000
+    batch_size = 1  # 128
     display_step = 1
 
     # tf Graph input
     x = tf.placeholder("float32", [None, num_steps, num_input])
-    istate = tf.placeholder("float32", [None, 2*num_input]) #state & cell => 2x num_input
+    istate = tf.placeholder("float32", [None, 2 * num_input])  # state & cell => 2x num_input
     y = tf.placeholder("float32", [None, num_gt])
 
     # Define weights
@@ -90,21 +93,19 @@ class ROLO_TF:
         'out': tf.Variable(tf.random_normal([num_predict]))
     }
 
-
-    def __init__(self,argvs = []):
+    def __init__(self, argvs=[]):
         print("ROLO init")
         self.ROLO(argvs)
 
-
-    def LSTM_single(self, name,  _X, _istate, _weights, _biases):
+    def LSTM_single(self, name, _X, _istate, _weights, _biases):
 
         # input shape: (batch_size, n_steps, n_input)
         _X = tf.transpose(_X, [1, 0, 2])  # permute num_steps and batch_size
         # Reshape to prepare input to hidden activation
-        _X = tf.reshape(_X, [self.num_steps * self.batch_size, self.num_input]) # (num_steps*batch_size, num_input)
+        _X = tf.reshape(_X, [self.num_steps * self.batch_size, self.num_input])  # (num_steps*batch_size, num_input)
         # Split data because rnn cell needs a list of inputs for the RNN inner loop
-        _X = tf.split(0, self.num_steps, _X) # n_steps * (batch_size, num_input)
-        #print("_X: ", _X)
+        _X = tf.split(0, self.num_steps, _X)  # n_steps * (batch_size, num_input)
+        # print("_X: ", _X)
 
         cell = tf.nn.rnn_cell.LSTMCell(self.num_input, self.num_input)
         state = _istate
@@ -112,14 +113,14 @@ class ROLO_TF:
             outputs, state = tf.nn.rnn(cell, [_X[step]], state)
             tf.get_variable_scope().reuse_variables()
 
-        #print("output: ", outputs)
-        #print("state: ", state)
+        # print("output: ", outputs)
+        # print("state: ", state)
         return outputs
-
 
     # Experiment with dropout
     def dropout_features(self, feature, prob):
-        if prob == 0: return feature
+        if prob == 0:
+            return feature
         else:
             num_drop = int(prob * 4096)
             drop_index = random.sample(xrange(4096), num_drop)
@@ -129,6 +130,7 @@ class ROLO_TF:
             return feature
 
         # Experiment with input box noise (translate, scale)
+
     def det_add_noise(self, det):
         translate_rate = random.uniform(0.98, 1.02)
         scale_rate = random.uniform(0.8, 1.2)
@@ -136,23 +138,23 @@ class ROLO_TF:
         det[0] *= translate_rate
         det[1] *= translate_rate
         det[2] *= scale_rate
-        det[3]*= scale_rate
+        det[3] *= scale_rate
 
         return det
 
     '''---------------------------------------------------------------------------------------'''
+
     def build_networks(self):
-        if self.disp_console : print "Building ROLO graph..."
+        if self.disp_console: print "Building ROLO graph..."
 
         # Build rolo layers
         self.lstm_module = self.LSTM_single('lstm_test', self.x, self.istate, self.weights, self.biases)
-        self.ious= tf.Variable(tf.zeros([self.batch_size]), name="ious")
+        self.ious = tf.Variable(tf.zeros([self.batch_size]), name="ious")
         self.sess = tf.Session()
         self.sess.run(tf.initialize_all_variables())
         self.saver = tf.train.Saver()
-        #self.saver.restore(self.sess, self.rolo_weights_file)
-        if self.disp_console : print "Loading complete!" + '\n'
-
+        # self.saver.restore(self.sess, self.rolo_weights_file)
+        if self.disp_console: print "Loading complete!" + '\n'
 
     def training(self, x_path, y_path):
         total_loss = 0
@@ -169,7 +171,7 @@ class ROLO_TF:
         if self.disp_console: print("self.correct_prediction: ", self.correct_prediction)
         self.accuracy = tf.reduce_mean(self.correct_prediction) * 100
         if self.disp_console: print("self.accuracy: ", self.accuracy)
-        optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate).minimize(self.accuracy) # Adam Optimizer
+        optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate).minimize(self.accuracy)  # Adam Optimizer
 
         # Initializing the variables
         init = tf.initialize_all_variables()
@@ -189,7 +191,8 @@ class ROLO_TF:
             # Keep training until reach max iterations
             while id * self.batch_size < self.training_iters:
                 # Load training data & ground truth
-                batch_xs = self.rolo_utils.load_yolo_output(x_path, self.batch_size, self.num_steps, id) # [num_of_examples, num_input] (depth == 1)
+                batch_xs = self.rolo_utils.load_yolo_output(x_path, self.batch_size, self.num_steps,
+                                                            id)  # [num_of_examples, num_input] (depth == 1)
                 print('len(batch_xs)= ', len(batch_xs))
                 # for item in range(len(batch_xs)):
 
@@ -201,20 +204,28 @@ class ROLO_TF:
                 batch_ys = np.reshape(batch_ys, [self.batch_size, 4])
                 if self.disp_console: print("Batch_ys: ", batch_ys)
 
-                pred_location= sess.run(self.pred_location,feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros((self.batch_size, 2*self.num_input))})
+                pred_location = sess.run(self.pred_location, feed_dict={self.x: batch_xs, self.y: batch_ys,
+                                                                        self.istate: np.zeros(
+                                                                            (self.batch_size, 2 * self.num_input))})
                 if self.disp_console: print("ROLO Pred: ", pred_location)
-                #print("len(pred) = ", len(pred_location))
-                if self.disp_console: print("ROLO Pred in pixel: ", pred_location[0][0]*self.w_img, pred_location[0][1]*self.h_img, pred_location[0][2]*self.w_img, pred_location[0][3]*self.h_img)
-                #print("correct_prediction int: ", (pred_location + 0.1).astype(int))
+                # print("len(pred) = ", len(pred_location))
+                if self.disp_console: print(
+                "ROLO Pred in pixel: ", pred_location[0][0] * self.w_img, pred_location[0][1] * self.h_img,
+                pred_location[0][2] * self.w_img, pred_location[0][3] * self.h_img)
+                # print("correct_prediction int: ", (pred_location + 0.1).astype(int))
 
                 # Save pred_location to file
                 utils.save_rolo_output(self.output_path, pred_location, id, self.num_steps, self.batch_size)
 
-                sess.run(optimizer, feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros((self.batch_size, 2*self.num_input))})
+                sess.run(optimizer, feed_dict={self.x: batch_xs, self.y: batch_ys,
+                                               self.istate: np.zeros((self.batch_size, 2 * self.num_input))})
                 if id % self.display_step == 0:
                     # Calculate batch loss
-                    loss = sess.run(self.accuracy, feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros((self.batch_size, 2*self.num_input))})
-                    if self.disp_console: print "Iter " + str(id*self.batch_size) + ", Minibatch Loss= " + "{:.6f}".format(loss) #+ "{:.5f}".format(self.accuracy)
+                    loss = sess.run(self.accuracy, feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros(
+                        (self.batch_size, 2 * self.num_input))})
+                    if self.disp_console: print "Iter " + str(
+                        id * self.batch_size) + ", Minibatch Loss= " + "{:.6f}".format(
+                        loss)  # + "{:.5f}".format(self.accuracy)
                     total_loss += loss
                 id += 1
                 if self.disp_console: print(id)
@@ -222,17 +233,17 @@ class ROLO_TF:
                 # show 3 kinds of locations, compare!
 
             print "Optimization Finished!"
-            avg_loss = total_loss/id
+            avg_loss = total_loss / id
             print "Avg loss: " + str(avg_loss)
             save_path = self.saver.save(sess, self.rolo_weights_file)
             print("Model saved in file: %s" % save_path)
 
         return avg_loss
 
-
     def train_30_2(self):
         print("TRAINING ROLO...")
-        log_file = open("/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/output/trainging-step1-exp2.txt", "a") #open in append mode
+        log_file = open("/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/output/trainging-step1-exp2.txt",
+                        "a")  # open in append mode
         self.build_networks()
 
         ''' TUNE THIS'''
@@ -248,7 +259,8 @@ class ROLO_TF:
         self.correct_prediction = tf.square(self.pred_location - self.y)
         self.accuracy = tf.reduce_mean(self.correct_prediction) * 100
         self.learning_rate = 0.00001
-        self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate).minimize(self.accuracy) # Adam Optimizer
+        self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate).minimize(
+            self.accuracy)  # Adam Optimizer
 
         # Initializing the variables
         init = tf.initialize_all_variables()
@@ -265,26 +277,29 @@ class ROLO_TF:
             else:
                 sess.run(init)
 
-	        print("video sequence number :" + str(i))
-            [self.w_img, self.h_img, sequence_name, self.training_iters, dummy]= utils.choose_video_sequence(i)
+                print("video sequence number :" + str(i))
+            [self.w_img, self.h_img, sequence_name, self.training_iters, dummy] = utils.choose_video_sequence(i)
 
             x_path = os.path.join('/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/DATA', sequence_name, 'yolo_out/')
-            y_path = os.path.join('/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/DATA', sequence_name, 'groundtruth_rect.txt')
-            self.output_path = os.path.join('/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/DATA', sequence_name, 'rolo_out_train/')
+            y_path = os.path.join('/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/DATA', sequence_name,
+                                  'groundtruth_rect.txt')
+            self.output_path = os.path.join('/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/DATA', sequence_name,
+                                            'rolo_out_train/')
             utils.createFolder(self.output_path)
             total_loss = 0
             id = 1
 
             # Keep training until reach max iterations
-            while id  < self.training_iters- self.num_steps:
+            while id < self.training_iters - self.num_steps:
                 # Load training data & ground truth
-                batch_xs = self.rolo_utils.load_yolo_output_test(x_path, self.batch_size, self.num_steps, id) # [num_of_examples, num_input] (depth == 1)
+                batch_xs = self.rolo_utils.load_yolo_output_test(x_path, self.batch_size, self.num_steps,
+                                                                 id)  # [num_of_examples, num_input] (depth == 1)
 
                 # Apply dropout to batch_xs
-                #for item in range(len(batch_xs)):
+                # for item in range(len(batch_xs)):
                 #    batch_xs[item] = self.dropout_features(batch_xs[item], 0)
 
-                #print(id)
+                # print(id)
                 batch_ys = self.rolo_utils.load_rolo_gt_test(y_path, self.batch_size, self.num_steps, id)
                 batch_ys = utils.locations_from_0_to_1(self.w_img, self.h_img, batch_ys)
 
@@ -293,26 +308,34 @@ class ROLO_TF:
                 batch_ys = np.reshape(batch_ys, [self.batch_size, 4])
                 if self.disp_console: print("Batch_ys: ", batch_ys)
 
-                pred_location= sess.run(self.pred_location,feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros((self.batch_size, 2*self.num_input))})
+                pred_location = sess.run(self.pred_location, feed_dict={self.x: batch_xs, self.y: batch_ys,
+                                                                        self.istate: np.zeros(
+                                                                            (self.batch_size, 2 * self.num_input))})
                 if self.disp_console: print("ROLO Pred: ", pred_location)
-                #print("len(pred) = ", len(pred_location))
-                if self.disp_console: print("ROLO Pred in pixel: ", pred_location[0][0]*self.w_img, pred_location[0][1]*self.h_img, pred_location[0][2]*self.w_img, pred_location[0][3]*self.h_img)
-                #print("correct_prediction int: ", (pred_location + 0.1).astype(int))
+                # print("len(pred) = ", len(pred_location))
+                if self.disp_console: print(
+                "ROLO Pred in pixel: ", pred_location[0][0] * self.w_img, pred_location[0][1] * self.h_img,
+                pred_location[0][2] * self.w_img, pred_location[0][3] * self.h_img)
+                # print("correct_prediction int: ", (pred_location + 0.1).astype(int))
 
                 # Save pred_location to file
                 utils.save_rolo_output_test(self.output_path, pred_location, id, self.num_steps, self.batch_size)
 
-                sess.run(self.optimizer, feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros((self.batch_size, 2*self.num_input))})
+                sess.run(self.optimizer, feed_dict={self.x: batch_xs, self.y: batch_ys,
+                                                    self.istate: np.zeros((self.batch_size, 2 * self.num_input))})
                 if id % self.display_step == 0:
                     # Calculate batch loss
-                    loss = sess.run(self.accuracy, feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros((self.batch_size, 2*self.num_input))})
-                    if self.disp_console: print "Iter " + str(id*self.batch_size) + ", Minibatch Loss= " + "{:.6f}".format(loss) #+ "{:.5f}".format(self.accuracy)
+                    loss = sess.run(self.accuracy, feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros(
+                        (self.batch_size, 2 * self.num_input))})
+                    if self.disp_console: print "Iter " + str(
+                        id * self.batch_size) + ", Minibatch Loss= " + "{:.6f}".format(
+                        loss)  # + "{:.5f}".format(self.accuracy)
                     total_loss += loss
                 id += 1
                 if self.disp_console: print(id)
 
-            #print "Optimization Finished!"
-            avg_loss = total_loss/id
+            # print "Optimization Finished!"
+            avg_loss = total_loss / id
             print "Avg loss: " + sequence_name + ": " + str(avg_loss)
 
             log_file.write(str("{:.3f}".format(avg_loss)) + '  ')
@@ -324,29 +347,31 @@ class ROLO_TF:
         log_file.close()
         return
 
-
     def ROLO(self, argvs):
 
-            self.rolo_utils= utils.ROLO_utils()
-            self.rolo_utils.loadCfg()
-            self.params = self.rolo_utils.params
+        self.rolo_utils = utils.ROLO_utils()
+        self.rolo_utils.loadCfg()
+        self.params = self.rolo_utils.params
 
-            arguments = self.rolo_utils.argv_parser(argvs)
+        arguments = self.rolo_utils.argv_parser(argvs)
 
-            if self.rolo_utils.flag_train is True:
-                self.training(utils.x_path, utils.y_path)
-            elif self.rolo_utils.flag_track is True:
-                self.build_networks()
-                self.track_from_file(utils.file_in_path)
-            elif self.rolo_utils.flag_detect is True:
-                self.build_networks()
-                self.detect_from_file(utils.file_in_path)
-            else:
-                self.train_30_2()
+        if self.rolo_utils.flag_train is True:
+            self.training(utils.x_path, utils.y_path)
+        elif self.rolo_utils.flag_track is True:
+            self.build_networks()
+            self.track_from_file(utils.file_in_path)
+        elif self.rolo_utils.flag_detect is True:
+            self.build_networks()
+            self.detect_from_file(utils.file_in_path)
+        else:
+            self.train_30_2()
 
     '''----------------------------------------main-----------------------------------------------------'''
-def main(argvs):
-        ROLO_TF(argvs)
 
-if __name__=='__main__':
-        main(' ')
+
+def main(argvs):
+    ROLO_TF(argvs)
+
+
+if __name__ == '__main__':
+    main(' ')

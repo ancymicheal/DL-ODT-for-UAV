@@ -22,17 +22,19 @@ out_fold = os.path.join(root_folder, 'yolo_out/')
 class Single_Obj_Detection(tk.Frame):
     def __init__(self, master, controller):
         Frame.__init__(self, master)
-        yolotf = YOLO_TF()
         self.controller = controller
         self.pageTitle = Label(self, text="Single Object Detection", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=0, columnspan=2)
 
-        self.browse_button1 = Button(self, text="Prepare detection training data", command=yolotf.prepare_training_data)
+        self.browse_button1 = Button(self, text="Prepare detection training data", command=self.prepare_training_data)
         self.browse_button1.grid(row=1, column=1, sticky="we")
 
         self.browse_button2 = Button(self, text="Show Detection")
         self.browse_button2.grid(row=2, column=1, sticky="we")
 
+    def prepare_training_data(self):
+        yolotf = YOLO_TF()
+        yolotf.prepare_training_data()
 
 class YOLO_TF:
     fromfile = None

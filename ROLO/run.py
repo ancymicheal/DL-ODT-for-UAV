@@ -36,6 +36,7 @@ class ODTTool:
         self.frames = {}
         self.frames_dir = ""
 
+
         # Main Frame - Main GUI Content
         self.mainFrame = Frame(
             self.parent,
@@ -144,6 +145,7 @@ class OdtTypePage(tk.Frame):
 
 
 if __name__ == '__main__':
+    sys.argv
     root = Tk()
 
     # window properties
