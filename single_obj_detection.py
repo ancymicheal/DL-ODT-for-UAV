@@ -6,17 +6,17 @@ import cv2
 import time
 import sys
 import pickle
-sys.path.append("/home/ancy/DL-ODT-for-UAV/ROLO/utils")
+
+sys.path.append("./ROLO/utils")
 import ROLO_utils as util
 import os
 
 LARGE_FONT = ("Verdana", 12)
-root_folder = '/home/ancy/DL-ODT-for-UAV/ROLO/DATA/boat5'
-        # root_folder = '/home/ancy/ROLO/rolo-data/DATA'
+root_folder = './ROLO/DATA/boat5'
+# root_folder = '/home/ancy/ROLO/rolo-data/DATA'
 img_fold = os.path.join(root_folder, 'img/')
-gt_file = os.path.join(root_folder,'groundtruth_rect.txt')
-out_fold = os.path.join(root_folder,'yolo_out/')
-
+gt_file = os.path.join(root_folder, 'groundtruth_rect.txt')
+out_fold = os.path.join(root_folder, 'yolo_out/')
 
 
 class Single_Obj_Detection(tk.Frame):
@@ -27,7 +27,7 @@ class Single_Obj_Detection(tk.Frame):
         self.pageTitle = Label(self, text="Single Object Detection", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=0, columnspan=2)
 
-        self.browse_button1 = Button(self, text="Prepare detection training data", command = yolotf.prepare_training_data)
+        self.browse_button1 = Button(self, text="Prepare detection training data", command=yolotf.prepare_training_data)
         self.browse_button1.grid(row=1, column=1, sticky="we")
 
         self.browse_button2 = Button(self, text="Show Detection")
@@ -42,7 +42,7 @@ class YOLO_TF:
     filewrite_img = False
     filewrite_txt = False
     disp_console = True
-    weights_file = '/home/ancy/DL-ODT-for-UAV/ROLO/weights/YOLO_small.ckpt'
+    weights_file = './ROLO/weights/YOLO_small.ckpt'
     alpha = 0.1
     threshold = 0.08
     iou_threshold = 0.5
@@ -132,12 +132,12 @@ class YOLO_TF:
                             name=str(idx) + '_conv')
         conv_biased = tf.add(conv, biases, name=str(idx) + '_conv_biased')
         if self.disp_console: print '    Layer  %d : Type = Conv, Size = %d * %d, Stride = %d, Filters = %d, Input channels = %d' % (
-        idx, size, size, stride, filters, int(channels))
+            idx, size, size, stride, filters, int(channels))
         return tf.maximum(self.alpha * conv_biased, conv_biased, name=str(idx) + '_leaky_relu')
 
     def pooling_layer(self, idx, inputs, size, stride):
         if self.disp_console: print '    Layer  %d : Type = Pool, Size = %d * %d, Stride = %d' % (
-        idx, size, size, stride)
+            idx, size, size, stride)
         return tf.nn.max_pool(inputs, ksize=[1, size, size, 1], strides=[1, stride, stride, 1], padding='SAME',
                               name=str(idx) + '_pool')
 
@@ -153,7 +153,7 @@ class YOLO_TF:
         weight = tf.Variable(tf.truncated_normal([dim, hiddens], stddev=0.1))
         biases = tf.Variable(tf.constant(0.1, shape=[hiddens]))
         if self.disp_console: print '    Layer  %d : Type = Full, Hidden = %d, Input dimension = %d, Flat = %d, Activation = %d' % (
-        idx, hiddens, int(dim), int(flat), 1 - int(linear))
+            idx, hiddens, int(dim), int(flat), 1 - int(linear))
         if linear: return tf.add(tf.matmul(inputs_processed, weight), biases, name=str(idx) + '_fc')
         ip = tf.add(tf.matmul(inputs_processed, weight), biases)
         return tf.maximum(self.alpha * ip, ip, name=str(idx) + '_fc')
@@ -306,16 +306,15 @@ class YOLO_TF:
         cv2.imshow('YOLO_small detection', img_cp)
         cv2.waitKey(1)
 
-
     def debug_gt_location(self, img, location):
         img_cp = img.copy()
         x = int(location[0])
         y = int(location[1])
         w = int(location[2])
         h = int(location[3])
-        #cv2.rectangle(img_cp, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        #cv2.imshow('gt', img_cp)
-        #cv2.waitKey(1)
+        # cv2.rectangle(img_cp, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        # cv2.imshow('gt', img_cp)
+        # cv2.waitKey(1)
 
     def file_to_img(self, filepath):
         img = cv2.imread(filepath)
@@ -358,6 +357,9 @@ class YOLO_TF:
     def load_folder(self, path):
         paths = [os.path.join(path, fn) for fn in next(os.walk(path))[2]]
         # return paths
+        return self.sort_paths(paths)
+
+    def sort_paths(self, paths):
         return sorted(paths)
 
     def load_dataset_gt(self, gt_file):
@@ -366,6 +368,8 @@ class YOLO_TF:
         return lines
 
     def find_gt_location(self, lines, id):
+        print(lines)
+        print(id)
         line = lines[id]
         elems = line.split('\t')  # for gt type 2
         if len(elems) < 4:
@@ -457,7 +461,7 @@ class YOLO_TF:
          Save the features and locations into file for training LSTM'''
         # Reshape the input image
 
-        root_folder = '/home/ancy/DL-ODT-for-UAV/ROLO/DATA/boat5'
+        root_folder = './ROLO/DATA/boat5'
         # root_folder = '/home/ancy/ROLO/rolo-data/DATA'
         img_fold = os.path.join(root_folder, 'img/')  #
         gt_file = os.path.join(root_folder, 'groundtruth_rect.txt')  #
@@ -531,13 +535,11 @@ class YOLO_TF:
 if __name__ == '__main__':
     root = Tk()
 
-
     # window properties
     root.geometry('1280x800')
     root.resizable(width=True, height=True)
 
     tool = Single_Obj_Detection(root)
     tool.grid(row=0, column=0, sticky="nsew")
-    #main(sys.argv)
+    # main(sys.argv)
     root.mainloop()
-
