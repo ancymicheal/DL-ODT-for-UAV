@@ -108,7 +108,7 @@ class ODTTool:
             self.show_frame(UploadVideoPage)
         elif currentStep == "annotate":
             self.show_frame(AnnotationPage)
-	elif currentStep == "single_obj_detection":
+        elif currentStep == "single_obj_detection":
             self.show_frame(Single_Obj_Detection)
         else:
             self.show_frame(StartPage)

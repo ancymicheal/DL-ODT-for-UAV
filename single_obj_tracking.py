@@ -1,6 +1,11 @@
+import os
 from Tkinter import *
 import Tkinter as tk
 
+import cv2
+
+sys.path.append("./ROLO/utils")
+import ROLO_utils as utils
 LARGE_FONT = ("Verdana", 12)
 
 
@@ -15,10 +20,10 @@ class Single_Obj_Tracking(tk.Frame):
         self.browse_button1 = Button(self, text="Training")
         self.browse_button1.grid(row=1, column=1, sticky="we")
 
-        self.browse_button2 = Button(self, text="Demo")
+        self.browse_button2 = Button(self, text="Demo", command=self.demo)
         self.browse_button2.grid(row=2, column=1, sticky="we")
         
-def demo(self):
+    def demo(self):
 
         ''' PARAMETERS '''
         num_steps = 6

@@ -69,8 +69,8 @@ class ROLO_utils:
 
         batch_size = 128
 
-        x_path= "/home/ancy/DL-ODT-for-UAV/ROLO/yolo_output/"
-        y_path= "/home/ancy/DL-ODT-for-UAV/ROLO/benchmark/rolo_gt"
+        x_path= "/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/yolo_output/"
+        y_path= "/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/rolo_gt"
 
         def __init__(self,argvs = []):
             print("Utils init")
