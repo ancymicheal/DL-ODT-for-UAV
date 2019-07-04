@@ -7,6 +7,7 @@ from annotationpage import AnnotationPage
 from startpage import StartPage
 from uploadvideopage import UploadVideoPage
 from single_obj_detection import Single_Obj_Detection
+from single_obj_tracking import Single_Obj_Tracking
 
 title = "Object Detection And Tracking"
 mainFrameBorder = "black"
@@ -21,7 +22,9 @@ steps = [
     'odt_type',
     'upload_video',
     'annotate',
-    'single_obj_detection'
+    'single_obj_detection',
+    'single_obj_tracking'
+
 ]
 stepIndex = 0
 currentStep = steps[stepIndex]
@@ -56,7 +59,7 @@ class ODTTool:
         self.mainFrame.pack(fill=BOTH, expand=1)
         self.footerFrame.pack(fill=BOTH, expand=1)
 
-        for F in (StartPage, OdtTypePage, UploadVideoPage, AnnotationPage, Single_Obj_Detection):
+        for F in (StartPage, OdtTypePage, UploadVideoPage, AnnotationPage, Single_Obj_Detection, Single_Obj_Tracking):
             frame = F(self.mainFrame, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -108,8 +111,10 @@ class ODTTool:
             self.show_frame(UploadVideoPage)
         elif currentStep == "annotate":
             self.show_frame(AnnotationPage)
-	elif currentStep == "single_obj_detection":
+        elif currentStep == "single_obj_detection":
             self.show_frame(Single_Obj_Detection)
+        elif currentStep == "single_obj_tracking":
+            self.show_frame(Single_Obj_Tracking)
         else:
             self.show_frame(StartPage)
 
