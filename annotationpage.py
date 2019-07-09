@@ -158,7 +158,9 @@ class AnnotationPage(tk.Frame):
         self.total = len(self.imageList)
 
         # create labels directory
-        self.label_dir = self.controller.get_frame_directory() + "/labels"
+	filepath = self.controller.get_frame_directory()
+        dir = os.path.dirname(filepath)
+        self.label_dir = dir + "/labels"
         if not os.path.isdir(self.label_dir):
             os.mkdir(self.label_dir)
 
@@ -184,7 +186,7 @@ class AnnotationPage(tk.Frame):
         print(imagepath)
         self.img = Image.open(imagepath)
         self.tkimg = ImageTk.PhotoImage(self.img)
-        self.mainPanel.config(width=max(self.tkimg.width(), 400), height=max(self.tkimg.height(), 400))
+        self.mainPanel.config(width=max(self.tkimg.width(), 256), height=max(self.tkimg.height(), 256))
         self.mainPanel.create_image(0, 0, image=self.tkimg, anchor=NW)
         self.progLabel.config(text="%04d/%04d" % (self.cur, self.total))
 
@@ -258,21 +260,24 @@ class AnnotationPage(tk.Frame):
 
     def groundtruth(self):
         ground_truths = []
-        all_files = os.listdir(self.label_dir )
-        sorted_list = sorted(all_files)
-        print(sorted_list)
+        all_files = os.listdir(self.label_dir)
+	sorted_list = sorted(all_files)
+        
         for file in sorted_list:
             txt_path = self.label_dir + "/"
-            txt_path1 = txt_path + file
+	    txt_path1 = txt_path + file
             fh = open(txt_path1, "r")
             lines = fh.read().split("\n")
             ground_truth = re.sub("\s+", ",", lines[1].strip())
             ground_truths.append(ground_truth)
-        txt_outfile = open(txt_path + "groundtruth_rect.txt", "w+")
+        dir_groundtruth = os.path.dirname(self.label_dir) + "/"
+	
+        txt_outfile = open(dir_groundtruth + "groundtruth_rect.txt", "w+")
         for i in ground_truths:
             txt_outfile.write(str(i) + "\n")
 
         txt_outfile.close()
+	tkMessageBox.showinfo("Success", "Groundtruth is generated successfully.\n Saved in " + dir_groundtruth)
         
 
     def delBBox(self):
