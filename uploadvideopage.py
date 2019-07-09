@@ -10,14 +10,13 @@ import PIL
 LARGE_FONT = ("Verdana", 12)
 SIZE = (192, 162)
 
-
 class UploadVideoPage(tk.Frame):
     def __init__(self, master, controller):
         Frame.__init__(self, master)
 
         self.controller = controller
 
-        self.file_name = "/home/ashok/Data/videos/boat5.avi"
+        #self.file_name = "/home/ashok/Data/videos/boat5.avi"
         self.vid = None
 
         # Title
@@ -34,7 +33,15 @@ class UploadVideoPage(tk.Frame):
         # self.canvas.grid(row=3, column=0, columnspan=2)
 
         self.convert_button = Button(self, text="Convert To Frames", command=self.convert_to_frames)
-        self.convert_button.grid(row=2, column=0, columnspan=2)
+        self.convert_button.grid(row=2, column=1, columnspan=2)
+
+    def file_browser(self):
+        self.file_name = filedialog.askopenfilename(initialdir="/home",
+                                                    title="Select file",
+                                                    filetypes=(("avi files", "*.avi"), ("all files", "*.*")))
+
+        self.input_file.delete(0, END)
+        self.input_file.insert(0, self.file_name)
 
     def convert_to_frames(self):
         vidObj = cv2.VideoCapture(self.file_name)
@@ -45,12 +52,12 @@ class UploadVideoPage(tk.Frame):
 
         filename = os.path.splitext(base_name)[0]
 
-        self.frame_dir = os.path.dirname(self.file_name) + "/" + filename
-
-
+        self.frame_dir = os.path.dirname(self.file_name) + "/" + filename + "/"+"img"
+	
+	
         # create directory
         if not os.path.exists(self.frame_dir):
-            self.img_folder = os.makedirs(self.frame_dir+'/img')
+            self.img_folder = os.makedirs(self.frame_dir)
 
         while success:
             # function extracts frame
@@ -65,18 +72,13 @@ class UploadVideoPage(tk.Frame):
 
             count += 1
 
-      #  tkMessageBox.showinfo("Success", "Converted to frames successfully.\n Saved in " + self.img_folder)
+        tkMessageBox.showinfo("Success", "Converted to frames successfully.\n Saved in " + self.frame_dir)
 
         self.show_n_frames()
 
         self.controller.set_frame_directory(self.frame_dir)
 
-    def file_browser(self):
-        self.file_name = filedialog.askopenfilename(initialdir="/home",
-                                                    title="Select file",
-                                                    filetypes=(("avi files", "*.avi"), ("all files", "*.*")))
-        self.input_file.delete(0, END)
-        self.input_file.insert(0, self.file_name)
+
 
     def show_n_frames(self, num_of_frames=6):
 
