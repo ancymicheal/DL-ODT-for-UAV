@@ -40,7 +40,7 @@ class Single_Obj_Tracking(tk.Frame):
 	ht = 500
 	
         basepath = Path("./ROLO/DATA/")
-	    for entry in basepath.iterdir():
+	for entry in basepath.iterdir():
     		if entry.is_dir():
         #print(entry.name)
 			folder_path = os.path.join('./ROLO/DATA',entry.name)
