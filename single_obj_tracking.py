@@ -37,8 +37,8 @@ class Single_Obj_Tracking(tk.Frame):
         ''' PARAMETERS '''
         num_steps = 6
         wid = 500
-	    ht = 500
-	    num_steps= 6
+	ht = 500
+	
         basepath = Path("./ROLO/DATA/")
 	    for entry in basepath.iterdir():
     		if entry.is_dir():
