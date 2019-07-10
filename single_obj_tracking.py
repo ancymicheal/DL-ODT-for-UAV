@@ -36,14 +36,19 @@ class Single_Obj_Tracking(tk.Frame):
 
         ''' PARAMETERS '''
         num_steps = 6
-        test = 4
+        wid = 500
+	    ht = 500
+	    num_steps= 6
+        basepath = Path("./ROLO/DATA/")
+	    for entry in basepath.iterdir():
+    		if entry.is_dir():
+        #print(entry.name)
+			folder_path = os.path.join('./ROLO/DATA',entry.name)
+			img_fold_path = os.path.join('./ROLO/DATA', entry.name, 'img/')
+	       		gt_file_path = os.path.join('./ROLO/DATA', entry.name, 'groundtruth_rect.txt')
+			yolo_out_path = os.path.join('./ROLO/DATA', entry.name, 'yolo_out/')
+			rolo_out_path = os.path.join('./ROLO/DATA', entry.name, 'rolo_out_train/')
 
-        [wid, ht, sequence_name, dummy_1, dummy_2] = utils.choose_video_sequence(test)
-
-        img_fold_path = os.path.join('./ROLO/DATA', sequence_name, 'img/')
-        gt_file_path = os.path.join('./ROLO/DATA', sequence_name, 'groundtruth_rect.txt')
-        yolo_out_path = os.path.join('./ROLO/DATA', sequence_name, 'yolo_out/')
-        rolo_out_path = os.path.join('./ROLO/DATA', sequence_name, 'rolo_out_train/')
 
         paths_imgs = utils.load_folder(img_fold_path)
         paths_rolo = utils.load_folder(rolo_out_path)
@@ -52,7 +57,7 @@ class Single_Obj_Tracking(tk.Frame):
         # Define the codec and create VideoWriter object
         # fourcc= cv2.cv.CV_FOURCC(*'DIVX')
         fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-        video_name = sequence_name + '_test.avi'
+        video_name = 'test.avi'
         video_path = os.path.join('output/videos/', video_name)
         video = cv2.VideoWriter(video_path, fourcc, 20, (wid, ht))
 
@@ -85,8 +90,9 @@ class Single_Obj_Tracking(tk.Frame):
             frame = utils.debug_3_locations(img, gt_location, yolo_location, rolo_location)
             video.write(frame)
 
-            utils.createFolder(os.path.join('./ROLO/output/frames/', sequence_name))
-            frame_name = os.path.join('./ROLO/output/frames/', sequence_name, str(test_id) + '.jpg')
+            utils.createFolder(os.path.join('./ROLO/output/frames/', entry.name))
+            frame_name = os.path.join('./ROLO/output/frames/', entry.name, str(test_id) + '.jpg')
+
             print(frame_name)
             cv2.imwrite(frame_name, frame)
             # cv2.imshow('frame',frame)
