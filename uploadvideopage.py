@@ -71,26 +71,30 @@ class UploadVideoPage(tk.Frame):
 
 
         # create directory
-        if not os.path.exists(self.frame_dir):
+        if os.path.exists(self.frame_dir):
+
+            tkMessageBox.showinfo("ERROR","File already exists")
+        else:
             self.img_folder = os.makedirs(self.frame_dir)
 
-        while success:
+
+            while success:
             # function extracts frame
-            success, image = vidObj.read()
-            if success:
-                scale_percent = 60  # percent of original size
-                width = int(256)
-                height = int(256)
-                dim = (width, height)
-                resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+                success, image = vidObj.read()
+                if success:
+                    scale_percent = 60  # percent of original size
+                    width = int(256)
+                    height = int(256)
+                    dim = (width, height)
+                    resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
 
-                cv2.imwrite(self.frame_dir + "/000%d.jpg" % count, resized)
+                    cv2.imwrite(self.frame_dir + "/000%d.jpg" % count, resized)
 
-            count += 1
+                count += 1
 
-        tkMessageBox.showinfo("Success", "Converted to frames successfully.\n Saved in " + self.frame_dir)
+            tkMessageBox.showinfo("Success", "Converted to frames successfully.\n Saved in " + self.frame_dir)
 
-        self.show_n_frames()
+            self.show_n_frames()
 
         self.controller.set_frame_directory(self.frame_dir)
 
