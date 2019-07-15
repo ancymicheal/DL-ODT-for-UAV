@@ -6,6 +6,7 @@ Deep Learning based Object detection and tracking for UAV videos
 - [ ] https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/ object trajectory has to be drawn. in the demo the trajectory of the object has to drawn  for green box as given in the link (IMPORTANT)
 - [ ] run training , testing and demo
 - [ ] pop up after training is complete
+- [ ] fix canvas if possible
 
 
 # Steps
