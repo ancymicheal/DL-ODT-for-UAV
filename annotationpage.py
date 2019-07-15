@@ -8,6 +8,7 @@ import cv2
 from PIL import Image, ImageTk
 import PIL
 import glob
+import natsort
 
 from os import walk, getcwd
 import re
@@ -137,16 +138,18 @@ class AnnotationPage(tk.Frame):
         # self.imageDir = os.path.join(r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images', '%03d'
         # % (self.category))
         self.imageDir = image_dir
-        self.unorderedImageList = sorted(glob.glob(os.path.join(self.imageDir, '*.jpg')))
 
-        self.imageList = [""] * len(self.unorderedImageList)
+	self.orderedImageList = glob.glob(os.path.join(self.imageDir, '*.jpg'))
+	self.orderedImageList = natsort.natsorted(self.orderedImageList,reverse=False)
+	print(self.orderedImageList)
+        self.imageList = [""] * len(self.orderedImageList)
 
         #print(self.unorderedImageList)
 
         # todo, sort image list
         # for i in self.unorderedImageList:
         #     self.imageList[int(i[58:-4])] = i
-        self.imageList = self.unorderedImageList
+        self.imageList = self.orderedImageList
 
         #print(self.imageList)
         if len(self.imageList) == 0:
