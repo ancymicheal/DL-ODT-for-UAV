@@ -32,8 +32,14 @@ class UploadVideoPage(tk.Frame):
         # self.canvas = Canvas(self)
         # self.canvas.grid(row=3, column=0, columnspan=2)
 
-        self.convert_button = Button(self, text="Convert To Frames", command=self.convert_to_frames)
-        self.convert_button.grid(row=2, column=1, columnspan=2)
+        self.convert_button = Button(self, text="Frame Conversion", command=self.convert_to_frames)
+        self.convert_button.grid(row=1, column=2)
+
+	self.input_file2 = Entry(self)
+        self.input_file2.grid(row=2, column=0, sticky="we")
+
+        self.convert_button = Button(self, text="Select image folder",command=self.file_browser2)
+        self.convert_button.grid(row=2, column=1)
 
     def file_browser(self):
         self.file_name = filedialog.askopenfilename(initialdir="/home",
@@ -43,6 +49,14 @@ class UploadVideoPage(tk.Frame):
         self.input_file.delete(0, END)
         self.input_file.insert(0, self.file_name)
 
+    def file_browser2(self):
+        self.file_name2 = filedialog.askopenfilename(initialdir="/home",
+                                                    title="Select file",
+                                                    filetypes=(("jpeg files","*.jpg"), ("all files", "*.*")))
+
+        self.input_file2.delete(0, END)
+        self.input_file2.insert(0, self.file_name2)
+
     def convert_to_frames(self):
         vidObj = cv2.VideoCapture(self.file_name)
         count = 0
@@ -51,10 +65,11 @@ class UploadVideoPage(tk.Frame):
         base_name = os.path.basename(self.file_name)
 
         filename = os.path.splitext(base_name)[0]
+        self.frame_dir2 = "./ROLO/DATA/"
+        self.frame_dir = os.path.dirname(self.frame_dir2) + "/" + filename + "/"+"img"
+	
 
-        self.frame_dir = os.path.dirname(self.file_name) + "/" + filename + "/"+"img"
-	
-	
+
         # create directory
         if not os.path.exists(self.frame_dir):
             self.img_folder = os.makedirs(self.frame_dir)
@@ -68,6 +83,7 @@ class UploadVideoPage(tk.Frame):
                 height = int(256)
                 dim = (width, height)
                 resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+
                 cv2.imwrite(self.frame_dir + "/000%d.jpg" % count, resized)
 
             count += 1
