@@ -3,14 +3,9 @@ Deep Learning based Object detection and tracking for UAV videos
 
 # TODO
 - [ ] Create mockup screens - https://drive.google.com/file/d/1yy86lZZ4gLDnyp_oiNmoiufngoSfyGVv/view?usp=sharing
-
-
-- [ ] place converted frames at videofilename(folder)->img(folder)->converted frames
-- [ ] during annotation images should be read in order
-- [ ] place annotated .txt at  videofilename(folder)->labels(folder)->individual frameslabels(txtfiles)
-- [ ] place groundtruth at videofilename(folder)->groundtruth_rect.txt
-- [ worked] for single obj detection place ROLO->weights-> YOLO_small.ckpt and run DL-ODT-for-UAV->YOLO_network 
-- [ ] run training . and demo
+- [ ] https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/ object trajectory has to be drawn. in the demo the trajectory of the object has to drawn  for green box as given in the link (IMPORTANT)
+- [ ] run training , testing and demo
+- [ ] pop up after training is complete
 
 
 # Steps
