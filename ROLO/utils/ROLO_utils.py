@@ -548,17 +548,26 @@ def debug_gt_location( img, location):
 
 def debug_3_locations( img, gt_location, yolo_location, rolo_location):
     img_cp = img.copy()
-    for i in range(3):  # b-g-r channels
-        if i== 0: location= gt_location; color= (0, 0, 255)       # red for gt
-        elif i ==1: location= yolo_location; color= (255, 0, 0)   # blur for yolo
-        elif i ==2: location= rolo_location; color= (0, 255, 0)   # green for rolo
-        x = int(location[0])
-        y = int(location[1])
-        w = int(location[2])
-        h = int(location[3])
-        if i == 1 or i== 2: cv2.rectangle(img_cp,(x-w//2, y-h//2),(x+w//2,y+h//2), color, 2)
-        elif i== 0: cv2.rectangle(img_cp,(x,y),(x+w,y+h), color, 2)
-    cv2.imshow('3 locations',img_cp)
+
+    # Ground Truth
+    location = gt_location
+    color = (0, 0, 255)  # red for gt
+    x = int(location[0])
+    y = int(location[1])
+    w = int(location[2])
+    h = int(location[3])
+    cv2.rectangle(img_cp, (x, y), (x + w, y + h), color, 2)
+
+    # Rolo
+    location = rolo_location
+    color= (0, 255, 0)
+    x = int(location[0])
+    y = int(location[1])
+    w = int(location[2])
+    h = int(location[3])
+    cv2.rectangle(img_cp,(x-w//2, y-h//2),(x+w//2,y+h//2), color, 2)
+
+    cv2.imshow('2 locations',img_cp)
     cv2.waitKey(100)
     return img_cp
 

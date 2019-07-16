@@ -9,6 +9,8 @@ import os.path
 import random
 import sys
 
+from pathlib import Path
+
 sys.path.append("./ROLO/utils")
 import ROLO_utils as utils
 
@@ -421,7 +423,7 @@ class ROLO_TF:
                 log_file.write('\n')
                 save_path = self.saver.save(sess, self.rolo_weights_file)
                 print("Model saved in file: %s" % save_path)
-
+            # tkMessageBox.showinfo("ERROR", "File already exists")
         log_file.close()
         return
 
