@@ -35,8 +35,8 @@ class UploadVideoPage(tk.Frame):
         self.convert_button = Button(self, text="Frame Conversion", command=self.convert_to_frames)
         self.convert_button.grid(row=1, column=2)
 
-	self.input_file2 = Entry(self)
-        self.input_file2.grid(row=2, column=0, sticky="we")
+        self.image_folder = Entry(self)
+        self.image_folder.grid(row=2, column=0, sticky="we")
 
         self.convert_button = Button(self, text="Select image folder",command=self.file_browser2)
         self.convert_button.grid(row=2, column=1)
@@ -50,12 +50,10 @@ class UploadVideoPage(tk.Frame):
         self.input_file.insert(0, self.file_name)
 
     def file_browser2(self):
-        self.file_name2 = filedialog.askopenfilename(initialdir="/home",
-                                                    title="Select file",
-                                                    filetypes=(("jpeg files","*.jpg"), ("all files", "*.*")))
-
-        self.input_file2.delete(0, END)
-        self.input_file2.insert(0, self.file_name2)
+        image_folder = filedialog.askdirectory(title="Select the image folder")
+        self.image_folder.delete(0, END)
+        self.image_folder.insert(0, image_folder)
+        self.controller.set_frame_directory(image_folder)
 
     def convert_to_frames(self):
         vidObj = cv2.VideoCapture(self.file_name)
