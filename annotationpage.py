@@ -253,15 +253,15 @@ class AnnotationPage(tk.Frame):
     def groundtruth(self):
         ground_truths = []
         all_files = os.listdir(self.label_dir)
-	sorted_list = sorted(all_files)
+        sorted_list = sorted(all_files)
         
         for file in sorted_list:
             txt_path = self.label_dir + "/"
-	    txt_path1 = txt_path + file
-            fh = open(txt_path1, "r")
-            lines = fh.read().split("\n")
-            ground_truth = re.sub("\s+", ",", lines[1].strip())
-            ground_truths.append(ground_truth)
+        txt_path1 = txt_path + file
+        fh = open(txt_path1, "r")
+        lines = fh.read().split("\n")
+        ground_truth = re.sub("\s+", ",", lines[1].strip())
+        ground_truths.append(ground_truth)
         dir_groundtruth = os.path.dirname(self.label_dir) + "/"
 	
         txt_outfile = open(dir_groundtruth + "groundtruth_rect.txt", "w+")
@@ -269,7 +269,7 @@ class AnnotationPage(tk.Frame):
             txt_outfile.write(str(i) + "\n")
 
         txt_outfile.close()
-	tkMessageBox.showinfo("Success", "Groundtruth is generated successfully.\n Saved in " + dir_groundtruth)
+        tkMessageBox.showinfo("Success", "Groundtruth is generated successfully.\n Saved in " + dir_groundtruth)
         
 
     def delBBox(self):
