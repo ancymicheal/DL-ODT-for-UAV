@@ -24,7 +24,6 @@ steps = [
     'annotate',
     'single_obj_detection',
     'single_obj_tracking'
-
 ]
 stepIndex = 0
 currentStep = steps[stepIndex]
@@ -103,6 +102,7 @@ class ODTTool:
             self.show_current_step_frame()
 
     def show_current_step_frame(self):
+        print("loading frame...")
         if currentStep == 'steps':
             self.show_frame(StartPage)
         elif currentStep == 'odt_type':
@@ -141,11 +141,19 @@ class OdtTypePage(tk.Frame):
         label = Label(self, text="Object Detection and Tracking", font=LARGE_FONT)
         label.grid(row=0, column=0, sticky=W + E)
 
-        button1 = Button(self, text="Single Object Detection and Tracking", borderwidth=4, width=50)
+        button1 = Button(self, text="Single Object Detection and Tracking", borderwidth=4, width=50,
+                         command = self.select_single)
         button1.grid(row=1, column=0, sticky=W + E)
 
         button2 = tk.Button(self, text="Multiple Object Detection", borderwidth=4, width=50, )
         button2.grid(row=2, column=0, sticky=W + E)
+
+    def select_single(self):
+        global currentStep
+        global steps
+        currentStep = steps[2]
+        print(currentStep)
+        self.controller.show_current_step_frame()
 
 
 if __name__ == '__main__':
