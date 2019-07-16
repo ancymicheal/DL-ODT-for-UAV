@@ -285,12 +285,12 @@ class ROLO_utils:
                         ct += 1
                         #yolo_output= pickle.load(open(path, "rb"))
                         yolo_output = np.load(path)
-                    
+
                         yolo_output= np.reshape(yolo_output, 4102)
                         yolo_output[4096]= 0
                         yolo_output[4101]= 0
                         yolo_output_batch.append(yolo_output)
-                print(yolo_output_batch)
+                # print(yolo_output_batch)
                 yolo_output_batch= np.reshape(yolo_output_batch, [batch_size*num_steps, 4102])
                 return yolo_output_batch
 
@@ -312,7 +312,7 @@ class ROLO_utils:
         def load_yolo_output_test(self, fold, batch_size, num_steps, id):
                 paths = [os.path.join(fold,fn) for fn in next(os.walk(fold))[2]]
                 paths = sorted(paths)
-                print(paths)
+                # print(paths)
                 st= id
                 ed= id + batch_size*num_steps
                 paths_batch = paths[st:ed]
@@ -786,7 +786,7 @@ def choose_video_sequence(test):
     elif test == 4:
         w_img, h_img = [640, 480]
         #sequence_name = 'BlurCar1'
-        sequence_name = 'boat5'  
+        sequence_name = 'boat5'
         training_iters = 247
         testing_iters = 742#988
     elif test == 5:
