@@ -36,7 +36,7 @@ class Single_Obj_Detection(tk.Frame):
 
     def prepare_training(self):
         yolotf = YOLO_TF()
-        yolotf.prepare_training_data
+        yolotf.prepare_training_data()
 
 class YOLO_TF:
     fromfile = None
@@ -461,72 +461,65 @@ class YOLO_TF:
          Save the features and locations into file for training LSTM'''
         # Reshape the input image
 
-        '''root_folder = './ROLO/DATA/boat5'
-        # root_folder = '/home/ancy/ROLO/rolo-data/DATA'
-        img_fold = os.path.join(root_folder, 'img/')  #
-        gt_file = os.path.join(root_folder, 'groundtruth_rect.txt')  #
-        out_fold = os.path.join(root_folder, 'yolo_out/')  #'''
-	basepath = Path("./ROLO/DATA/")
-	for entry in basepath.iterdir():
-    		if entry.is_dir():
-        #print(entry.name)
-			folder_path = os.path.join('./ROLO/DATA',entry.name)
-			img_fold = os.path.join('./ROLO/DATA', entry.name, 'img/')
-	       		gt_file = os.path.join('./ROLO/DATA', entry.name, 'groundtruth_rect.txt')
-			out_fold = os.path.join('./ROLO/DATA', entry.name, 'yolo_out/')
-       			if not os.path.exists(out_fold):
-    				os.makedirs(out_fold)
-			#yolo.createFolder(out_fold)
-			
+        basepath = Path("./ROLO/DATA/")
 
-        		paths = self.load_folder(img_fold)
-	
-        		gt_locations = self.load_dataset_gt(gt_file)
+        avg_loss = 0
+        total = 0
+        total_time = 0
 
-        		avg_loss = 0
-        		total = 0
-        		total_time = 0
+        for entry in basepath.iterdir():
+            if entry.is_dir():
+                folder_path = os.path.join('./ROLO/DATA',entry.name)
+                img_fold = os.path.join('./ROLO/DATA', entry.name, 'img/')
+                gt_file = os.path.join('./ROLO/DATA', entry.name, 'groundtruth_rect.txt')
+                out_fold = os.path.join('./ROLO/DATA', entry.name, 'yolo_out/')
+                if not os.path.exists(out_fold):
+                    os.makedirs(out_fold)
 
-        		for id, path in enumerate(paths):
-            			filename = os.path.basename(path)
-            			print("processing: ", id, ": ", filename)
-            			img = self.file_to_img(path)
+                paths = self.load_folder(img_fold)
+                gt_locations = self.load_dataset_gt(gt_file)
 
-            			# Pass through YOLO layers
-            			self.h_img, self.w_img, _ = img.shape
-            			img_resized = cv2.resize(img, (448, 448))
-            			img_RGB = cv2.cvtColor(img_resized, cv2.COLOR_BGR2RGB)
-            			img_resized_np = np.asarray(img_RGB)
-            			inputs = np.zeros((1, 448, 448, 3), dtype='float32')
-            			inputs[0] = (img_resized_np / 255.0) * 2.0 - 1.0
-            			in_dict = {self.x: inputs}
+                for id, path in enumerate(paths):
+                    filename = os.path.basename(path)
+                    print("processing: ", id, ": ", filename)
+                    img = self.file_to_img(path)
 
-            			start_time = time.time()
-            			feature = self.sess.run(self.fc_30, feed_dict=in_dict)
-            			cycle_time = time.time() - start_time
-            			print('cycle time= ', cycle_time)
-            			total_time += cycle_time
-            			output = self.sess.run(self.fc_32, feed_dict=in_dict)  # make sure it does not run conv layers twice
+                    # Pass through YOLO layers
+                    self.h_img, self.w_img, _ = img.shape
+                    img_resized = cv2.resize(img, (448, 448))
+                    img_RGB = cv2.cvtColor(img_resized, cv2.COLOR_BGR2RGB)
+                    img_resized_np = np.asarray(img_RGB)
+                    inputs = np.zeros((1, 448, 448, 3), dtype='float32')
+                    inputs[0] = (img_resized_np / 255.0) * 2.0 - 1.0
+                    in_dict = {self.x: inputs}
 
-            			locations = self.interpret_output(output[0])
-            			gt_location = self.find_gt_location(gt_locations, id)
-            			location = self.find_best_location(locations,
-                                               gt_location)  # find the ROI that has the maximum IOU with the ground truth
+                    start_time = time.time()
+                    feature = self.sess.run(self.fc_30, feed_dict=in_dict)
+                    cycle_time = time.time() - start_time
+                    print('cycle time= ', cycle_time)
+                    total_time += cycle_time
+                    output = self.sess.run(self.fc_32, feed_dict=in_dict)  # make sure it does not run conv layers twice
 
-            			self.debug_location(img, location)
-            			self.debug_gt_location(img, gt_location)
+                    locations = self.interpret_output(output[0])
+                    gt_location = self.find_gt_location(gt_locations, id)
+                    location = self.find_best_location(locations,
+                                                   gt_location)  # find the ROI that has the maximum IOU with the ground truth
 
-            # change location into [0, 1]
-            			loss = self.cal_yolo_IOU(location[1:5], gt_location)
-            			location = self.location_from_0_to_1(self.w_img, self.h_img, location)
-            			avg_loss += loss
-            			total += 1
-            			print("loss: ", loss)
-            			yolo_output = np.concatenate(
-                		(np.reshape(feature, [-1, self.num_feat]),
-                 		np.reshape(location, [-1, self.num_predict])),
-                		axis=1)
-            			self.save_yolo_output(out_fold, yolo_output, filename)
+                    self.debug_location(img, location)
+                    self.debug_gt_location(img, gt_location)
+
+                    # change location into [0, 1]
+                    loss = self.cal_yolo_IOU(location[1:5], gt_location)
+                    location = self.location_from_0_to_1(self.w_img, self.h_img, location)
+                    avg_loss += loss
+                    total += 1
+                    print("loss: ", loss)
+                    yolo_output = np.concatenate(
+                        (np.reshape(feature, [-1, self.num_feat]),
+                        np.reshape(location, [-1, self.num_predict])),
+                        axis=1
+                    )
+                    self.save_yolo_output(out_fold, yolo_output, filename)
 
         avg_loss = avg_loss / total
         print("YOLO avg_loss: ", avg_loss)
