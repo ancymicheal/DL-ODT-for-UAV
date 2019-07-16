@@ -546,7 +546,8 @@ def debug_gt_location( img, location):
     cv2.waitKey(1)
 
 
-def debug_3_locations( img, gt_location, yolo_location, rolo_location):
+def debug_3_locations( img, gt_location, yolo_location, rolo_location,
+                       center_points_gt, center_points_rolo):
     img_cp = img.copy()
 
     # Ground Truth
@@ -558,6 +559,11 @@ def debug_3_locations( img, gt_location, yolo_location, rolo_location):
     h = int(location[3])
     cv2.rectangle(img_cp, (x, y), (x + w, y + h), color, 2)
 
+    for i in range(1, len(center_points_gt)):
+        if center_points_gt[i - 1] is None or center_points_gt[i] is None:
+            continue
+        cv2.line(img_cp, center_points_gt[i - 1], center_points_gt[i], (0, 0, 255), 2)
+
     # Rolo
     location = rolo_location
     color= (0, 255, 0)
@@ -566,6 +572,11 @@ def debug_3_locations( img, gt_location, yolo_location, rolo_location):
     w = int(location[2])
     h = int(location[3])
     cv2.rectangle(img_cp,(x-w//2, y-h//2),(x+w//2,y+h//2), color, 2)
+
+    for i in range(1, len(center_points_rolo)):
+        if center_points_rolo[i - 1] is None or center_points_rolo[i] is None:
+            continue
+        cv2.line(img_cp, center_points_rolo[i - 1], center_points_rolo[i], (0, 255, 0), 2)
 
     cv2.imshow('2 locations',img_cp)
     cv2.waitKey(100)
