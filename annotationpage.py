@@ -58,15 +58,6 @@ class AnnotationPage(tk.Frame):
         self.hl = None
         self.vl = None
 
-        # ----------------- GUI stuff ---------------------
-        # dir entry & load
-        self.label = Label(self, text="Image Dir:")
-        self.label.grid(row=0, column=0, sticky=E)
-        self.entry = Entry(self)
-        self.entry.grid(row=0, column=1, sticky=W + E)
-        self.ldBtn = Button(self, text="Load", command=self.loadDir)
-        self.ldBtn.grid(row=0, column=2, sticky=W + E)
-
         # main panel for labeling
         self.mainPanel = Canvas(self, cursor='tcross')
         self.mainPanel.bind("<Button-1>", self.mouseClick)
