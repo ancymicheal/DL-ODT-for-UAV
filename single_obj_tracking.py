@@ -37,72 +37,70 @@ class Single_Obj_Tracking(tk.Frame):
         ''' PARAMETERS '''
         num_steps = 6
         wid = 500
-	ht = 500
-	
+        ht = 500
         basepath = Path("./ROLO/DATA/")
-	for entry in basepath.iterdir():
-    		if entry.is_dir():
-        #print(entry.name)
-			folder_path = os.path.join('./ROLO/DATA',entry.name)
-			img_fold_path = os.path.join('./ROLO/DATA', entry.name, 'img/')
-	       		gt_file_path = os.path.join('./ROLO/DATA', entry.name, 'groundtruth_rect.txt')
-			yolo_out_path = os.path.join('./ROLO/DATA', entry.name, 'yolo_out/')
-			rolo_out_path = os.path.join('./ROLO/DATA', entry.name, 'rolo_out_train/')
-
-
-        paths_imgs = utils.load_folder(img_fold_path)
-        paths_rolo = utils.load_folder(rolo_out_path)
-        lines = utils.load_dataset_gt(gt_file_path)
-
-        # Define the codec and create VideoWriter object
-        # fourcc= cv2.cv.CV_FOURCC(*'DIVX')
-        fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-        video_name = 'test.avi'
-        video_path = os.path.join('output/videos/', video_name)
-        video = cv2.VideoWriter(video_path, fourcc, 20, (wid, ht))
-
         total = 0
         rolo_avgloss = 0
         yolo_avgloss = 0
-        for i in range(len(paths_rolo) - num_steps):
-            id = i + 1
-            test_id = id + num_steps - 2  # * num_steps + 1
+        for entry in basepath.iterdir():
+            if entry.is_dir():
+                folder_path = os.path.join('./ROLO/DATA',entry.name)
+                img_fold_path = os.path.join('./ROLO/DATA', entry.name, 'img/')
+                gt_file_path = os.path.join('./ROLO/DATA', entry.name, 'groundtruth_rect.txt')
+                yolo_out_path = os.path.join('./ROLO/DATA', entry.name, 'yolo_out/')
+                rolo_out_path = os.path.join('./ROLO/DATA', entry.name, 'rolo_out_train/')
 
-            path = paths_imgs[test_id]
-            img = utils.file_to_img(path)
 
-            if (img is None): break
+                paths_imgs = utils.load_folder(img_fold_path)
+                paths_rolo = utils.load_folder(rolo_out_path)
+                lines = utils.load_dataset_gt(gt_file_path)
 
-            yolo_location = utils.find_yolo_location(yolo_out_path, test_id)
-            yolo_location = utils.locations_normal(wid, ht, yolo_location)
-            print(yolo_location)
+                # Define the codec and create VideoWriter object
+                # fourcc= cv2.cv.CV_FOURCC(*'DIVX')
+                fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+                video_name = 'test.avi'
+                video_path = os.path.join('output/videos/', video_name)
+                video = cv2.VideoWriter(video_path, fourcc, 20, (wid, ht))
 
-            rolo_location = utils.find_rolo_location(rolo_out_path, test_id)
-            rolo_location = utils.locations_normal(wid, ht, rolo_location)
-            print(rolo_location)
+            for i in range(len(paths_rolo) - num_steps):
+                id = i + 1
+                test_id = id + num_steps - 2  # * num_steps + 1
 
-            gt_location = utils.find_gt_location(lines, test_id - 1)
-            # gt_location= locations_from_0_to_1(None, 480, 640, gt_location)
-            # gt_location = locations_normal(None, 480, 640, gt_location)
-            # print('gt: ' + str(test_id))
-            # print(gt_location)
+                path = paths_imgs[test_id]
+                img = utils.file_to_img(path)
 
-            frame = utils.debug_3_locations(img, gt_location, yolo_location, rolo_location)
-            video.write(frame)
+                if (img is None): break
 
-            utils.createFolder(os.path.join('./ROLO/output/frames/', entry.name))
-            frame_name = os.path.join('./ROLO/output/frames/', entry.name, str(test_id) + '.jpg')
+                yolo_location = utils.find_yolo_location(yolo_out_path, test_id)
+                yolo_location = utils.locations_normal(wid, ht, yolo_location)
+                print(yolo_location)
 
-            print(frame_name)
-            cv2.imwrite(frame_name, frame)
-            # cv2.imshow('frame',frame)
-            # cv2.waitKey(100)
+                rolo_location = utils.find_rolo_location(rolo_out_path, test_id)
+                rolo_location = utils.locations_normal(wid, ht, rolo_location)
+                print(rolo_location)
 
-            rolo_loss = utils.cal_rolo_IOU(rolo_location, gt_location)
-            rolo_avgloss += rolo_loss
-            yolo_loss = utils.cal_yolo_IOU(yolo_location, gt_location)
-            yolo_avgloss += yolo_loss
-            total += 1
+                gt_location = utils.find_gt_location(lines, test_id - 1)
+                # gt_location= locations_from_0_to_1(None, 480, 640, gt_location)
+                # gt_location = locations_normal(None, 480, 640, gt_location)
+                # print('gt: ' + str(test_id))
+                # print(gt_location)
+
+                frame = utils.debug_3_locations(img, gt_location, yolo_location, rolo_location)
+                video.write(frame)
+
+                utils.createFolder(os.path.join('./ROLO/output/frames/', entry.name))
+                frame_name = os.path.join('./ROLO/output/frames/', entry.name, str(test_id) + '.jpg')
+
+                print(frame_name)
+                cv2.imwrite(frame_name, frame)
+                # cv2.imshow('frame',frame)
+                # cv2.waitKey(100)
+
+                rolo_loss = utils.cal_rolo_IOU(rolo_location, gt_location)
+                rolo_avgloss += rolo_loss
+                yolo_loss = utils.cal_yolo_IOU(yolo_location, gt_location)
+                yolo_avgloss += yolo_loss
+                total += 1
 
         rolo_avgloss /= total
         yolo_avgloss /= total
@@ -167,7 +165,7 @@ class ROLO_TF:
     }
 
     def __init__(self, argvs=[]):
-        print("ROLO init")
+        print("ROLO INIT")
         self.ROLO(argvs)
 
     def LSTM_single(self, name, _X, _istate, _weights, _biases):
@@ -438,15 +436,3 @@ class ROLO_TF:
             self.detect_from_file(utils.file_in_path)
         else:
             self.train_30_2()
-
-if __name__ == '__main__':
-    root = Tk()
-
-    # window properties
-    root.geometry('1280x800')
-    root.resizable(width=True, height=True)
-
-    tool = Single_Obj_Tracking(root)
-    tool.grid(row=0, column=0, sticky="nsew")
-
-    root.mainloop()

@@ -5,7 +5,7 @@ import cv2
 import time
 import sys
 import pickle
-sys.path.append("/home/ancy/DL-ODT-for-UAV/ROLO/utils")
+sys.path.append("./ROLO/utils")
 import ROLO_utils as util
 
 class YOLO_TF:
@@ -16,7 +16,7 @@ class YOLO_TF:
 	filewrite_img = False
 	filewrite_txt = False
 	disp_console = True
-	weights_file = '/home/ancy/DL-ODT-for-UAV/ROLO/weights/YOLO_small.ckpt'
+	weights_file = './ROLO/weights/YOLO_small.ckpt'
 	alpha = 0.1
 	threshold = 0.08
 	iou_threshold = 0.5
@@ -669,7 +669,7 @@ def main(argvs):
 
 	if (test >= 0 and test <= 29) or (test >= 90):
 		#root_folder = 'benchmark/DATA'
-		root_folder = '/home/ancy/DL-ODT-for-UAV/ROLO/DATA'
+		root_folder = './ROLO/DATA'
 		#root_folder = '/home/ancy/ROLO/rolo-data/DATA'
 		img_fold = os.path.join(root_folder, sequence_name, 'img/')
 	elif test<= 36:

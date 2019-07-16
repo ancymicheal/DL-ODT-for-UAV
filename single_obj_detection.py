@@ -62,6 +62,7 @@ class YOLO_TF:
     num_heatmap = 1024
 
     def __init__(self, argvs=[]):
+        print("YOLO INIT")
         self.argv_parser(argvs)
         self.build_networks()
         if self.fromfile is not None: self.detect_from_file(self.fromfile)
@@ -84,43 +85,45 @@ class YOLO_TF:
 
     def build_networks(self):
         if self.disp_console: print "Building YOLO_small graph..."
-        self.x = tf.placeholder('float32', [None, 448, 448, 3])
-        self.conv_1 = self.conv_layer(1, self.x, 64, 7, 2)
-        self.pool_2 = self.pooling_layer(2, self.conv_1, 2, 2)
-        self.conv_3 = self.conv_layer(3, self.pool_2, 192, 3, 1)
-        self.pool_4 = self.pooling_layer(4, self.conv_3, 2, 2)
-        self.conv_5 = self.conv_layer(5, self.pool_4, 128, 1, 1)
-        self.conv_6 = self.conv_layer(6, self.conv_5, 256, 3, 1)
-        self.conv_7 = self.conv_layer(7, self.conv_6, 256, 1, 1)
-        self.conv_8 = self.conv_layer(8, self.conv_7, 512, 3, 1)
-        self.pool_9 = self.pooling_layer(9, self.conv_8, 2, 2)
-        self.conv_10 = self.conv_layer(10, self.pool_9, 256, 1, 1)
-        self.conv_11 = self.conv_layer(11, self.conv_10, 512, 3, 1)
-        self.conv_12 = self.conv_layer(12, self.conv_11, 256, 1, 1)
-        self.conv_13 = self.conv_layer(13, self.conv_12, 512, 3, 1)
-        self.conv_14 = self.conv_layer(14, self.conv_13, 256, 1, 1)
-        self.conv_15 = self.conv_layer(15, self.conv_14, 512, 3, 1)
-        self.conv_16 = self.conv_layer(16, self.conv_15, 256, 1, 1)
-        self.conv_17 = self.conv_layer(17, self.conv_16, 512, 3, 1)
-        self.conv_18 = self.conv_layer(18, self.conv_17, 512, 1, 1)
-        self.conv_19 = self.conv_layer(19, self.conv_18, 1024, 3, 1)
-        self.pool_20 = self.pooling_layer(20, self.conv_19, 2, 2)
-        self.conv_21 = self.conv_layer(21, self.pool_20, 512, 1, 1)
-        self.conv_22 = self.conv_layer(22, self.conv_21, 1024, 3, 1)
-        self.conv_23 = self.conv_layer(23, self.conv_22, 512, 1, 1)
-        self.conv_24 = self.conv_layer(24, self.conv_23, 1024, 3, 1)
-        self.conv_25 = self.conv_layer(25, self.conv_24, 1024, 3, 1)
-        self.conv_26 = self.conv_layer(26, self.conv_25, 1024, 3, 2)
-        self.conv_27 = self.conv_layer(27, self.conv_26, 1024, 3, 1)
-        self.conv_28 = self.conv_layer(28, self.conv_27, 1024, 3, 1)
-        self.fc_29 = self.fc_layer(29, self.conv_28, 512, flat=True, linear=False)
-        self.fc_30 = self.fc_layer(30, self.fc_29, 4096, flat=False, linear=False)
-        # skip dropout_31
-        self.fc_32 = self.fc_layer(32, self.fc_30, 1470, flat=False, linear=True)
-        self.sess = tf.Session()
-        self.sess.run(tf.initialize_all_variables())
-        self.saver = tf.train.Saver()
-        self.saver.restore(self.sess, self.weights_file)
+        g_1 = tf.Graph()
+        with g_1.as_default():
+            self.x = tf.placeholder('float32', [None, 448, 448, 3])
+            self.conv_1 = self.conv_layer(1, self.x, 64, 7, 2)
+            self.pool_2 = self.pooling_layer(2, self.conv_1, 2, 2)
+            self.conv_3 = self.conv_layer(3, self.pool_2, 192, 3, 1)
+            self.pool_4 = self.pooling_layer(4, self.conv_3, 2, 2)
+            self.conv_5 = self.conv_layer(5, self.pool_4, 128, 1, 1)
+            self.conv_6 = self.conv_layer(6, self.conv_5, 256, 3, 1)
+            self.conv_7 = self.conv_layer(7, self.conv_6, 256, 1, 1)
+            self.conv_8 = self.conv_layer(8, self.conv_7, 512, 3, 1)
+            self.pool_9 = self.pooling_layer(9, self.conv_8, 2, 2)
+            self.conv_10 = self.conv_layer(10, self.pool_9, 256, 1, 1)
+            self.conv_11 = self.conv_layer(11, self.conv_10, 512, 3, 1)
+            self.conv_12 = self.conv_layer(12, self.conv_11, 256, 1, 1)
+            self.conv_13 = self.conv_layer(13, self.conv_12, 512, 3, 1)
+            self.conv_14 = self.conv_layer(14, self.conv_13, 256, 1, 1)
+            self.conv_15 = self.conv_layer(15, self.conv_14, 512, 3, 1)
+            self.conv_16 = self.conv_layer(16, self.conv_15, 256, 1, 1)
+            self.conv_17 = self.conv_layer(17, self.conv_16, 512, 3, 1)
+            self.conv_18 = self.conv_layer(18, self.conv_17, 512, 1, 1)
+            self.conv_19 = self.conv_layer(19, self.conv_18, 1024, 3, 1)
+            self.pool_20 = self.pooling_layer(20, self.conv_19, 2, 2)
+            self.conv_21 = self.conv_layer(21, self.pool_20, 512, 1, 1)
+            self.conv_22 = self.conv_layer(22, self.conv_21, 1024, 3, 1)
+            self.conv_23 = self.conv_layer(23, self.conv_22, 512, 1, 1)
+            self.conv_24 = self.conv_layer(24, self.conv_23, 1024, 3, 1)
+            self.conv_25 = self.conv_layer(25, self.conv_24, 1024, 3, 1)
+            self.conv_26 = self.conv_layer(26, self.conv_25, 1024, 3, 2)
+            self.conv_27 = self.conv_layer(27, self.conv_26, 1024, 3, 1)
+            self.conv_28 = self.conv_layer(28, self.conv_27, 1024, 3, 1)
+            self.fc_29 = self.fc_layer(29, self.conv_28, 512, flat=True, linear=False)
+            self.fc_30 = self.fc_layer(30, self.fc_29, 4096, flat=False, linear=False)
+            # skip dropout_31
+            self.fc_32 = self.fc_layer(32, self.fc_30, 1470, flat=False, linear=True)
+            self.sess = tf.Session(graph=g_1)
+            self.sess.run(tf.initialize_all_variables())
+            self.saver = tf.train.Saver()
+            self.saver.restore(self.sess, self.weights_file)
         if self.disp_console: print "Loading complete!" + '\n'
 
     def conv_layer(self, idx, inputs, filters, size, stride):
@@ -468,6 +471,7 @@ class YOLO_TF:
         total_time = 0
 
         for entry in basepath.iterdir():
+            print(entry)
             if entry.is_dir():
                 folder_path = os.path.join('./ROLO/DATA',entry.name)
                 img_fold = os.path.join('./ROLO/DATA', entry.name, 'img/')
@@ -475,6 +479,8 @@ class YOLO_TF:
                 out_fold = os.path.join('./ROLO/DATA', entry.name, 'yolo_out/')
                 if not os.path.exists(out_fold):
                     os.makedirs(out_fold)
+
+                print(img_fold)
 
                 paths = self.load_folder(img_fold)
                 gt_locations = self.load_dataset_gt(gt_file)
@@ -539,14 +545,4 @@ class YOLO_TF:
 
 
 if __name__ == '__main__':
-    root = Tk()
-
-
-    # window properties
-    root.geometry('1280x800')
-    root.resizable(width=True, height=True)
-
-    tool = Single_Obj_Detection(root)
-    tool.grid(row=0, column=0, sticky="nsew")
-    #main(sys.argv)
-    root.mainloop()
+    YOLO_TF()
