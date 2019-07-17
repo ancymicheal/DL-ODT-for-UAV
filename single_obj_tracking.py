@@ -27,9 +27,10 @@ class Single_Obj_Tracking(tk.Frame):
 
         self.browse_button1 = Button(self, text="Training", command=self.train)
         self.browse_button1.grid(row=1, column=1, sticky="we")
-
-        self.browse_button2 = Button(self, text="Demo", command=self.demo)
+        self.browse_button2 = Button(self, text="Testing")
         self.browse_button2.grid(row=2, column=1, sticky="we")
+        self.browse_button3 = Button(self, text="Tracking", command=self.demo)
+        self.browse_button3.grid(row=3, column=1, sticky="we")
 
     def train(self):
         ROLO_TF()
@@ -44,6 +45,7 @@ class Single_Obj_Tracking(tk.Frame):
         total = 0
         rolo_avgloss = 0
         yolo_avgloss = 0
+
         for entry in basepath.iterdir():
             if entry.is_dir():
                 folder_path = os.path.join('./ROLO/DATA',entry.name)
@@ -140,12 +142,12 @@ class ROLO_TF:
 
     # YOLO parameters
     fromfile = None
-    tofile_img = '/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/test/output.jpg'
-    tofile_txt = '/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/test/output.txt'
+    tofile_img = './ROLO/test/output.jpg'
+    tofile_txt = './ROLO/test/output.txt'
     imshow = True
     filewrite_img = False
     filewrite_txt = False
-    yolo_weights_file = '/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/YOLO_small.ckpt'
+    yolo_weights_file = './ROLO/YOLO_small.ckpt'
     alpha = 0.1
     threshold = 0.2
     iou_threshold = 0.5
@@ -157,7 +159,7 @@ class ROLO_TF:
     w_img, h_img = [352, 240]
 
     # ROLO Network Parameters
-    rolo_weights_file = '/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/output/ROLO_model/model_step1_exp2.ckpt'
+    rolo_weights_file = './ROLO/output/ROLO_model/model_step1_exp2.ckpt'
     # rolo_weights_file = '/u03/Guanghan/dev/ROLO-dev/output/ROLO_model/model_step1_exp2.ckpt'
     lstm_depth = 3
     num_steps = 1  # number of frames as an input sequence
@@ -336,7 +338,7 @@ class ROLO_TF:
 
     def train_30_2(self):
         print("TRAINING ROLO...")
-        log_file = open("/home/ashok/Workspace/DL-ODT-for-UAV/ROLO/output/training-step1-exp2.txt",
+        log_file = open("./ROLO/output/training-step1-exp2.txt",
                         "a")  # open in append mode
         self.build_networks()
 
