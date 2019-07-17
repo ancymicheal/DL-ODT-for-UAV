@@ -102,8 +102,8 @@ class Single_Obj_Tracking(tk.Frame):
 
                     # todo, fix center calculation
                     l_rolo = rolo_location
-                    center_x = int(l_rolo[0] + (l_rolo[2] / 2))
-                    center_y = int(l_rolo[1] + (l_rolo[3] / 2))
+                    center_x = int(l_rolo[0])
+                    center_y = int(l_rolo[1])
                     center_points_rolo.append((center_x, center_y))
 
                     frame = utils.debug_3_locations(
@@ -343,8 +343,8 @@ class ROLO_TF:
         self.build_networks()
 
         ''' TUNE THIS'''
-        num_videos = 1
-        i = 4
+        #num_videos = 1
+        #i = 4
 
         # num_videos = 10
         # video_list = [1,2, 4,5,6 ,8 ]
