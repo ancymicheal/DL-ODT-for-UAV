@@ -1,5 +1,6 @@
 # DL-ODT-for-UAV
 Deep Learning based Object detection and tracking for UAV videos
+- UBUNTU
 
 # TODO
 - [ ] Create mockup screens - https://drive.google.com/file/d/1yy86lZZ4gLDnyp_oiNmoiufngoSfyGVv/view?usp=sharing
