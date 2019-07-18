@@ -20,11 +20,12 @@ Deep Learning based Object detection and tracking for UAV videos
     `source venv/bin/activate`
 5. To install the dependencies,
     `pip install -r requirements.txt`
-6. Make the run.py file executable
-    `chmod +x run.py`
-7. To run,
-    `./run.py`
-8. To deactivate,
-    `deactivate`
-9. Install tensorflow 0.8  
+6. Install tensorflow 0.8  
 python2.7 -m pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.8.0-cp27-none-linux_x86_64.whl
+7. Make the run.py file executable
+    `chmod +x run.py`
+8. To run,
+    `./run.py`
+9. To deactivate,
+    `deactivate`
+ 
