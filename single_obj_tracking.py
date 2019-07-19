@@ -1,7 +1,7 @@
 import os
 from Tkinter import *
 import Tkinter as tk
-
+import tkMessageBox
 import cv2
 import tensorflow as tf
 import numpy as np
@@ -24,14 +24,26 @@ class Single_Obj_Tracking(tk.Frame):
         self.controller = controller
         self.pageTitle = Label(self, text="Single Object Tracking", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=0, columnspan=2)
+	self.pageTitle2 = Label(self, text="Enter Training Iteration")
+        self.pageTitle2.grid(row=1, column=0, columnspan=2)
+	self.training_iter_entry = tk.Entry(self)
+	self.training_iter_entry.grid(row=2, column=0)
+	self.training_iter_button = tk.Button(self, text="Ok", command=self.get_training_iter)
+	self.training_iter_button.grid(row=2, column=2, columnspan=2, sticky="we")
 
         self.browse_button1 = Button(self, text="Training", command=self.train)
-        self.browse_button1.grid(row=1, column=1, sticky="we")
-        self.browse_button2 = Button(self, text="Testing")
-        self.browse_button2.grid(row=2, column=1, sticky="we")
+        self.browse_button1.grid(row=3, column=0, sticky="we")
+	self.browse_button2 = Button(self, text="Testing(yet to implement")
+        self.browse_button2.grid(row=4, column=0, sticky="we")
         self.browse_button3 = Button(self, text="Tracking", command=self.demo)
-        self.browse_button3.grid(row=3, column=1, sticky="we")
-
+        self.browse_button3.grid(row=5, column=0, sticky="we")
+    
+    def get_training_iter(self):
+	global training_iters1        
+	training_iters = self.training_iter_entry.get()
+	training_iters1 =int(training_iters)
+	
+    
     def train(self):
         ROLO_TF()
 
@@ -102,7 +114,9 @@ class Single_Obj_Tracking(tk.Frame):
 
                     # todo, fix center calculation
                     l_rolo = rolo_location
-                    center_x = int(l_rolo[0])
+                    #center_x = int(l_rolo[0] + (l_rolo[2] / 2))
+                    #center_y = int(l_rolo[1] + (l_rolo[3] / 2))
+		    center_x = int(l_rolo[0])
                     center_y = int(l_rolo[1])
                     center_points_rolo.append((center_x, center_y))
 
@@ -136,7 +150,7 @@ class Single_Obj_Tracking(tk.Frame):
         video.release()
         cv2.destroyAllWindows()
 
-class ROLO_TF:
+class ROLO_TF(Single_Obj_Tracking):
     disp_console = False
     restore_weights = True  # False
 
@@ -171,8 +185,9 @@ class ROLO_TF:
     # ROLO Training Parameters
     # learning_rate = 0.00001 #training
     learning_rate = 0.00001  # testing
-
-    training_iters = 210  # 100000
+    #print(training_iter)
+    #training_iters = 1  # 100000
+    #print(training_iters)
     batch_size = 1  # 128
     display_step = 1
 
@@ -190,8 +205,13 @@ class ROLO_TF:
     }
 
     def __init__(self, argvs=[]):
-        print("ROLO INIT")
+		    
+	print("ROLO INIT")
         self.ROLO(argvs)
+    def get_training_iter(self):
+        #Set default moves by calling method of parent class
+        super(ROLO_TF, self).get_training_iter()
+	
 
     def LSTM_single(self, name, _X, _istate, _weights, _biases):
 
@@ -285,7 +305,7 @@ class ROLO_TF:
             id = 0
 
             # Keep training until reach max iterations
-            while id * self.batch_size < self.training_iters:
+            while id * self.batch_size < training_iters1:
                 # Load training data & ground truth
                 batch_xs = self.rolo_utils.load_yolo_output(x_path, self.batch_size, self.num_steps,
                                                             id)  # [num_of_examples, num_input] (depth == 1)
@@ -342,14 +362,6 @@ class ROLO_TF:
                         "a")  # open in append mode
         self.build_networks()
 
-        ''' TUNE THIS'''
-        #num_videos = 1
-        #i = 4
-
-        # num_videos = 10
-        # video_list = [1,2, 4,5,6 ,8 ]
-
-        # Use rolo_input for LSTM training
         pred = self.LSTM_single('lstm_train', self.x, self.istate, self.weights, self.biases)
         self.pred_location = pred[0][:, 4097:4101]
         self.correct_prediction = tf.square(self.pred_location - self.y)
@@ -383,17 +395,12 @@ class ROLO_TF:
                     os.makedirs(output_path)
                 self.output_path = output_path
 
-                # [self.w_img, self.h_img, sequence_name, self.training_iters, dummy]= utils.choose_video_sequence(i)
-                # x_path = os.path.join('/home/ancy/ROLO/benchmark/DATA', sequence_name, 'yolo_out/')
-                # y_path = os.path.join('/home/ancy/ROLO/benchmark/DATA', sequence_name, 'groundtruth_rect.txt')
-                # self.output_path = os.path.join('/home/ancy/ROLO/benchmark/DATA', sequence_name, 'rolo_out_train/')
-                # utils.createFolder(self.output_path)
-
+              
                 id = 1
                 total_loss = 0
 
                 # Keep training until reach max iterations
-                while id < self.training_iters - self.num_steps:
+                while id < training_iters1 - self.num_steps:
                     # Load training data & ground truth
                     batch_xs = self.rolo_utils.load_yolo_output_test(x_path, self.batch_size, self.num_steps,
                                                                      id)  # [num_of_examples, num_input] (depth == 1)
@@ -439,13 +446,15 @@ class ROLO_TF:
 
                 # print "Optimization Finished!"
                 avg_loss = total_loss / id
-                print "Avg loss: " + folder_name + ": " + str(avg_loss)
+                #print "Avg loss: " + folder_name + ": " + str(avg_loss)
 
                 log_file.write(str("{:.3f}".format(avg_loss)) + '  ')
 
                 log_file.write('\n')
                 save_path = self.saver.save(sess, self.rolo_weights_file)
-                print("Model saved in file: %s" % save_path)
+                #print("Model saved in file: %s" % save_path)
+		tkMessageBox.showinfo("Average Loss", "Avg loss: " + folder_name + ": " + str(avg_loss))
+		tkMessageBox.showinfo("Success", "Model successfully \n Saved in " + save_path)
             # tkMessageBox.showinfo("ERROR", "File already exists")
         log_file.close()
         return
