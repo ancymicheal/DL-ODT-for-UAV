@@ -446,13 +446,13 @@ class ROLO_TF(Single_Obj_Tracking):
 
                 # print "Optimization Finished!"
                 avg_loss = total_loss / id
-                #print "Avg loss: " + folder_name + ": " + str(avg_loss)
+                print "Avg loss: " + folder_name + ": " + str(avg_loss)
 
                 log_file.write(str("{:.3f}".format(avg_loss)) + '  ')
 
                 log_file.write('\n')
                 save_path = self.saver.save(sess, self.rolo_weights_file)
-                #print("Model saved in file: %s" % save_path)
+                print("Model saved in file: %s" % save_path)
 		tkMessageBox.showinfo("Average Loss", "Avg loss: " + folder_name + ": " + str(avg_loss))
 		tkMessageBox.showinfo("Success", "Model successfully \n Saved in " + save_path)
             # tkMessageBox.showinfo("ERROR", "File already exists")
