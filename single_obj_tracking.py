@@ -8,6 +8,7 @@ import numpy as np
 import os.path
 import random
 import sys
+import natsort
 
 from pathlib import Path
 
@@ -69,7 +70,8 @@ class Single_Obj_Tracking(tk.Frame):
 
                 paths_imgs = utils.load_folder(img_fold_path)
                 paths_rolo = utils.load_folder(rolo_out_path)
-                lines = utils.load_dataset_gt(gt_file_path)
+		paths_rolo = natsort.natsorted(paths_rolo, reverse=False)
+		lines = utils.load_dataset_gt(gt_file_path)
 
                 # Define the codec and create VideoWriter object
                 # fourcc= cv2.cv.CV_FOURCC(*'DIVX')
@@ -92,11 +94,11 @@ class Single_Obj_Tracking(tk.Frame):
 
                     yolo_location = utils.find_yolo_location(yolo_out_path, test_id)
                     yolo_location = utils.locations_normal(wid, ht, yolo_location)
-                    print(yolo_location)
+                    #print(yolo_location)
 
                     rolo_location = utils.find_rolo_location(rolo_out_path, test_id)
                     rolo_location = utils.locations_normal(wid, ht, rolo_location)
-                    print(rolo_location)
+                    #print(rolo_location)
 
                     gt_location = utils.find_gt_location(lines, test_id - 1)
                     # gt_location= locations_from_0_to_1(None, 480, 640, gt_location)
@@ -130,7 +132,7 @@ class Single_Obj_Tracking(tk.Frame):
                     utils.createFolder(os.path.join('./ROLO/output/frames/', entry.name))
                     frame_name = os.path.join('./ROLO/output/frames/', entry.name, str(test_id) + '.jpg')
 
-                    print(frame_name)
+                    #print(frame_name)
                     cv2.imwrite(frame_name, frame)
                     # cv2.imshow('frame',frame)
                     # cv2.waitKey(100)
@@ -144,8 +146,6 @@ class Single_Obj_Tracking(tk.Frame):
         rolo_avgloss /= total
         yolo_avgloss /= total
         print("yolo_avg_iou = ", yolo_avgloss)
-        print("rolo_avg_iou = ", rolo_avgloss)
-        print("rolo_avg_iou = ", rolo_avgloss)
         print("rolo_avg_iou = ", rolo_avgloss)
         video.release()
         cv2.destroyAllWindows()
