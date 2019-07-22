@@ -16,11 +16,10 @@ class UploadVideoPage(tk.Frame):
 
         self.controller = controller
 
-        #self.file_name = "/home/ashok/Data/videos/boat5.avi"
         self.vid = None
 
         # Title
-        self.pageTitle = Label(self, text="Upload Video Page", font=LARGE_FONT)
+        self.pageTitle = Label(self, text="Upload File", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=1, columnspan=2)
 
         self.input_file = Entry(self)
@@ -38,9 +37,13 @@ class UploadVideoPage(tk.Frame):
         self.image_folder = Entry(self)
         self.image_folder.grid(row=2, column=0, sticky="we")
 
-        self.convert_button = Button(self, text="Select image folder",command=self.file_browser2)
-        self.convert_button.grid(row=2, column=1)
+        self.browse_img_button = Button(self, text="Select image folder")
+        self.browse_img_button.grid(row=2, column=1)
+	
+	self.load_img_button = Button(self, text="Load image folder",)
+	self.load_img_button.grid(row=2, column=2)
 
+	
     def file_browser(self):
         self.file_name = filedialog.askopenfilename(initialdir="/home",
                                                     title="Select file",
@@ -48,13 +51,7 @@ class UploadVideoPage(tk.Frame):
 
         self.input_file.delete(0, END)
         self.input_file.insert(0, self.file_name)
-
-    def file_browser2(self):
-        image_folder = filedialog.askdirectory(title="Select the image folder")
-        self.image_folder.delete(0, END)
-        self.image_folder.insert(0, image_folder)
-        self.controller.set_frame_directory(image_folder)
-
+   
     def convert_to_frames(self):
         vidObj = cv2.VideoCapture(self.file_name)
         count = 0
@@ -96,6 +93,13 @@ class UploadVideoPage(tk.Frame):
 
         self.controller.set_frame_directory(self.frame_dir)
 
+    def file_browser2(self):
+        self.frame_dir = filedialog.askdirectory(title="Select the image folder")
+	
+	self.frame_dir.delete(0, END)
+        self.frame_dir.insert(0, image_folder)
+	print(frame_dir)
+	self.controller.set_frame_directory(self.frame_dir)
 
 
     def show_n_frames(self, num_of_frames=6):
@@ -123,8 +127,8 @@ if __name__ == '__main__':
     root = Tk()
 
     # window properties
-    root.geometry('1280x800')
-    root.resizable(width=True, height=True)
+   # root.geometry('820x820')
+    #root.resizable(width=True, height=True)
 
     tool = UploadVideoPage(root)
     tool.grid(row=0, column=0, sticky="nsew")
