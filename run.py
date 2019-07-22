@@ -10,6 +10,8 @@ from single_obj_detection import Single_Obj_Detection
 from single_obj_tracking import Single_Obj_Tracking
 from references import References
 
+# todo, port to python3
+
 title = "Object Detection And Tracking"
 mainFrameBorder = "black"
 footerFrameBorder = "red"
