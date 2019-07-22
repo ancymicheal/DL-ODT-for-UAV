@@ -4,7 +4,7 @@ Deep Learning based Object detection and tracking for UAV videos
 
 # TODO
 - [ ] Create mockup screens - https://drive.google.com/file/d/1yy86lZZ4gLDnyp_oiNmoiufngoSfyGVv/view?usp=sharing
-- [ ] fix canvas if possible
+
 
 
 # Steps
