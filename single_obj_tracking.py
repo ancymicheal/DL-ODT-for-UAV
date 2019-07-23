@@ -25,26 +25,25 @@ class Single_Obj_Tracking(tk.Frame):
         self.controller = controller
         self.pageTitle = Label(self, text="Single Object Tracking", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=0, columnspan=2)
-	self.pageTitle2 = Label(self, text="Enter No. Epoches")
+        self.pageTitle2 = Label(self, text="Enter No. Epoches")
         self.pageTitle2.grid(row=1, column=0, columnspan=2)
-	self.epoches_entry = tk.Entry(self)
-	self.epoches_entry.grid(row=2, column=0)
-	self.epoches_button = tk.Button(self, text="Ok", command=self.get_epoches)
-	self.epoches_button.grid(row=2, column=2, columnspan=2, sticky="we")
+        self.epoches_entry = tk.Entry(self)
+        self.epoches_entry.grid(row=2, column=0)
+        self.epoches_button = tk.Button(self, text="Ok", command=self.get_epoches)
+        self.epoches_button.grid(row=2, column=2, columnspan=2, sticky="we")
 
         self.browse_button1 = Button(self, text="Training", command=self.train)
         self.browse_button1.grid(row=3, column=0, sticky="we")
-	self.browse_button2 = Button(self, text="Testing(yet to implement")
+        self.browse_button2 = Button(self, text="Testing(yet to implement")
         self.browse_button2.grid(row=4, column=0, sticky="we")
         self.browse_button3 = Button(self, text="Tracking", command=self.demo)
         self.browse_button3.grid(row=5, column=0, sticky="we")
-    
+
     def get_epoches(self):
-	global epoches_iters1        
-	epoches_iters = self.epoches_entry.get()
-	epoches_iters1 =int(epoches_iters)
-	
-    
+        global epoches_iters1
+        epoches_iters = self.epoches_entry.get()
+        epoches_iters1 = int(epoches_iters)
+
     def train(self):
         ROLO_TF()
 
@@ -61,17 +60,16 @@ class Single_Obj_Tracking(tk.Frame):
 
         for entry in basepath.iterdir():
             if entry.is_dir():
-                folder_path = os.path.join('./ROLO/DATA',entry.name)
+                folder_path = os.path.join('./ROLO/DATA', entry.name)
                 img_fold_path = os.path.join('./ROLO/DATA', entry.name, 'img/')
                 gt_file_path = os.path.join('./ROLO/DATA', entry.name, 'groundtruth_rect.txt')
                 yolo_out_path = os.path.join('./ROLO/DATA', entry.name, 'yolo_out/')
                 rolo_out_path = os.path.join('./ROLO/DATA', entry.name, 'rolo_out_train/')
 
-
                 paths_imgs = utils.load_folder(img_fold_path)
                 paths_rolo = utils.load_folder(rolo_out_path)
-		paths_rolo = natsort.natsorted(paths_rolo, reverse=False)
-		lines = utils.load_dataset_gt(gt_file_path)
+                paths_rolo = natsort.natsorted(paths_rolo, reverse=False)
+                lines = utils.load_dataset_gt(gt_file_path)
 
                 # Define the codec and create VideoWriter object
                 # fourcc= cv2.cv.CV_FOURCC(*'DIVX')
@@ -94,11 +92,11 @@ class Single_Obj_Tracking(tk.Frame):
 
                     yolo_location = utils.find_yolo_location(yolo_out_path, test_id)
                     yolo_location = utils.locations_normal(wid, ht, yolo_location)
-                    #print(yolo_location)
+                    # print(yolo_location)
 
                     rolo_location = utils.find_rolo_location(rolo_out_path, test_id)
                     rolo_location = utils.locations_normal(wid, ht, rolo_location)
-                    #print(rolo_location)
+                    # print(rolo_location)
 
                     gt_location = utils.find_gt_location(lines, test_id - 1)
                     # gt_location= locations_from_0_to_1(None, 480, 640, gt_location)
@@ -116,9 +114,9 @@ class Single_Obj_Tracking(tk.Frame):
 
                     # todo, fix center calculation
                     l_rolo = rolo_location
-                    #center_x = int(l_rolo[0] + (l_rolo[2] / 2))
-                    #center_y = int(l_rolo[1] + (l_rolo[3] / 2))
-		    center_x = int(l_rolo[0])
+                    # center_x = int(l_rolo[0] + (l_rolo[2] / 2))
+                    # center_y = int(l_rolo[1] + (l_rolo[3] / 2))
+                    center_x = int(l_rolo[0])
                     center_y = int(l_rolo[1])
                     center_points_rolo.append((center_x, center_y))
 
@@ -132,7 +130,7 @@ class Single_Obj_Tracking(tk.Frame):
                     utils.createFolder(os.path.join('./ROLO/output/frames/', entry.name))
                     frame_name = os.path.join('./ROLO/output/frames/', entry.name, str(test_id) + '.jpg')
 
-                    #print(frame_name)
+                    # print(frame_name)
                     cv2.imwrite(frame_name, frame)
                     # cv2.imshow('frame',frame)
                     # cv2.waitKey(100)
@@ -149,6 +147,7 @@ class Single_Obj_Tracking(tk.Frame):
         print("rolo_avg_iou = ", rolo_avgloss)
         video.release()
         cv2.destroyAllWindows()
+
 
 class ROLO_TF(Single_Obj_Tracking):
     disp_console = False
@@ -185,9 +184,9 @@ class ROLO_TF(Single_Obj_Tracking):
     # ROLO Training Parameters
     # learning_rate = 0.00001 #training
     learning_rate = 0.00001  # testing
-    #print(training_iter)
-    #training_iters = 1  # 100000
-    #print(training_iters)
+    # print(training_iter)
+    # training_iters = 1  # 100000
+    # print(training_iters)
     batch_size = 1  # 128
     display_step = 1
 
@@ -205,13 +204,13 @@ class ROLO_TF(Single_Obj_Tracking):
     }
 
     def __init__(self, argvs=[]):
-		    
-	print("ROLO INIT")
+
+        print("ROLO INIT")
         self.ROLO(argvs)
+
     def get_training_iter(self):
-        #Set default moves by calling method of parent class
+        # Set default moves by calling method of parent class
         super(ROLO_TF, self).get_training_iter()
-	
 
     def LSTM_single(self, name, _X, _istate, _weights, _biases):
 
@@ -326,8 +325,8 @@ class ROLO_TF(Single_Obj_Tracking):
                 if self.disp_console: print("ROLO Pred: ", pred_location)
                 # print("len(pred) = ", len(pred_location))
                 if self.disp_console: print(
-                "ROLO Pred in pixel: ", pred_location[0][0] * self.w_img, pred_location[0][1] * self.h_img,
-                pred_location[0][2] * self.w_img, pred_location[0][3] * self.h_img)
+                    "ROLO Pred in pixel: ", pred_location[0][0] * self.w_img, pred_location[0][1] * self.h_img,
+                    pred_location[0][2] * self.w_img, pred_location[0][3] * self.h_img)
                 # print("correct_prediction int: ", (pred_location + 0.1).astype(int))
 
                 # Save pred_location to file
@@ -369,12 +368,12 @@ class ROLO_TF(Single_Obj_Tracking):
         self.learning_rate = 0.00001
         self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate).minimize(
             self.accuracy)  # Adam Optimizer
-	#calculate no. of epoches	
-	folders = os.listdir("./ROLO/DATA/")
-	folders_length = len(list(folders))	
-	epoches_iters2 = folders_length * epoches_iters1
-	print("************")
-	print(epoches_iters2)
+        # calculate no. of epoches
+        folders = os.listdir("./ROLO/DATA/")
+        folders_length = len(list(folders))
+        epoches_iters2 = folders_length * epoches_iters1
+        print("************")
+        print(epoches_iters2)
 
         # Initializing the variables
         init = tf.initialize_all_variables()
@@ -391,82 +390,85 @@ class ROLO_TF(Single_Obj_Tracking):
             else:
                 sess.run(init)
 
-	    #calculate no. of epoches	
-	    for epoch in range(epoches_iters2):
-  
-            	folders = os.listdir("./ROLO/DATA/")
-            	for folder_name in folders:
-                	x_path = os.path.join('ROLO/DATA', folder_name, 'yolo_out/')
-                	y_path = os.path.join('ROLO/DATA', folder_name, 'groundtruth_rect.txt')
-                	img_path = os.path.join('ROLO/DATA', folder_name, 'img/')
-			train_iter_len = next(os.walk(img_path))[2]
-			training_iters = len(train_iter_len)
-			training_iters1 = int(round(training_iters/3)-5)
-			output_path = os.path.join('ROLO/DATA', folder_name, 'rolo_out_train/')
-                	if not os.path.exists(output_path):
-                    		os.makedirs(output_path)
-                	self.output_path = output_path
+            # calculate no. of epoches
+            for epoch in range(epoches_iters2):
 
-              
-                	id = 1
-                	total_loss = 0
+                folders = os.listdir("./ROLO/DATA/")
+                for folder_name in folders:
+                    x_path = os.path.join('ROLO/DATA', folder_name, 'yolo_out/')
+                    y_path = os.path.join('ROLO/DATA', folder_name, 'groundtruth_rect.txt')
+                    img_path = os.path.join('ROLO/DATA', folder_name, 'img/')
+                    train_iter_len = next(os.walk(img_path))[2]
+                    training_iters = len(train_iter_len)
+                    training_iters1 = int(round(training_iters / 3) - 5)
+                    output_path = os.path.join('ROLO/DATA', folder_name, 'rolo_out_train/')
+                    if not os.path.exists(output_path):
+                        os.makedirs(output_path)
+                    self.output_path = output_path
 
-                	# Keep training until reach max iterations
-                	while id < training_iters1 - self.num_steps:
-                    	# Load training data & ground truth
-                    		batch_xs = self.rolo_utils.load_yolo_output_test(x_path, self.batch_size, self.num_steps,
-                                                                     id)  # [num_of_examples, num_input] (depth == 1)
+                    id = 1
+                    total_loss = 0
 
-                    # Apply dropout to batch_xs
-                    # for item in range(len(batch_xs)):
-                    #    batch_xs[item] = self.dropout_features(batch_xs[item], 0)
+                    # Keep training until reach max iterations
+                    while id < training_iters1 - self.num_steps:
+                        # Load training data & ground truth
+                        batch_xs = self.rolo_utils.load_yolo_output_test(x_path, self.batch_size, self.num_steps,
+                                                                         id)  # [num_of_examples, num_input] (depth == 1)
 
-                    # print(id)
-                    		batch_ys = self.rolo_utils.load_rolo_gt_test(y_path, self.batch_size, self.num_steps, id)
-                    		batch_ys = utils.locations_from_0_to_1(self.w_img, self.h_img, batch_ys)
+                        # Apply dropout to batch_xs
+                        # for item in range(len(batch_xs)):
+                        #    batch_xs[item] = self.dropout_features(batch_xs[item], 0)
 
-                    # Reshape data to get 3 seq of 5002 elements
-                    		batch_xs = np.reshape(batch_xs, [self.batch_size, self.num_steps, self.num_input])
-                    		batch_ys = np.reshape(batch_ys, [self.batch_size, 4])
-                    		if self.disp_console: print("Batch_ys: ", batch_ys)
+                        # print(id)
+                        batch_ys = self.rolo_utils.load_rolo_gt_test(y_path, self.batch_size, self.num_steps, id)
+                        batch_ys = utils.locations_from_0_to_1(self.w_img, self.h_img, batch_ys)
 
-                    		pred_location = sess.run(self.pred_location, feed_dict={self.x: batch_xs, self.y: batch_ys,
-                                                                            self.istate: np.zeros(
-                                                                                (self.batch_size, 2 * self.num_input))})
-                    		if self.disp_console: print("ROLO Pred: ", pred_location)
-                    # print("len(pred) = ", len(pred_location))
-                    		if self.disp_console: print(
-                    "ROLO Pred in pixel: ", pred_location[0][0] * self.w_img, pred_location[0][1] * self.h_img,
-                    pred_location[0][2] * self.w_img, pred_location[0][3] * self.h_img)
-                    # print("correct_prediction int: ", (pred_location + 0.1).astype(int))
+                        # Reshape data to get 3 seq of 5002 elements
+                        batch_xs = np.reshape(batch_xs, [self.batch_size, self.num_steps, self.num_input])
+                        batch_ys = np.reshape(batch_ys, [self.batch_size, 4])
+                        if self.disp_console: print("Batch_ys: ", batch_ys)
 
-                    # Save pred_location to file
-                    		utils.save_rolo_output_test(self.output_path, pred_location, id, self.num_steps, self.batch_size)
+                        pred_location = sess.run(self.pred_location, feed_dict={self.x: batch_xs, self.y: batch_ys,
+                                                                                self.istate: np.zeros(
+                                                                                    (self.batch_size,
+                                                                                     2 * self.num_input))})
+                        if self.disp_console: print("ROLO Pred: ", pred_location)
+                        # print("len(pred) = ", len(pred_location))
+                        if self.disp_console: print(
+                            "ROLO Pred in pixel: ", pred_location[0][0] * self.w_img, pred_location[0][1] * self.h_img,
+                            pred_location[0][2] * self.w_img, pred_location[0][3] * self.h_img)
+                        # print("correct_prediction int: ", (pred_location + 0.1).astype(int))
 
-                    		sess.run(self.optimizer, feed_dict={self.x: batch_xs, self.y: batch_ys,
-                                                        self.istate: np.zeros((self.batch_size, 2 * self.num_input))})
-                    		if id % self.display_step == 0:
-                        		# Calculate batch loss
-                        		loss = sess.run(self.accuracy, feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros(
-                            (self.batch_size, 2 * self.num_input))})
-                        		if self.disp_console: print "Iter " + str(
-                            id * self.batch_size) + ", Minibatch Loss= " + "{:.6f}".format(
-                            loss)  # + "{:.5f}".format(self.accuracy)
-                        		total_loss += loss
-                    		id += 1
-                    		if self.disp_console: print(id)
+                        # Save pred_location to file
+                        utils.save_rolo_output_test(self.output_path, pred_location, id, self.num_steps,
+                                                    self.batch_size)
 
-                	# print "Optimization Finished!"
-                	avg_loss = total_loss / id
-                	print "Avg loss: " + folder_name + ": " + str(avg_loss)
+                        sess.run(self.optimizer, feed_dict={self.x: batch_xs, self.y: batch_ys,
+                                                            self.istate: np.zeros(
+                                                                (self.batch_size, 2 * self.num_input))})
+                        if id % self.display_step == 0:
+                            # Calculate batch loss
+                            loss = sess.run(self.accuracy,
+                                            feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros(
+                                                (self.batch_size, 2 * self.num_input))})
+                            if self.disp_console: print "Iter " + str(
+                                id * self.batch_size) + ", Minibatch Loss= " + "{:.6f}".format(
+                                loss)  # + "{:.5f}".format(self.accuracy)
+                            total_loss += loss
+                        id += 1
+                        if self.disp_console: print(id)
 
-                	log_file.write(str("{:.3f}".format(avg_loss)) + '  ')
+                    # print "Optimization Finished!"
+                    avg_loss = total_loss / id
+                    print "Avg loss: " + folder_name + ": " + str(avg_loss)
 
-                	log_file.write('\n')
-                	save_path = self.saver.save(sess, self.rolo_weights_file)
-                	print("Model saved in file: %s" % save_path)
-			tkMessageBox.showinfo("Average Loss", "Avg loss: " + folder_name + ": " + str(avg_loss))
-			tkMessageBox.showinfo("Success", "Model successfully \n Saved in " + save_path)
+                    log_file.write(str("{:.3f}".format(avg_loss)) + '  ')
+
+                    log_file.write('\n')
+                    save_path = self.saver.save(sess, self.rolo_weights_file)
+                    print("Model saved in file: %s" % save_path)
+                    tkMessageBox.showinfo("Average Loss", "Avg loss: " + folder_name + ": " + str(avg_loss))
+                    tkMessageBox.showinfo("Success", "Model successfully \n Saved in " + save_path)
             # tkMessageBox.showinfo("ERROR", "File already exists")
         log_file.close()
         return
