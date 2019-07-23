@@ -1,3 +1,4 @@
+import glob
 import tkMessageBox
 from Tkinter import *
 import Tkinter as tk
@@ -6,6 +7,7 @@ import tkFileDialog as filedialog
 import cv2
 from PIL import Image, ImageTk
 import PIL
+from natsort import natsort
 
 LARGE_FONT = ("Verdana", 12)
 SIZE = (192, 162)
@@ -65,13 +67,11 @@ class UploadVideoPage(tk.Frame):
 
             tkMessageBox.showinfo("ERROR", "File already exists")
         else:
-            self.img_folder = os.makedirs(self.frame_dir)
-
+            os.makedirs(self.frame_dir)
             while success:
                 # function extracts frame
                 success, image = vidObj.read()
                 if success:
-                    scale_percent = 60  # percent of original size
                     width = int(256)
                     height = int(256)
                     dim = (width, height)
@@ -91,8 +91,36 @@ class UploadVideoPage(tk.Frame):
         self.image_folder = filedialog.askdirectory(title="Select the image folder")
         self.image_folder_entry.delete(0, END)
         self.image_folder_entry.insert(0, self.image_folder)
-        self.controller.set_frame_directory(self.image_folder)
 
+        # check if the folder name exists in ROLO/data
+        folder_name = "./ROLO/DATA/" + os.path.basename(self.image_folder)
+        if os.path.exists(folder_name):
+            tkMessageBox.showinfo("ERROR", "Folder name already exists. "
+                                           "Change the folder name and try again.")
+        else:
+            # show progress bar
+
+            # resize and copy to ROLO/data/img_folder_name/img
+            os.makedirs(folder_name + "/img")
+            width = int(256)
+            height = int(256)
+            dim = (width, height)
+            filenames = [img for img in glob.glob(self.image_folder + "/*.jpg")]
+            files = natsort.natsorted(filenames, reverse=False)
+            i = 0
+            for f in files:
+                image = cv2.imread(f)
+                resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+                cv2.imwrite(folder_name + "/img/000%d.jpg" % i, resized)
+                i = i + 1
+
+            # load newly created frames directory
+            self.controller.set_frame_directory(folder_name + "/img")
+
+            # stop progress bar
+
+            # show success message box
+            tkMessageBox.showinfo("Success", "Images loaded successfully")
 
     def show_n_frames(self, num_of_frames=6):
 
