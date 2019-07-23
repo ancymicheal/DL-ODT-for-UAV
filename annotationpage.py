@@ -103,19 +103,7 @@ class AnnotationPage(tk.Frame):
         self.loadDir(self.controller.get_frame_directory())
 
     def loadDir(self, image_dir):
-
         print("loading images..." + image_dir)
-
-        # if not dbg:
-        #     s = self.entry.get()
-        #     self.parent.focus()
-        #     self.category = int(s)
-        # else:
-        #     # s = r'D:\workspace\python\labelGUI'
-        #     s = r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images'
-
-        # self.imageDir = os.path.join(r'/home/ancymicheal/ROLO/BBox-Label-Tool-master/Images', '%03d'
-        # % (self.category))
         self.imageDir = image_dir
         self.orderedImageList = glob.glob(os.path.join(self.imageDir, '*.jpg'))
         self.orderedImageList = natsort.natsorted(self.orderedImageList, reverse=False)
@@ -138,7 +126,7 @@ class AnnotationPage(tk.Frame):
         self.total = len(self.imageList)
 
         # create labels directory
-        filepath = self.controller.get_frame_directory()
+        filepath = self.imageDir
         dir = os.path.dirname(filepath)
         self.label_dir = dir + "/labels"
         if not os.path.isdir(self.label_dir):
