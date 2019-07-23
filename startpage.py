@@ -26,6 +26,8 @@ class StartPage(tk.Frame):
         self.scrollbar.grid(row=1, column=1)
         self.scrollbar.config(command=self.configfile.yview)
 
+        self.configfile.config(state=DISABLED)
+
         # Scrollable Text Area
 
         # Read Text from the file

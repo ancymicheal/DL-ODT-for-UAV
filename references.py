@@ -26,6 +26,7 @@ class References(tk.Frame):
         self.ref_scrollbar.grid(row=1, column=1)
         self.ref_scrollbar.config(command=self.configfile.yview)
 
+        self.configfile.config(state=DISABLED)
         # Scrollable Text Area
 
         # Read Text from the file
