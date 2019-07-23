@@ -60,7 +60,8 @@ class ODTTool:
         self.mainFrame.pack(fill=BOTH, expand=1)
         self.footerFrame.pack(fill=BOTH, expand=1)
 
-        for F in (StartPage, OdtTypePage, UploadVideoPage, AnnotationPage, Single_Obj_Detection, Single_Obj_Tracking, References):
+        for F in (
+        StartPage, OdtTypePage, UploadVideoPage, AnnotationPage, Single_Obj_Detection, Single_Obj_Tracking, References):
             frame = F(self.mainFrame, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -72,7 +73,7 @@ class ODTTool:
         self.show_footer_frame_contents()
 
     def set_frame_directory(self, frames_dir):
-        #print("setting frames dir.." + frames_dir)
+        # print("setting frames dir.." + frames_dir)
         self.frames_dir = frames_dir
 
     def get_frame_directory(self):
@@ -104,7 +105,7 @@ class ODTTool:
             self.show_current_step_frame()
 
     def show_current_step_frame(self):
-        
+
         if currentStep == 'steps':
             self.show_frame(StartPage)
         elif currentStep == 'odt_type':
@@ -117,7 +118,7 @@ class ODTTool:
             self.show_frame(Single_Obj_Detection)
         elif currentStep == "single_obj_tracking":
             self.show_frame(Single_Obj_Tracking)
-	elif currentStep == "references":
+        elif currentStep == "references":
             self.show_frame(References)
         else:
             self.show_frame(StartPage)
@@ -129,9 +130,11 @@ class ODTTool:
 
         Button(
             self.footerFrame, text="Next", command=self.go_to_next_step
-        ).grid(row=0, column=13, sticky=E)
-	
-	Label(self.footerFrame,text="This work was funded by International Society for Photogrammetry and Remote Sensing(ISPRS) under ISPRS Scientific Initiatives 2019.").grid(row=2, column=0,columnspan=14, sticky=E)
+        ).grid(row=0, column=14, sticky=E)
+
+        Label(self.footerFrame,
+              text="This work was funded by International Society for Photogrammetry and Remote Sensing(ISPRS) under ISPRS Scientific Initiatives 2019.").grid(
+            row=2, column=0, columnspan=14, sticky=E)
 
 
 class OdtTypePage(tk.Frame):
@@ -141,14 +144,14 @@ class OdtTypePage(tk.Frame):
         self.controller = controller
 
         # Title
-        #self.pageTitle = Label(self, text="ODT Type page", font=LARGE_FONT)
-        #self.pageTitle.grid(row=0, column=0)
+        # self.pageTitle = Label(self, text="ODT Type page", font=LARGE_FONT)
+        # self.pageTitle.grid(row=0, column=0)
 
         label = Label(self, text="Object Detection and Tracking", font=LARGE_FONT)
         label.grid(row=0, column=0, sticky=W + E)
 
         button1 = Button(self, text="Single Object Detection and Tracking", borderwidth=4, width=50,
-                         command = self.select_single)
+                         command=self.select_single)
         button1.grid(row=1, column=0, sticky=W + E)
 
         button2 = tk.Button(self, text="Multiple Object Detection(YET TO BE IMPLEMENTED)", borderwidth=4, width=50, )
@@ -158,7 +161,7 @@ class OdtTypePage(tk.Frame):
         global currentStep
         global steps
         currentStep = steps[2]
-        #print(currentStep)
+        # print(currentStep)
         self.controller.show_current_step_frame()
 
 
@@ -166,7 +169,7 @@ if __name__ == '__main__':
     root = Tk()
 
     # window properties
-    root.geometry('825x500')
+    root.geometry('1024x800')
     root.resizable(width=False, height=False)
 
     tool = ODTTool(root)
