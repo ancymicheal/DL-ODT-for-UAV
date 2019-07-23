@@ -25,12 +25,12 @@ class Single_Obj_Tracking(tk.Frame):
         self.controller = controller
         self.pageTitle = Label(self, text="Single Object Tracking", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=0, columnspan=2)
-	self.pageTitle2 = Label(self, text="Enter Training Iteration")
+	self.pageTitle2 = Label(self, text="Enter No. Epoches")
         self.pageTitle2.grid(row=1, column=0, columnspan=2)
-	self.training_iter_entry = tk.Entry(self)
-	self.training_iter_entry.grid(row=2, column=0)
-	self.training_iter_button = tk.Button(self, text="Ok", command=self.get_training_iter)
-	self.training_iter_button.grid(row=2, column=2, columnspan=2, sticky="we")
+	self.epoches_entry = tk.Entry(self)
+	self.epoches_entry.grid(row=2, column=0)
+	self.epoches_button = tk.Button(self, text="Ok", command=self.get_epoches)
+	self.epoches_button.grid(row=2, column=2, columnspan=2, sticky="we")
 
         self.browse_button1 = Button(self, text="Training", command=self.train)
         self.browse_button1.grid(row=3, column=0, sticky="we")
@@ -39,10 +39,10 @@ class Single_Obj_Tracking(tk.Frame):
         self.browse_button3 = Button(self, text="Tracking", command=self.demo)
         self.browse_button3.grid(row=5, column=0, sticky="we")
     
-    def get_training_iter(self):
-	global training_iters1        
-	training_iters = self.training_iter_entry.get()
-	training_iters1 =int(training_iters)
+    def get_epoches(self):
+	global epoches_iters1        
+	epoches_iters = self.epoches_entry.get()
+	epoches_iters1 =int(epoches_iters)
 	
     
     def train(self):
@@ -369,6 +369,12 @@ class ROLO_TF(Single_Obj_Tracking):
         self.learning_rate = 0.00001
         self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate).minimize(
             self.accuracy)  # Adam Optimizer
+	#calculate no. of epoches	
+	folders = os.listdir("./ROLO/DATA/")
+	folders_length = len(list(folders))	
+	epoches_iters2 = folders_length * epoches_iters1
+	print("************")
+	print(epoches_iters2)
 
         # Initializing the variables
         init = tf.initialize_all_variables()
@@ -385,24 +391,30 @@ class ROLO_TF(Single_Obj_Tracking):
             else:
                 sess.run(init)
 
-
-            folders = os.listdir("./ROLO/DATA/")
-            for folder_name in folders:
-                output_path = os.path.join('ROLO/DATA', folder_name, 'rolo_out_train/')
-                y_path = os.path.join('ROLO/DATA', folder_name, 'groundtruth_rect.txt')
-                x_path = os.path.join('ROLO/DATA', folder_name, 'yolo_out/')
-                if not os.path.exists(output_path):
-                    os.makedirs(output_path)
-                self.output_path = output_path
+	    #calculate no. of epoches	
+	    for epoch in range(epoches_iters2):
+  
+            	folders = os.listdir("./ROLO/DATA/")
+            	for folder_name in folders:
+                	x_path = os.path.join('ROLO/DATA', folder_name, 'yolo_out/')
+                	y_path = os.path.join('ROLO/DATA', folder_name, 'groundtruth_rect.txt')
+                	img_path = os.path.join('ROLO/DATA', folder_name, 'img/')
+			train_iter_len = next(os.walk(img_path))[2]
+			training_iters = len(train_iter_len)
+			training_iters1 = int(round(training_iters/3)-5)
+			output_path = os.path.join('ROLO/DATA', folder_name, 'rolo_out_train/')
+                	if not os.path.exists(output_path):
+                    		os.makedirs(output_path)
+                	self.output_path = output_path
 
               
-                id = 1
-                total_loss = 0
+                	id = 1
+                	total_loss = 0
 
-                # Keep training until reach max iterations
-                while id < training_iters1 - self.num_steps:
-                    # Load training data & ground truth
-                    batch_xs = self.rolo_utils.load_yolo_output_test(x_path, self.batch_size, self.num_steps,
+                	# Keep training until reach max iterations
+                	while id < training_iters1 - self.num_steps:
+                    	# Load training data & ground truth
+                    		batch_xs = self.rolo_utils.load_yolo_output_test(x_path, self.batch_size, self.num_steps,
                                                                      id)  # [num_of_examples, num_input] (depth == 1)
 
                     # Apply dropout to batch_xs
@@ -410,51 +422,51 @@ class ROLO_TF(Single_Obj_Tracking):
                     #    batch_xs[item] = self.dropout_features(batch_xs[item], 0)
 
                     # print(id)
-                    batch_ys = self.rolo_utils.load_rolo_gt_test(y_path, self.batch_size, self.num_steps, id)
-                    batch_ys = utils.locations_from_0_to_1(self.w_img, self.h_img, batch_ys)
+                    		batch_ys = self.rolo_utils.load_rolo_gt_test(y_path, self.batch_size, self.num_steps, id)
+                    		batch_ys = utils.locations_from_0_to_1(self.w_img, self.h_img, batch_ys)
 
                     # Reshape data to get 3 seq of 5002 elements
-                    batch_xs = np.reshape(batch_xs, [self.batch_size, self.num_steps, self.num_input])
-                    batch_ys = np.reshape(batch_ys, [self.batch_size, 4])
-                    if self.disp_console: print("Batch_ys: ", batch_ys)
+                    		batch_xs = np.reshape(batch_xs, [self.batch_size, self.num_steps, self.num_input])
+                    		batch_ys = np.reshape(batch_ys, [self.batch_size, 4])
+                    		if self.disp_console: print("Batch_ys: ", batch_ys)
 
-                    pred_location = sess.run(self.pred_location, feed_dict={self.x: batch_xs, self.y: batch_ys,
+                    		pred_location = sess.run(self.pred_location, feed_dict={self.x: batch_xs, self.y: batch_ys,
                                                                             self.istate: np.zeros(
                                                                                 (self.batch_size, 2 * self.num_input))})
-                    if self.disp_console: print("ROLO Pred: ", pred_location)
+                    		if self.disp_console: print("ROLO Pred: ", pred_location)
                     # print("len(pred) = ", len(pred_location))
-                    if self.disp_console: print(
+                    		if self.disp_console: print(
                     "ROLO Pred in pixel: ", pred_location[0][0] * self.w_img, pred_location[0][1] * self.h_img,
                     pred_location[0][2] * self.w_img, pred_location[0][3] * self.h_img)
                     # print("correct_prediction int: ", (pred_location + 0.1).astype(int))
 
                     # Save pred_location to file
-                    utils.save_rolo_output_test(self.output_path, pred_location, id, self.num_steps, self.batch_size)
+                    		utils.save_rolo_output_test(self.output_path, pred_location, id, self.num_steps, self.batch_size)
 
-                    sess.run(self.optimizer, feed_dict={self.x: batch_xs, self.y: batch_ys,
+                    		sess.run(self.optimizer, feed_dict={self.x: batch_xs, self.y: batch_ys,
                                                         self.istate: np.zeros((self.batch_size, 2 * self.num_input))})
-                    if id % self.display_step == 0:
-                        # Calculate batch loss
-                        loss = sess.run(self.accuracy, feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros(
+                    		if id % self.display_step == 0:
+                        		# Calculate batch loss
+                        		loss = sess.run(self.accuracy, feed_dict={self.x: batch_xs, self.y: batch_ys, self.istate: np.zeros(
                             (self.batch_size, 2 * self.num_input))})
-                        if self.disp_console: print "Iter " + str(
+                        		if self.disp_console: print "Iter " + str(
                             id * self.batch_size) + ", Minibatch Loss= " + "{:.6f}".format(
                             loss)  # + "{:.5f}".format(self.accuracy)
-                        total_loss += loss
-                    id += 1
-                    if self.disp_console: print(id)
+                        		total_loss += loss
+                    		id += 1
+                    		if self.disp_console: print(id)
 
-                # print "Optimization Finished!"
-                avg_loss = total_loss / id
-                print "Avg loss: " + folder_name + ": " + str(avg_loss)
+                	# print "Optimization Finished!"
+                	avg_loss = total_loss / id
+                	print "Avg loss: " + folder_name + ": " + str(avg_loss)
 
-                log_file.write(str("{:.3f}".format(avg_loss)) + '  ')
+                	log_file.write(str("{:.3f}".format(avg_loss)) + '  ')
 
-                log_file.write('\n')
-                save_path = self.saver.save(sess, self.rolo_weights_file)
-                print("Model saved in file: %s" % save_path)
-		tkMessageBox.showinfo("Average Loss", "Avg loss: " + folder_name + ": " + str(avg_loss))
-		tkMessageBox.showinfo("Success", "Model successfully \n Saved in " + save_path)
+                	log_file.write('\n')
+                	save_path = self.saver.save(sess, self.rolo_weights_file)
+                	print("Model saved in file: %s" % save_path)
+			tkMessageBox.showinfo("Average Loss", "Avg loss: " + folder_name + ": " + str(avg_loss))
+			tkMessageBox.showinfo("Success", "Model successfully \n Saved in " + save_path)
             # tkMessageBox.showinfo("ERROR", "File already exists")
         log_file.close()
         return
