@@ -99,8 +99,8 @@ class AnnotationPage(tk.Frame):
         ##        self.loadDir()
 
     def print_event(self, event):
-        position = "(x={}, y={})".format(event.x, event.y)
-        self.loadDir(self.controller.get_frame_directory())
+        if self.imageDir == '':
+            self.loadDir(self.controller.get_frame_directory())
 
     def loadDir(self, image_dir):
         print("loading images..." + image_dir)
