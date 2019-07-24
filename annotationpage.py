@@ -28,7 +28,7 @@ class AnnotationPage(tk.Frame):
         self.controller = controller
 
         self.bind("<Expose>", self.print_event)
-
+	
         # Title
         self.pageTitle = Label(self, text="Annotation Page", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=0)
@@ -96,7 +96,7 @@ class AnnotationPage(tk.Frame):
 
         # for debugging
         ##        self.setImage()
-        ##        self.loadDir()
+        #self.loadDir()
 
     def print_event(self, event):
         if self.imageDir == '':

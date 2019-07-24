@@ -194,9 +194,7 @@ class ROLO_TF:
         else:
             print "Default: running ROLO test."
             self.build_networks()
-	
         folders = os.listdir("./ROLO/DATA/")
-	
         for folder_name in folders:
             output_path = os.path.join('ROLO/DATA', folder_name, 'rolo_out_test/')
             y_path = os.path.join('ROLO/DATA', folder_name, 'groundtruth_rect.txt')
@@ -205,16 +203,15 @@ class ROLO_TF:
                 os.makedirs(output_path)
             self.output_path = output_path
         # print(output_path)
-	        print("******************************************")
-            test_iter_path = os.path.join('ROLO/DATA', folder_name, 'img/')
-            test_iter_len = next(os.walk(test_iter_path))[2]  # dir is your directory path as string
-            self.testing_iters = len(test_iter_len)
-            self.rolo_weights_file = './ROLO/output/ROLO_model/model_step1_exp2.ckpt'
+        test_iter_path = os.path.join('ROLO/DATA', folder_name, 'img/')
+        test_iter_len = next(os.walk(test_iter_path))[2]  # dir is your directory path as string
+        self.testing_iters = len(test_iter_len)
+        self.rolo_weights_file = './ROLO/output/ROLO_model/model_step1_exp2.ckpt'
 
-            self.num_steps = 3  # number of frames as an input sequence
+        self.num_steps = 3  # number of frames as an input sequence
         # print("TESTING ROLO on video sequence: ", sequence_name)
-            print("TESTING ROLO on video sequence: ", folder_name)
-       	    self.testing(x_path, y_path)
+        print("TESTING ROLO on video sequence: ", folder_name)
+        self.testing(x_path, y_path)
 
     '''----------------------------------------main-----------------------------------------------------'''
 
