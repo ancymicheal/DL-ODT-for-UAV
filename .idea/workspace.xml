@@ -1,255 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e2aa6b8-5385-4f65-bbbd-10636727d068" name="Default Changelist" comment="fix training">
-      <change afterPath="$PROJECT_DIR$/ROLO/experiments/testing/ROLO_step1_train_30_exp2_testmanyfolder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="8e2aa6b8-5385-4f65-bbbd-10636727d068" name="Default Changelist" comment="test option menu">
+      <change beforePath="$PROJECT_DIR$/.idea/DL-ODT-for-UAV.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DL-ODT-for-UAV.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/1.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/1.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/10.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/10.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/100.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/100.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/101.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/101.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/102.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/102.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/103.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/103.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/104.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/104.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/105.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/105.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/106.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/106.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/107.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/107.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/108.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/108.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/109.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/109.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/11.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/11.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/110.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/110.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/111.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/111.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/112.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/112.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/113.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/113.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/114.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/114.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/115.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/115.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/116.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/116.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/117.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/117.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/118.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/118.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/119.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/119.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/12.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/12.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/120.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/120.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/121.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/121.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/122.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/122.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/123.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/123.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/124.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/124.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/125.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/125.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/126.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/126.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/127.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/127.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/128.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/128.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/129.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/129.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/13.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/13.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/130.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/130.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/131.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/131.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/132.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/132.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/133.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/133.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/134.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/134.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/135.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/135.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/136.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/136.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/137.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/137.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/138.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/138.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/139.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/139.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/14.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/14.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/140.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/140.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/141.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/141.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/142.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/142.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/143.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/143.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/144.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/144.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/145.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/145.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/146.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/146.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/147.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/147.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/148.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/148.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/149.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/149.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/15.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/15.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/150.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/150.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/151.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/151.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/152.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/152.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/153.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/153.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/154.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/154.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/155.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/155.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/156.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/156.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/157.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/157.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/158.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/158.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/159.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/159.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/16.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/16.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/160.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/160.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/161.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/161.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/162.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/162.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/163.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/163.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/164.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/164.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/165.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/165.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/166.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/166.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/167.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/167.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/168.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/168.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/169.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/169.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/17.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/17.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/170.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/170.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/171.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/171.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/172.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/172.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/173.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/173.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/174.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/174.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/175.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/175.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/176.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/176.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/177.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/177.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/178.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/178.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/179.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/179.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/18.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/18.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/180.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/180.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/181.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/181.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/182.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/182.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/183.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/183.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/184.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/184.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/185.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/185.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/186.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/186.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/187.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/187.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/188.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/188.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/189.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/189.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/19.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/19.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/190.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/190.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/191.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/191.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/192.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/192.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/193.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/193.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/194.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/194.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/195.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/195.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/196.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/196.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/197.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/197.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/198.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/198.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/199.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/199.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/2.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/2.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/20.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/20.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/200.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/200.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/201.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/201.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/202.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/202.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/203.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/203.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/204.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/204.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/205.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/205.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/206.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/206.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/207.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/207.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/208.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/208.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/209.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/21.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/21.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/210.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/211.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/212.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/213.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/214.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/215.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/216.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/217.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/218.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/219.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/22.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/22.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/220.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/221.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/222.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/223.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/224.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/225.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/226.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/227.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/228.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/229.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/23.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/23.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/230.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/231.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/232.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/233.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/234.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/235.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/236.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/237.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/238.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/239.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/24.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/24.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/240.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/241.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/242.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/243.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/244.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/245.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/25.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/25.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/26.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/26.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/27.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/27.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/28.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/28.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/29.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/29.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/3.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/3.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/30.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/30.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/31.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/31.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/32.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/32.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/33.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/33.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/34.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/34.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/35.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/35.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/36.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/36.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/37.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/37.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/38.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/38.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/39.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/39.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/4.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/4.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/40.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/40.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/41.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/41.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/42.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/42.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/43.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/43.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/44.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/44.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/45.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/45.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/46.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/46.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/47.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/47.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/48.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/48.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/49.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/49.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/5.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/5.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/50.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/50.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/51.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/51.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/52.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/52.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/53.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/53.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/54.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/54.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/55.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/55.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/56.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/56.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/57.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/57.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/58.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/58.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/59.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/59.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/6.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/6.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/60.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/60.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/61.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/61.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/62.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/62.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/63.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/63.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/64.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/64.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/65.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/65.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/66.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/66.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/67.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/67.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/68.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/68.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/69.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/69.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/7.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/7.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/70.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/70.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/71.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/71.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/72.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/72.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/73.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/73.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/74.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/74.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/75.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/75.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/76.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/76.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/77.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/77.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/78.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/78.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/79.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/79.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/8.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/8.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/80.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/80.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/81.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/81.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/82.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/82.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/83.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/83.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/84.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/84.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/85.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/85.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/86.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/86.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/87.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/87.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/88.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/88.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/89.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/89.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/9.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/9.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/90.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/90.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/91.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/91.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/92.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/92.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/93.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/93.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/94.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/94.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/95.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/95.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/96.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/96.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/97.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/97.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/98.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/98.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/99.npy" beforeDir="false" afterPath="$PROJECT_DIR$/ROLO/DATA/boat5/rolo_out_train/99.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optionmenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/optionmenu.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -259,14 +15,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ROLO/experiments/testing/ROLO_step1_train_30_exp2_testmanyfolder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="257" column="34" lean-forward="true" selection-start-line="257" selection-start-column="34" selection-end-line="257" selection-end-column="34" />
+            <state relative-caret-position="448">
+              <caret line="270" selection-start-line="270" selection-end-line="270" />
               <folding>
                 <element signature="e#40#63#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/optionmenu.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="10" selection-start-column="10" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -336,12 +101,14 @@
         <option value="$PROJECT_DIR$/uploadvideopage.py" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/ROLO/experiments/training/ROLO_step1_train_30_exp2_test.py" />
-        <option value="$PROJECT_DIR$/single_obj_tracking.py" />
         <option value="$PROJECT_DIR$/single_obj_detection.py" />
         <option value="$PROJECT_DIR$/ROLO/run.py" />
         <option value="$PROJECT_DIR$/ROLO/DATA/boat5/groundtruth_rect.txt" />
         <option value="$PROJECT_DIR$/ROLO/experiments/testing/test.py" />
         <option value="$PROJECT_DIR$/ROLO/experiments/testing/ROLO_step1_train_30_exp2_testmanyfolder.py" />
+        <option value="$PROJECT_DIR$/ROLO/experiments/testing/ROLO_network_test_all.py" />
+        <option value="$PROJECT_DIR$/single_obj_tracking.py" />
+        <option value="$PROJECT_DIR$/optionmenu.py" />
       </list>
     </option>
   </component>
@@ -356,6 +123,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -407,7 +175,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -436,28 +203,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.test">
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="DL-ODT-for-UAV" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DL-ODT-for-UAV" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -570,6 +315,7 @@
       <workItem from="1561627060811" duration="4531000" />
       <workItem from="1562233033211" duration="17119000" />
       <workItem from="1562852078998" duration="2580000" />
+      <workItem from="1564000912805" duration="996000" />
     </task>
     <task id="LOCAL-00001" summary="optimize imports, do not track idea folder">
       <created>1561607547428</created>
@@ -620,17 +366,24 @@
       <option name="project" value="LOCAL" />
       <updated>1562258663765</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="test option menu">
+      <created>1564001721629</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1564001721629</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43587000" />
+    <option name="totallyTimeSpent" value="44583000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="31" width="1920" height="1049" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="979" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2571885" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26036483" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -645,12 +398,12 @@
       <window_info anchor="bottom" id="Messages" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005342" side_tool="true" weight="0.13836478" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32900432" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.30810812" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49946582" visible="true" weight="0.47727272" />
+      <window_info anchor="bottom" id="Terminal" order="12" visible="true" weight="0.30707762" />
+      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49946582" weight="0.4765808" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" auto_hide="true" id="SciView" order="3" show_stripe_button="false" type="FLOATING" />
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" />
       <window_info anchor="right" x="0" y="0" width="432" height="888" id="Documentation" order="6" side_tool="true" weight="0.32959402" />
@@ -734,7 +487,8 @@
     <MESSAGE value="yolo fixed" />
     <MESSAGE value="fix demo" />
     <MESSAGE value="fix training" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix training" />
+    <MESSAGE value="test option menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="test option menu" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DL_ODT_for_UAV$uploadvideopage.coverage" NAME="uploadvideopage Coverage Results" MODIFIED="1561539650188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -882,13 +636,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ROLO/DATA/boat5/groundtruth_rect.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6750">
-          <caret line="450" column="15" selection-start-line="450" selection-start-column="15" selection-end-line="450" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ROLO/DATA/boat5/groundtruth_rect.txt" />
     <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/tensorflow/python/training/saver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15840">
@@ -899,37 +647,23 @@
     <entry file="file://$PROJECT_DIR$/ROLO_demo_test.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ROLO/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-          <folding>
-            <element signature="e#18#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ROLO/ROLO_demo_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="89" column="25" lean-forward="true" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ROLO/experiments/testing/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="12" selection-start-line="4" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ROLO/run.py" />
+    <entry file="file://$PROJECT_DIR$/ROLO/ROLO_demo_test.py" />
+    <entry file="file://$PROJECT_DIR$/ROLO/experiments/testing/test.py" />
     <entry file="file://$PROJECT_DIR$/ROLO/experiments/testing/ROLO_step1_train_30_exp2_testmanyfolder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="257" column="34" lean-forward="true" selection-start-line="257" selection-start-column="34" selection-end-line="257" selection-end-column="34" />
+        <state relative-caret-position="448">
+          <caret line="270" selection-start-line="270" selection-end-line="270" />
           <folding>
             <element signature="e#40#63#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optionmenu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
         </state>
       </provider>
     </entry>
