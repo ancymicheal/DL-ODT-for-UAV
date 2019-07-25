@@ -11,8 +11,15 @@ OptionMenu(master, variable, *a).pack()
 def ok():
     b = variable.get()
 
-    c = os.path.dirname("./ROLO/DATA/") + "/"+ b + "/"
-    print(c)
+    folder_path = os.path.dirname("./ROLO/DATA/") + '/'+ b + '/'
+    img_fold_path = os.path.join(folder_path)+'img/'
+    gt_file_path = os.path.join(folder_path)+'groundtruth_rect.txt'
+    yolo_out_path = os.path.join(folder_path)+ 'yolo_out/'
+    rolo_out_path = os.path.join(folder_path)+ 'rolo_out_train/'
+    print(img_fold_path)
+    print(gt_file_path)
+    print(yolo_out_path)
+    print(rolo_out_path)
     master.quit()
 
 button = Button(master, text="OK", command=ok)
