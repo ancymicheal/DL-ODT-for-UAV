@@ -8,5 +8,5 @@ for file in os.listdir(label_path):
        		label_txt= os.path.join(label_path, file)
 		print(label_txt)'''
 	orderedImageList = glob.glob(os.path.join(label_path, '*.txt'))
-	orderedImageList = natsort.natsorted(orderedImageList, reverse=False)
-	print(orderedImageList)
+orderedImageList = natsort.natsorted(orderedImageList, reverse=False)
+print(orderedImageList)
