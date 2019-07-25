@@ -1,7 +1,12 @@
 import os
-imagepath = "./ROLO/car18/img"
+import natsort
+import glob
+imagepath = "./ROLO/DATA/car18/img"
 label_path = os.path.dirname(imagepath)+"/"+"labels/"
-print(label_path)
 for file in os.listdir(label_path):
-	if file.endswith(".txt"):
-       		print(os.path.join(label_path, file))
+	'''if file.endswith(".txt"):
+       		label_txt= os.path.join(label_path, file)
+		print(label_txt)'''
+	orderedImageList = glob.glob(os.path.join(label_path, '*.txt'))
+	orderedImageList = natsort.natsorted(orderedImageList, reverse=False)
+	print(orderedImageList)
