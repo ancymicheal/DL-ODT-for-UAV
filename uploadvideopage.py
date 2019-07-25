@@ -20,7 +20,7 @@ class UploadVideoPage(tk.Frame):
         self.controller = controller
 
         self.vid = None
-
+        global variable_annotate_folder
         # Title
         self.pageTitle = Label(self, text="Upload File", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=1, columnspan=2)
@@ -42,7 +42,28 @@ class UploadVideoPage(tk.Frame):
 
         self.browse_img_button = Button(self, text="Load image folder", command=self.load_image_folder)
         self.browse_img_button.grid(row=2, column=1)
+        self.label_tracking = Label(self, text="Load Annotated image folder")
+        self.label_tracking.grid(row=3, column=0)
+        variable_annotate_folder = StringVar(self)
+        a = os.listdir("./ROLO/DATA/")
 
+        variable_annotate_folder.set(a[0])
+        self.tracking_option = OptionMenu(self, variable_annotate_folder, *a)
+        self.tracking_option.grid(row=3, column=1,  sticky="news")
+        self.tracking_button = Button(self, text="Ok", command=self.ok)
+        self.tracking_button.grid(row=3, column=2, sticky="news")
+
+    def ok(self):
+
+        b = variable_annotate_folder.get()
+        folder_path = os.path.dirname("./ROLO/DATA/") + '/' + b + '/'
+        img_annotate_path = os.path.join(folder_path) + 'img/'
+        labels_path = os.path.join(folder_path) + 'labels/'
+
+        print(img_annotate_path)
+        print(labels_path)
+        self.controller.set_frame_directory(img_annotate_path)
+        #self.controller.set_frame_directory(self.frame_dir)
     def file_browser(self):
         self.file_name = filedialog.askopenfilename(initialdir="/home",
                                                     title="Select file",
