@@ -25,62 +25,60 @@ class Single_Obj_Tracking(tk.Frame):
         self.controller = controller
         self.pageTitle = Label(self, text="Single Object Tracking", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=0, columnspan=2)
-	self.pageTitle2 = Label(self, text="Enter No. Epoches")
+        self.pageTitle2 = Label(self, text="Enter No. Epoches")
         self.pageTitle2.grid(row=1, column=0, columnspan=2, sticky ="we")
-	self.epoches_entry = tk.Entry(self)
-	self.epoches_entry.grid(row=2, column=0)
-	self.epoches_button = tk.Button(self, text="Ok", command=self.get_epoches)
-	self.epoches_button.grid(row=2, column=1,  sticky="we")
-
+        self.epoches_entry = tk.Entry(self)
+        self.epoches_entry.grid(row=2, column=0)
+        self.epoches_button = tk.Button(self, text="Ok", command=self.get_epoches)
+        self.epoches_button.grid(row=2, column=1,  sticky="we")
         self.browse_button1 = Button(self, text="Training", command=self.train)
         self.browse_button1.grid(row=3, column=0, sticky="we")
-	self.browse_button2 = Button(self, text="Testing(yet to implement")
+        self.browse_button2 = Button(self, text="Testing(yet to implement")
         self.browse_button2.grid(row=4, column=0, sticky="we")
-        
-	self.label_tracking = Label(self, text="Tracking")
-	self.label_tracking.grid(row=6, column=0)
+        self.label_tracking = Label(self, text="Tracking")
+        self.label_tracking.grid(row=6, column=0)
         variable = StringVar(self)
-	a = os.listdir("./ROLO/DATA/")
+        a = os.listdir("./ROLO/DATA/")
         global variable
-	variable.set(a[0])
-	self.tracking_option = OptionMenu(self, variable, *a)
-	self.tracking_option.grid(row=6, column=1,columnspan=2, sticky="news")
-	self.tracking_button = Button(self, text="Ok", command=self.ok)
+        variable.set(a[0])
+        self.tracking_option = OptionMenu(self, variable, *a)
+        self.tracking_option.grid(row=6, column=1,columnspan=2, sticky="news")
+        self.tracking_button = Button(self, text="Ok", command=self.ok)
         self.tracking_button.grid(row=6, column=3, sticky="news")
 
 
     def ok(self):
-	''' PARAMETERS '''
+        ''' PARAMETERS '''
         num_steps = 6
         wid = 500
         ht = 500
-    	total = 0
+        total = 0
         rolo_avgloss = 0
         yolo_avgloss = 0
 	
-	b = variable.get()
-    	folder_path = os.path.dirname("./ROLO/DATA/") + '/'+ b + '/'
-    	img_fold_path = os.path.join(folder_path)+'img/'
-    	gt_file_path = os.path.join(folder_path)+'groundtruth_rect.txt'
-    	yolo_out_path = os.path.join(folder_path)+ 'yolo_out/'
-    	rolo_out_path = os.path.join(folder_path)+ 'rolo_out_train/'
-    	'''print(img_fold_path)
+        b = variable.get()
+        folder_path = os.path.dirname("./ROLO/DATA/") + '/'+ b + '/'
+        img_fold_path = os.path.join(folder_path)+'img/'
+        gt_file_path = os.path.join(folder_path)+'groundtruth_rect.txt'
+        yolo_out_path = os.path.join(folder_path)+ 'yolo_out/'
+        rolo_out_path = os.path.join(folder_path)+ 'rolo_out_train/'
+        '''print(img_fold_path)
     	print(gt_file_path)
     	print(yolo_out_path)
     	print(rolo_out_path)'''
-	paths_imgs = utils.load_folder(img_fold_path)
+        paths_imgs = utils.load_folder(img_fold_path)
         paths_rolo = utils.load_folder(rolo_out_path)
-	paths_rolo = natsort.natsorted(paths_rolo, reverse=False)
-	lines = utils.load_dataset_gt(gt_file_path)
-	 # Define the codec and create VideoWriter object
+        paths_rolo = natsort.natsorted(paths_rolo, reverse=False)
+        lines = utils.load_dataset_gt(gt_file_path)
+        # Define the codec and create VideoWriter object
          # fourcc= cv2.cv.CV_FOURCC(*'DIVX')
         fourcc = cv2.VideoWriter_fourcc(*'DIVX')
         video_name = 'test.avi'
         video_path = os.path.join('output/videos/', video_name)
         video = cv2.VideoWriter(video_path, fourcc, 20, (wid, ht))
-	center_points_gt = []
+        center_points_gt = []
         center_points_rolo = []
-	for i in range(len(paths_rolo) - num_steps):
+        for i in range(len(paths_rolo) - num_steps):
                     id = i + 1
                     test_id = id + num_steps - 2  # * num_steps + 1
 
@@ -115,7 +113,7 @@ class Single_Obj_Tracking(tk.Frame):
                     l_rolo = rolo_location
                     #center_x = int(l_rolo[0] + (l_rolo[2] / 2))
                     #center_y = int(l_rolo[1] + (l_rolo[3] / 2))
-		    center_x = int(l_rolo[0])
+                    center_x = int(l_rolo[0])
                     center_y = int(l_rolo[1])
                     center_points_rolo.append((center_x, center_y))
 
@@ -131,7 +129,7 @@ class Single_Obj_Tracking(tk.Frame):
                     yolo_loss = utils.cal_yolo_IOU(yolo_location, gt_location)
                     yolo_avgloss += yolo_loss
                     total += 1
-	rolo_avgloss /= total
+        rolo_avgloss /= total
         yolo_avgloss /= total
         print("yolo_avg_iou = ", yolo_avgloss)
         print("rolo_avg_iou = ", rolo_avgloss)
@@ -141,9 +139,9 @@ class Single_Obj_Tracking(tk.Frame):
 
 
     def get_epoches(self):
-	global epoches_iters1        
-	epoches_iters = self.epoches_entry.get()
-	epoches_iters1 =int(epoches_iters)
+        global epoches_iters1
+        epoches_iters = self.epoches_entry.get()
+        epoches_iters1 =int(epoches_iters)
 	
     
     def train(self):
