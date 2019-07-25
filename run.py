@@ -134,7 +134,7 @@ class ODTTool:
 
         Label(self.footerFrame,
               text="This work is funded by International Society for Photogrammetry and "
-                   "Remote Sensing(ISPRS) under ISPRS Scientific Initiatives 2019.").grid(
+                   "Remote Sensing under ISPRS Scientific Initiatives 2019.").grid(
             row=2, column=0, columnspan=14, sticky=E)
 
 
