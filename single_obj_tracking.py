@@ -131,8 +131,8 @@ class Single_Obj_Tracking(tk.Frame):
                     total += 1
         rolo_avgloss /= total
         yolo_avgloss /= total
-        print("yolo_avg_iou = ", yolo_avgloss)
-        print("rolo_avg_iou = ", rolo_avgloss)
+        #print("yolo_avg_iou = ", yolo_avgloss)
+        #print("rolo_avg_iou = ", rolo_avgloss)
         video.release()
         cv2.destroyAllWindows()
 
