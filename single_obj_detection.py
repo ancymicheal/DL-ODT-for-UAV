@@ -25,14 +25,13 @@ class Single_Obj_Detection(tk.Frame):
         Frame.__init__(self, master)
 
         self.controller = controller
-        self.pageTitle = Label(self, text="Single Object Detection", font=LARGE_FONT)
+        self.pageTitle = Label(self, text="YOLO based Single Object Detection", font=LARGE_FONT)
         self.pageTitle.grid(row=0, column=0, columnspan=2)
 
         self.browse_button1 = Button(self, text="Prepare detection training data", command = self.prepare_training)
         self.browse_button1.grid(row=1, column=1, sticky="we")
 
-        self.browse_button2 = Button(self, text="Show Detection")
-        self.browse_button2.grid(row=2, column=1, sticky="we")
+
 
     def prepare_training(self):
         yolotf = YOLO_TF()
