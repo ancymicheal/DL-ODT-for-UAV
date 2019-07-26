@@ -23,27 +23,31 @@ class UploadVideoPage(tk.Frame):
         global variable_annotate_folder
         # Title
         self.pageTitle = Label(self, text="Upload File", font=LARGE_FONT)
-        self.pageTitle.grid(row=0, column=1, columnspan=2)
-
+        self.pageTitle.grid(row=0, column=1)
+        self.pageTitle1 = Label(self, text="Upload Video File")
+        self.pageTitle1.grid(row=1, column=0, sticky="nw")
         self.input_file = Entry(self)
-        self.input_file.grid(row=1, column=0, sticky="we")
+        self.input_file.grid(row=1, column=1, sticky="ne")
+
 
         self.browse_button = Button(self, text="Select a video file", command=self.file_browser)
-        self.browse_button.grid(row=1, column=1, sticky="we")
+        self.browse_button.grid(row=1, column=2, sticky="we")
 
         # self.canvas = Canvas(self)
         # self.canvas.grid(row=3, column=0, columnspan=2)
 
         self.convert_button = Button(self, text="Frame Conversion", command=self.convert_to_frames)
-        self.convert_button.grid(row=1, column=2)
+        self.convert_button.grid(row=1, column=3)
+        self.pageTitle2 = Label(self, text="Upload Image Folder")
+        self.pageTitle2.grid(row=2, column=0, sticky="nw")
 
         self.image_folder_entry = Entry(self)
-        self.image_folder_entry.grid(row=2, column=0, sticky="we")
+        self.image_folder_entry.grid(row=2, column=1, sticky="we")
 
-        self.browse_img_button = Button(self, text="Load image folder", command=self.load_image_folder)
-        self.browse_img_button.grid(row=2, column=1)
-        self.label_tracking = Label(self, text="Load Annotated image folder")
-        self.label_tracking.grid(row=3, column=0)
+        self.browse_img_button = Button(self, text="Load Image Folder", command=self.load_image_folder)
+        self.browse_img_button.grid(row=2, column=2)
+        self.pageTitle3 = Label(self, text="Load Annotated Image Folder")
+        self.pageTitle3.grid(row=3, column=0, sticky="nw")
         variable_annotate_folder = StringVar(self)
         a = os.listdir("./ROLO/DATA/")
 
