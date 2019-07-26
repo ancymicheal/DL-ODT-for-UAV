@@ -57,6 +57,7 @@ class UploadVideoPage(tk.Frame):
         self.tracking_button = Button(self, text="Ok", command=self.ok)
         self.tracking_button.grid(row=3, column=2, sticky="news")
 
+
     def ok(self):
 
         b = variable_annotate_folder.get()
@@ -77,6 +78,7 @@ class UploadVideoPage(tk.Frame):
         self.input_file.insert(0, self.file_name)
 
     def convert_to_frames(self):
+
         vidObj = cv2.VideoCapture(self.file_name)
         count = 0
         success = 1
@@ -97,8 +99,8 @@ class UploadVideoPage(tk.Frame):
                 # function extracts frame
                 success, image = vidObj.read()
                 if success:
-                    width = int(256)
-                    height = int(256)
+                    width = int(500)
+                    height = int(500)
                     dim = (width, height)
                     resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
 
@@ -127,8 +129,8 @@ class UploadVideoPage(tk.Frame):
 
             # resize and copy to ROLO/data/img_folder_name/img
             os.makedirs(folder_name + "/img")
-            width = int(256)
-            height = int(256)
+            width = int(500)
+            height = int(500)
             dim = (width, height)
             filenames = [img for img in glob.glob(self.image_folder + "/*.jpg")]
             files = natsort.natsorted(filenames, reverse=False)
