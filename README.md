@@ -26,14 +26,14 @@ python2.7 -m pip install https://storage.googleapis.com/tensorflow/linux/cpu/ten
     `pip install -r requirements.txt`
 
 7. Make the run.py file executable
-    `chmod +x run.py`
+    `chmod +x app.py`
     
 8. Download the yolo weight file from https://drive.google.com/open?id=1BAxKaRz-qkp4SZwY_xePFKsJ1HOADTq1 and place it at /DL-ODT-for-UAV/ROLO/weights/
 
 9. Download https://drive.google.com/open?id=1R3_mUWD_tzLt2jBeakWdiZei9NJldxJB and place it at /DL-ODT-for-UAV/ROLO/output/ROLO_model/
    
 8. To run,
-    `./run.py`
+    `./app.py`
 9. To deactivate,
     `deactivate`
  
