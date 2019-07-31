@@ -1,4 +1,3 @@
-Steps
 1. Choose Single Object Detection and Tracking
 2. Select video file or img folder
 2. If selected video file, perform frame conversion. Frame conversion -> display the sample frames
