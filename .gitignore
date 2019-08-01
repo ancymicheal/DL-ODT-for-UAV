@@ -104,3 +104,7 @@ venv.bak/
 .mypy_cache/
 
 .idea/
+
+rolo/data/*
+rolo/weights/*
+rolo/output/rolo_model/*

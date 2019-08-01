@@ -1,3 +1,5 @@
+#!./venv/bin/python
+
 from Tkinter import *
 from ttk import Progressbar
 

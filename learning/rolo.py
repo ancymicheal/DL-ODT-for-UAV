@@ -14,7 +14,7 @@ def get_epochs(epoch):
     return len(list(os.listdir("./rolo/data/"))) * epoch
 
 
-class ROLOTrain:
+class ROLO:
     restore_weights = True
     num_steps = 1
     num_feat = 4096
@@ -146,10 +146,7 @@ class ROLOTrain:
         sess.close()
 
     def test(self):
-        # tf.reset_default_graph()
-        with tf.variable_scope('for_reuse_scope', reuse=tf.AUTO_REUSE):
-            # self.build_networks()
-            pred = self.LSTM_single('lstm_train', self.x, self.istate, self.weights, self.biases)
+        # todo, check if the network is built already, else build the network
         folders = os.listdir("./rolo/data/")
         for folder_name in folders:
             output_path = os.path.join('./rolo/data', folder_name, 'rolo_out_test/')
@@ -167,7 +164,6 @@ class ROLOTrain:
             self.testing(x_path, y_path)
 
     def testing(self, x_path, y_path):
-        self.saver = tf.compat.v1.train.Saver()
         total_loss = 0
         # Use rolo_input for LSTM training
         pred = self.LSTM_single('lstm_train', self.x, self.istate, self.weights, self.biases)
@@ -185,7 +181,6 @@ class ROLOTrain:
         init = tf.initialize_all_variables()
         # Launch the graph
         with tf.Session() as sess:
-
             if self.restore_weights:
                 sess.run(init)
                 self.saver.restore(sess, self.rolo_weights_file)
@@ -194,8 +189,8 @@ class ROLOTrain:
                 sess.run(init)
 
             i = 0  # don't change this
+            print(i)
             total_time = 0.0
-            # id= 1
 
             # Keep training until reach max iterations
             while i < self.testing_iters - self.num_steps:
@@ -233,7 +228,6 @@ class ROLOTrain:
                         (self.batch_size, 2 * self.num_input))})
                     total_loss += loss
                 i += 1
-                # print(id)
 
             # print "Testing Finished!"
             avg_loss = total_loss / i
@@ -278,4 +272,4 @@ class ROLOTrain:
 
 
 if __name__ == "__main__":
-    ROLOTrain().test()
+    ROLO().test()

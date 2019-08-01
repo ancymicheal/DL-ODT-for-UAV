@@ -1,14 +1,10 @@
 from Tkinter import *
 
-from learning.rolo import ROLOTrain
+from learning.rolo import ROLO
 
 title_font = ("Times New Roman", 18, "bold")
 pad_x = 10
 pad_y = 10
-
-
-def test():
-    ROLOTrain().test()
 
 
 class SingleTracking(Frame):
@@ -17,6 +13,7 @@ class SingleTracking(Frame):
 
         self.controller = controller
         self.grid_columnconfigure(0, weight=1)
+        self.rolo_train = None
 
         Label(
             self, text="LSTM based Single Object Tracking", font=title_font
@@ -38,22 +35,18 @@ class SingleTracking(Frame):
         self.epoches_entry.pack(side=LEFT)
         self.epoches_entry.insert(END, '2')
 
-        Button(
-            self.container, text="Ok", command=self.get_epoches
-        ).pack(side=LEFT)
-
         Label(
             self, text="Train the model"
         ).grid(row=3, column=0, padx=pad_x, pady=pad_y)
         Button(
-            self, text="Training", command=train
+            self, text="Training", command=self.train
         ).grid(row=4, column=0, padx=pad_x, pady=pad_y)
 
         Label(
             self, text="Test the model"
         ).grid(row=5, column=0, padx=pad_x, pady=pad_y)
         Button(
-            self, text="Testing", command=test
+            self, text="Testing", command=self.test
         ).grid(row=6, column=0, padx=pad_x, pady=pad_y)
 
         self.nav_panel = Frame(self)
@@ -82,8 +75,16 @@ class SingleTracking(Frame):
         from ui.references import References
         self.controller.show_frame(References)
 
-    def get_epoches(self):
-        pass
-
     def train(self):
-        ROLOTrain().train(self.epoches_entry.get())
+        if self.rolo_train is None:
+            self.rolo_train = ROLO()
+            self.rolo_train.train(int(self.epoches_entry.get()))
+        else:
+            self.rolo_train.train(int(self.epoches_entry.get()))
+
+    def test(self):
+        if self.rolo_train is None:
+            self.rolo_train = ROLO()
+            self.rolo_train.test()
+        else:
+            self.rolo_train.test()
