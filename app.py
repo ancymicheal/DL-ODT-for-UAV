@@ -67,6 +67,6 @@ class App(Tk):
 
 if __name__ == '__main__':
     app = App()
-    app.title("Deep Learning For Object Detection And Tracking For UAV")
+    app.title("App for Deep Learning based Object Detection And Tracking with UAV data")
     app.geometry("1280x720")
     app.mainloop()

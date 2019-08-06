@@ -2,9 +2,11 @@ import os
 import sys
 import time
 import tkMessageBox
-
+from pathlib import Path
 import numpy as np
 import tensorflow as tf
+import natsort
+import cv2
 
 sys.path.append("./rolo/utils")
 import ROLO_utils as utils
@@ -146,6 +148,7 @@ class ROLO:
         sess.close()
 
     def test(self):
+        self.saver = tf.compat.v1.train.Saver()
         # todo, check if the network is built already, else build the network
         folders = os.listdir("./rolo/data/")
         for folder_name in folders:

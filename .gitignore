@@ -105,6 +105,6 @@ venv.bak/
 
 .idea/
 
-rolo/data/*
+rolo/data/
 rolo/weights/*
 rolo/output/rolo_model/*
