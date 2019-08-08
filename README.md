@@ -28,7 +28,7 @@ Deep Learning based Object detection and tracking for UAV videos
 7. Make the run.py file executable
     `chmod +x app.py`
     
-8. Download the yolo weight file from https://drive.google.com/open?id=1BAxKaRz-qkp4SZwY_xePFKsJ1HOADTq1 and place it at /DL-ODT-for-UAV/ROLO/weights/
+8. Download the yolo weight file from https://drive.google.com/open?id=1BAxKaRz-qkp4SZwY_xePFKsJ1HOADTq1 and place it at /DL-ODT-for-UAV/rolo/weights/
 
 9. Download https://drive.google.com/open?id=1R3_mUWD_tzLt2jBeakWdiZei9NJldxJB and place it at /DL-ODT-for-UAV/ROLO/output/ROLO_model/
    
