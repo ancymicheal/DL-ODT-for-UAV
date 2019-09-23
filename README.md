@@ -22,6 +22,7 @@ Deep Learning based Object detection and tracking for UAV videos
 5. Install tensorflow .
    `pip install tensorflow`
    `sudo apt-get install python-tk`
+   `pip install pandas'
    
 
 6. To install the dependencies,
