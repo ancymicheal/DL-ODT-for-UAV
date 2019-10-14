@@ -73,7 +73,8 @@ class AnnotateMul(Frame):
 
         self.load_label_button = Button(
             self,
-            text="Labeling the train and test images "         
+            text="Labeling the train and test images " ,
+            command=self.label_mul
         )
         self.load_label_button.grid(row=5, column=0, padx=pad_x, pady=pad_y)
 
@@ -91,7 +92,8 @@ class AnnotateMul(Frame):
             command=self.next_step
         ).pack(side=LEFT, padx=pad_x, pady=pad_y)
 
-	
+    def label_mul(self):
+        os.system('./labelimg/labelImg')
    
     def prev_step(self):
         from ui.upload_mul import UploadMul

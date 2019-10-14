@@ -104,7 +104,7 @@ class TrainingDataMul(Frame):
 
 	i = 1
 	for j in range(0, len(classes)):
-		label_file_txt.write("item {\n\tid: %d\n\tname: \'%s\'\n}\n" % (i, classes[j].strip()))
+		label_file_txt.write("item {\n  id: %d\n  name: \'%s\'\n}\n\n" % (i, classes[j].strip()))
 		i = i + 1
 	label_file_txt.close()
 	tkMessageBox.showinfo(
