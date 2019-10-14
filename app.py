@@ -10,7 +10,9 @@ from ui.single_object_detection import SingleDetection
 from ui.single_object_tracking import SingleTracking
 from ui.steps import Steps
 from ui.upload import Upload
-from ui.uploadmul import UploadMul
+from ui.upload_mul import UploadMul
+from ui.annotate_mul import AnnotateMul
+from ui.training_data_mul import TrainingDataMul
 
 
 class App(Tk):
@@ -37,7 +39,7 @@ class App(Tk):
         self.main_container.grid_rowconfigure(0, weight=1)
         self.main_container.grid_columnconfigure(0, weight=1)
 
-        for F in (Steps, DTType, UploadMul, Upload, Annotate, SingleDetection, SingleTracking, References):
+        for F in (Steps, DTType, UploadMul, AnnotateMul, TrainingDataMul, Upload, Annotate, SingleDetection, SingleTracking, References):
             frame = F(self.main_container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
