@@ -49,16 +49,33 @@ class AnnotateMul(Frame):
 	# Label the train and test folder 
         Label(
             self,
-            text="Label the train and test folder",
+            text="Label the training and testing images",
             font=text_font
         ).grid(row=1, column=0, sticky='n', padx=pad_x, pady=pad_y)
 
-        
+        Label(
+            self,
+                text="NOTE: ",
+            font=text_font
+        ).grid(row=2, column=0, sticky='n', padx=pad_x, pady=pad_y)
+
+        Label(
+            self,
+            text="Train Image Path : ./models/research/object_detection/images/train/ ",
+            font=text_font
+        ).grid(row=3, column=0, sticky='n', padx=pad_x, pady=pad_y)
+
+        Label(
+            self,
+            text="Test Image Path : ./models/research/object_detection/images/test/ ",
+            font=text_font
+        ).grid(row=4, column=0, sticky='n', padx=pad_x, pady=pad_y)
+
         self.load_label_button = Button(
             self,
             text="Labeling the train and test images "         
         )
-        self.load_label_button.grid(row=2, column=0, padx=pad_x, pady=pad_y)
+        self.load_label_button.grid(row=5, column=0, padx=pad_x, pady=pad_y)
 
         Button(
             self.nav_panel,
