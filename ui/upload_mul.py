@@ -104,41 +104,8 @@ class UploadMul(Frame):
         )
         self.load_image_button.grid(row=6, column=0, padx=pad_x, pady=pad_y)
 
-	# Label the train and test folder 
-        Label(
-            self,
-            text="Label the train and test folder",
-            font=text_font
-        ).grid(row=7, column=0, sticky='n', padx=pad_x, pady=pad_y)
+	
 
-        
-        self.load_label_button = Button(
-            self,
-            text="Labeling the train and test images "         
-        )
-        self.load_label_button.grid(row=8, column=0, padx=pad_x, pady=pad_y)
-
-	# Convert the .xml file of training and testing data into train.csv and test .csv
-        Label(
-            self,
-            text="Convert the .xml file of training and testing data into train.csv and test .csv",
-            font=text_font
-        ).grid(row=9, column=0, sticky='n', padx=pad_x, pady=pad_y)
-
-        
-        self.load_xmltocsv_button = Button(
-            self,
-            text="convert .xml to .csv ",
-	    command=self.xml_to_csv         
-        )
-        self.load_xmltocsv_button.grid(row=10, column=0, padx=pad_x, pady=pad_y)
-
-
-
-        
-
-
-             
         Button(
             self.nav_panel,
             text='<< Prev',
@@ -231,7 +198,7 @@ class UploadMul(Frame):
         #from ui.annotate import Annotate
         #self.controller.show_frame(Annotate)
 
-    def xml_to_csv(self):
+    '''def xml_to_csv(self):
 	for folder in ['train','test']:
 		image_path_folder = os.path.join(image_path + folder)
 	
@@ -253,14 +220,14 @@ class UploadMul(Frame):
     		column_name = ['filename', 'width', 'height', 'class', 'xmin', 'ymin', 'xmax', 'ymax']
     		xml_df = pd.DataFrame(xml_list, columns=column_name)
         	xml_df.to_csv((image_path + folder + '_labels.csv'), index=None)
-        	tkMessageBox.showinfo("Success","Successfully converted .xml to .csv")
-	
+        tkMessageBox.showinfo("Success","Successfully converted .xml to .csv")
+	'''
    
     def prev_step(self):
         from ui.select_type import DTType
         self.controller.show_frame(DTType)
 
     def next_step(self):
-        print("Work on progress")
-
+        from ui.annotate_mul import AnnotateMul
+        self.controller.show_frame(AnnotateMul)
 

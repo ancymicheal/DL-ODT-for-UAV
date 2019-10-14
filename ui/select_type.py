@@ -32,9 +32,15 @@ class DTType(Frame):
             self,
             text="Multiple Object Detection (YET TO BE IMPLEMENTED)",
             borderwidth=4,
-            width=50
+            width=50,
+	    command=self.select_multiple
         ).grid(row=2, column=0, padx=pad_x, pady=pad_y)
 
     def select_single(self):
         from ui.upload import Upload
         self.controller.show_frame(Upload)
+
+    def select_multiple(self):
+        from ui.upload_mul import UploadMul
+        self.controller.show_frame(UploadMul)
+
