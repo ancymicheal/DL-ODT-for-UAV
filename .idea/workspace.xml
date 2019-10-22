@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e2aa6b8-5385-4f65-bbbd-10636727d068" name="Default Changelist" comment="">
+    <list default="true" id="8e2aa6b8-5385-4f65-bbbd-10636727d068" name="Default Changelist" comment="added upload, training class for multiple object detection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/training_data_mul.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/training_data_mul.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,13 +47,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/venv/lib/python2.7/site-packages/tensorflow/python/training/saver.py" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/rolo" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/ui" />
+      <recent name="$PROJECT_DIR$/rolo" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/ui" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -189,7 +191,8 @@
       <workItem from="1564639473505" duration="8267000" />
       <workItem from="1564656165324" duration="902000" />
       <workItem from="1565076817471" duration="7569000" />
-      <workItem from="1571039485187" duration="1026000" />
+      <workItem from="1571039485187" duration="5960000" />
+      <workItem from="1571740266628" duration="99000" />
     </task>
     <task id="LOCAL-00001" summary="optimize imports, do not track idea folder">
       <created>1561607547428</created>
@@ -338,7 +341,28 @@
       <option name="project" value="LOCAL" />
       <updated>1571040228142</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="added upload, training class for multiple object detection">
+      <created>1571040623940</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1571040623940</updated>
+    </task>
+    <task id="LOCAL-00023" summary="labels added for train and test image path">
+      <created>1571042322585</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1571042322585</updated>
+    </task>
+    <task id="LOCAL-00024" summary="added labelimg in annotate_mul &#10;modified spaces in labelmap.ptxt">
+      <created>1571044913086</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1571044913086</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,7 +408,10 @@
     <MESSAGE value="fix running train and test together" />
     <MESSAGE value="fixed label" />
     <MESSAGE value="uploaded files for multiple object detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="uploaded files for multiple object detection" />
+    <MESSAGE value="added upload, training class for multiple object detection" />
+    <MESSAGE value="labels added for train and test image path" />
+    <MESSAGE value="added labelimg in annotate_mul &#10;modified spaces in labelmap.ptxt" />
+    <option name="LAST_COMMIT_MESSAGE" value="added labelimg in annotate_mul &#10;modified spaces in labelmap.ptxt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

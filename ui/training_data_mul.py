@@ -16,6 +16,7 @@ text_font = ("Times New Roman", 14)
 pad_x = 10
 pad_y = 10
 label_file = "./models/research/object_detection/labelmap.pbtxt"
+
 frames_train = "./models/research/object_detection/images/train/"
 frames_test = "./models/research/object_detection/images/test/"
 image_path = "./models/research/object_detection/images/"
@@ -99,15 +100,16 @@ class TrainingDataMul(Frame):
     def class_name(self):
 	entry = self.class_name_entry.get()
 	classes = entry.split(",")
-
 	label_file_txt = open(label_file,"w")
-
 	i = 1
-	for j in range(0, len(classes)):
+	for j in range(0, len(classes))                               :
 		label_file_txt.write("item {\n  id: %d\n  name: \'%s\'\n}\n\n" % (i, classes[j].strip()))
 		i = i + 1
 	label_file_txt.close()
-	tkMessageBox.showinfo(
+
+
+
+        tkMessageBox.showinfo(
                 "Success",
                 "Classes saved successfully"
             )
