@@ -10,16 +10,20 @@ import natsort
 import pandas as pd
 import xml.etree.ElementTree as ET
 
+from object_detection.utils import label_map_util
+
+from models.research.object_detection.generate_tfrecord import convert
+
 title_font = ("Times New Roman", 18, "bold")
 text_font = ("Times New Roman", 14)
 
 pad_x = 10
 pad_y = 10
-label_file = "./models/research/object_detection/labelmap.pbtxt"
+label_file = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/labelmap.pbtxt"
 
-frames_train = "./models/research/object_detection/images/train/"
-frames_test = "./models/research/object_detection/images/test/"
-image_path = "./models/research/object_detection/images/"
+frames_train = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/train/"
+frames_test = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/test/"
+image_path = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/"
 
 
 
@@ -98,21 +102,33 @@ class TrainingDataMul(Frame):
         ).pack(side=LEFT, padx=pad_x, pady=pad_y)
 
     def class_name(self):
-	entry = self.class_name_entry.get()
-	classes = entry.split(",")
-	label_file_txt = open(label_file,"w")
-	i = 1
-	for j in range(0, len(classes))                               :
-		label_file_txt.write("item {\n  id: %d\n  name: \'%s\'\n}\n\n" % (i, classes[j].strip()))
-		i = i + 1
-	label_file_txt.close()
+        entry = self.class_name_entry.get()
+        classes = entry.split(",")
+        label_file_txt = open(label_file,"w")
+        i = 1
+        for j in range(0, len(classes)):
+            label_file_txt.write("item {\n  id: %d\n  name: \'%s\'\n}\n\n" % (i, classes[j].strip()))
+            i = i + 1
+        label_file_txt.close()
 
+        self.generate_train_test_tf_records()
 
+        self.update_config_file()
 
         tkMessageBox.showinfo(
                 "Success",
-                "Classes saved successfully"
+                "Classes, TF records and Config file created successfully"
             )
+
+    def generate_train_test_tf_records(self):
+        test_csv_path = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/test_labels.csv"
+        test_image_path = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/test/"
+        test_output_path = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/test.record"
+        train_csv_path = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/train_labels.csv"
+        train_image_path = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/train/"
+        train_output_path = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/train.record"
+        convert(test_csv_path, test_image_path, test_output_path)
+        convert(train_csv_path, train_image_path, train_output_path)
 
     def xml_to_csv(self):
 	for folder in ['train','test']:
@@ -144,6 +160,37 @@ class TrainingDataMul(Frame):
         self.controller.show_frame(AnnotateMul)
 
     def next_step(self):
-        tkMessageBox.showinfo("INFO", "Work on progress")
+        tkMessageBox.showinfo("INFO", "Work in progress")
+
+    def update_config_file(self):
+        # Number of classes
+        CWD_PATH = "/home/ancy/PycharmProjects/DL-ODT-for-UAV"
+        PATH_TO_LABELS = os.path.join(CWD_PATH, 'models', 'research', 'object_detection', 'labelmap.pbtxt')
+        label_map = label_map_util.get_label_map_dict(PATH_TO_LABELS)
+
+        # Number of examples
+        test_dir = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/test"
+
+        config_file = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/training/faster_rcnn_inception_v2_pets.config"
+
+        config = open(config_file, "r")
+        lines = []
+        for line in config:
+
+            if "num_classes" in line:
+                line = "    num_classes: {}\n".format(len(label_map))
+
+            if "num_examples" in line:
+                line = "  num_examples: {}\n".format(len(glob.glob1(test_dir, "*.jpg")))
+
+            lines.append(line)
+        config.close()
+
+        write_config = open(config_file, "w")
+        for line in lines:
+            write_config.write(line)
+        write_config.close()
+
+        print("Updated the config file")
 
 
