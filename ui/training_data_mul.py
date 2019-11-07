@@ -166,15 +166,24 @@ class TrainingDataMul(Frame):
         # Number of classes
         CWD_PATH = "/home/ancy/PycharmProjects/DL-ODT-for-UAV"
         PATH_TO_LABELS = os.path.join(CWD_PATH, 'models', 'research', 'object_detection', 'labelmap.pbtxt')
+        PATH_FINE_TUNE = os.path.join(CWD_PATH,'models', 'research', 'object_detection', 'faster_rcnn_inception_v2_coco_2018_01_28', 'model.ckpt' )
+        PATH_train_input_path = os.path.join(CWD_PATH,'models', 'research', 'object_detection', "train.record")
+        PATH_test_input_path = os.path.join(CWD_PATH, 'models', 'research', 'object_detection', "test.record")
+        PATH_TO_LABELS1 = "\"" + PATH_TO_LABELS + "\""
+        PATH_FINE_TUNE1 = "\"" + PATH_FINE_TUNE + "\""
+        PATH_train_input_path1 = "\"" + PATH_train_input_path + "\""
+        PATH_test_input_path1 = "\"" + PATH_test_input_path + "\""
+
         label_map = label_map_util.get_label_map_dict(PATH_TO_LABELS)
 
         # Number of examples
-        test_dir = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/test"
+        test_dir = "./models/research/object_detection/images/test"
 
-        config_file = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/training/faster_rcnn_inception_v2_pets.config"
+        config_file = "./models/research/object_detection/training/faster_rcnn_inception_v2_pets.config"
 
         config = open(config_file, "r")
         lines = []
+
         for line in config:
 
             if "num_classes" in line:
@@ -183,6 +192,12 @@ class TrainingDataMul(Frame):
             if "num_examples" in line:
                 line = "  num_examples: {}\n".format(len(glob.glob1(test_dir, "*.jpg")))
 
+            if "fine_tune_checkpoint" in line:
+                line = "  fine_tune_checkpoint: {}\n".format(PATH_FINE_TUNE1)
+
+            if "label_map_path" in line:
+                line = "  label_map_path: {}\n".format(PATH_TO_LABELS1)
+
             lines.append(line)
         config.close()
 
@@ -190,6 +205,16 @@ class TrainingDataMul(Frame):
         for line in lines:
             write_config.write(line)
         write_config.close()
+
+
+        with open(config_file,'r') as file:
+            lines = file.readlines()
+            lines[120] = "    input_path: {}\n".format(PATH_train_input_path1)
+            lines[132]= "    input_path: {}\n".format(PATH_test_input_path1)
+        with open(config_file, 'w') as file:
+                file.writelines(lines)
+
+
 
         print("Updated the config file")
 
