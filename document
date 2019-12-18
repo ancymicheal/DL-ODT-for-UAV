@@ -1,0 +1,55 @@
+1. install anaconda2 by bash ~/Downloads/Anaconda2-2019.07-Linux-x86_64.sh 
+conda activate tensorflow1
+
+
+
+******* export PYTHONPATH=/home/ancy/tensorflow1/models:/home/ancy/tensorflow1/models/research:/home/ancy/tensorflow1/models/research/slim:/usr/bin
+
+echo $PYTHONPATH
+
+
+ERROR
+(tensorflow1) ancy@ancy-VirtualBox:~/tensorflow1/models/research$ python setup.py install --user
+running install
+running bdist_egg
+running egg_info
+writing top-level names to object_detection.egg-info/top_level.txt
+writing object_detection.egg-info/PKG-INFO
+writing dependency_links to object_detection.egg-info/dependency_links.txt
+writing requirements to object_detection.egg-info/requires.txt
+reading manifest file 'object_detection.egg-info/SOURCES.txt'
+writing manifest file 'object_detection.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-x86_64/egg
+running install_lib
+running build_py
+creating build/bdist.linux-x86_64/egg
+error: could not create 'build/bdist.linux-x86_64/egg': Permission denied
+
+ SOLUTION
+
+(tensorflow1) ancy@ancy-VirtualBox:~/tensorflow1/models/research$ whereis pythonpython: /usr/bin/python3.6m /usr/bin/python3.6 /usr/bin/python3.6m-config /usr/bin/python3.5 /usr/bin/python3.6-config /usr/bin/python3.5m /usr/lib/python3.6 /usr/lib/python2.7 /usr/lib/python3.5 /etc/python3.6 /etc/python2.7 /etc/python3.5 /usr/local/lib/python3.6 /usr/local/lib/python2.7 /usr/local/lib/python3.5 /usr/include/python3.6m /usr/include/python3.6 /usr/include/python2.7 /usr/include/python3.5m /usr/share/python /home/ancy/anaconda2/envs/tensorflow1/bin/python /home/ancy/anaconda2/envs/tensorflow1/bin/python3.5m-config /home/ancy/anaconda2/envs/tensorflow1/bin/python3.5 /home/ancy/anaconda2/envs/tensorflow1/bin/python3.5m /home/ancy/anaconda2/envs/tensorflow1/bin/python3.5-config
+
+(tensorflow1) ancy@ancy-VirtualBox:~/tensorflow1/models/research$ sudo /home/ancy/anaconda2/envs/tensorflow1/bin/python setup.py install
+
+
+
+to generate train.record
+python generate_tfrecord.py --csv_input=images/train_labels.csv --image_dir=i
+mages/train --output_path=train.record
+
+
+
+ERROR
+ use_partitioned_nms=frcnn_config.use_partitioned_nms_in_first_stage,
+AttributeError: use_partitioned_nms_in_first_stage
+
+SOLUTION
+protoc --python_out=. ./object_detection/protos/anchor_generator.proto ./object_detection/protos/argmax_matcher.proto ./object_detection/protos/bipartite_matcher.proto ./object_detection/protos/box_coder.proto ./object_detection/protos/box_predictor.proto ./object_detection/protos/eval.proto ./object_detection/protos/faster_rcnn.proto ./object_detection/protos/faster_rcnn_box_coder.proto ./object_detection/protos/grid_anchor_generator.proto ./object_detection/protos/hyperparams.proto ./object_detection/protos/image_resizer.proto ./object_detection/protos/input_reader.proto ./object_detection/protos/losses.proto ./object_detection/protos/matcher.proto ./object_detection/protos/mean_stddev_box_coder.proto ./object_detection/protos/model.proto ./object_detection/protos/optimizer.proto ./object_detection/protos/pipeline.proto ./object_detection/protos/post_processing.proto ./object_detection/protos/preprocessor.proto ./object_detection/protos/region_similarity_calculator.proto ./object_detection/protos/square_box_coder.proto ./object_detection/protos/ssd.proto ./object_detection/protos/ssd_anchor_generator.proto ./object_detection/protos/string_int_label_map.proto ./object_detection/protos/train.proto ./object_detection/protos/keypoint_box_coder.proto ./object_detection/protos/multiscale_anchor_generator.proto ./object_detection/protos/graph_rewriter.proto ./object_detection/protos/calibration.proto ./object_detection/protos/flexible_grid_anchor_generator.proto
+
+
+python setup.py build
+python setup.py install
+
+
+
+
