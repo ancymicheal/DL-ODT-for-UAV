@@ -14,6 +14,9 @@ from ui.upload_mul import UploadMul
 from ui.annotate_mul import AnnotateMul
 from ui.training_data_mul import TrainingDataMul
 
+import os
+
+CWD = os.getcwd()
 
 class App(Tk):
 

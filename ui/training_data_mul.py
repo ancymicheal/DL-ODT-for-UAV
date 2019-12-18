@@ -13,6 +13,8 @@ import xml.etree.ElementTree as ET
 from object_detection.utils import label_map_util
 
 from models.research.object_detection.generate_tfrecord import convert
+import models.research.object_detection.train as tn
+
 
 title_font = ("Times New Roman", 18, "bold")
 text_font = ("Times New Roman", 14)
@@ -66,27 +68,29 @@ class TrainingDataMul(Frame):
         self.load_xmltocsv_button.grid(row=2, column=0, padx=pad_x, pady=pad_y)
 
 	#Enter the Class Name
-	Label(
+        Label(
             self,
             text="Enter the Class name",
             font=text_font
         ).grid(row=3, column=0, sticky='n', padx=pad_x, pady=pad_y)
-	
-	input_text = StringVar()
-	self.class_name_entry = Entry(
+        input_text = StringVar()
+        self.class_name_entry = Entry(
             self,
             width=10,
 	    text = input_text)
 	
-	self.class_name_entry.grid(row=4, column=0)
+        self.class_name_entry.grid(row=4, column=0)
         self.class_name_entry.bind("<Button-1>")
-	self.class_name_button = Button(
+        self.class_name_button = Button(
             self,
             text="OK",
             command=self.class_name
         )
         self.class_name_button.grid(row=5, column=0, padx=pad_x, pady=pad_y)
-	
+
+
+        self.training = Button(self, text="Train", command=self.training)
+        self.training.grid(row=6, column=0, padx=pad_x, pady=pad_y)
         Button(
             self.nav_panel,
             text='<< Prev',
@@ -119,6 +123,13 @@ class TrainingDataMul(Frame):
                 "Success",
                 "Classes, TF records and Config file created successfully"
             )
+    def training(self):
+       train_dir = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/training/"
+       pipeline_config_path = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/training/faster_rcnn_inception_v2_pets.config"
+       tn.main(train_dir, pipeline_config_path)
+       tkMessageBox.showinfo("Success", "Training completed ! Saving checkpoint to path /home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/training/model.ckpt ")
+
+
 
     def generate_train_test_tf_records(self):
         test_csv_path = "/home/ancy/PycharmProjects/DL-ODT-for-UAV/models/research/object_detection/images/test_labels.csv"
@@ -153,8 +164,9 @@ class TrainingDataMul(Frame):
     		xml_df = pd.DataFrame(xml_list, columns=column_name)
         	xml_df.to_csv((image_path + folder + '_labels.csv'), index=None)
         tkMessageBox.showinfo("Success","Successfully converted .xml to .csv")
-		
-   
+
+
+
     def prev_step(self):
         from ui.annotate_mul import AnnotateMul
         self.controller.show_frame(AnnotateMul)
