@@ -100,6 +100,6 @@ class AnnotateMul(Frame):
         self.controller.show_frame(UploadMul)
 
     def next_step(self):
-        from ui.training_data_mul import TrainingDataMul
-        self.controller.show_frame(TrainingDataMul)
+        from ui.pre_data_mul import PreDataMul
+        self.controller.show_frame(PreDataMul)
 
