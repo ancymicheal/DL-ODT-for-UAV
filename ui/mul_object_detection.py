@@ -9,6 +9,7 @@ import natsort
 import numpy as np
 import tensorflow as tf
 import sys
+from PIL import Image, ImageTk
 
 # This is needed since the notebook is stored in the object_detection folder.
 sys.path.append("..")
@@ -23,7 +24,8 @@ text_font = ("Times New Roman", 14)
 
 pad_x = 10
 pad_y = 10
-
+canvas_width = 256
+canvas_height = 256
 
 class Mul_Object_Detection(Frame):
     def __init__(self, master, controller, **kw):
@@ -37,11 +39,23 @@ class Mul_Object_Detection(Frame):
         self.selected_video = None
         self.selected_image_folder = None
         self.selected_folder = None
+        self.main_panel = Canvas(
+            self,
+            cursor='tcross',
+            highlightbackground="black",
+            highlightcolor="black",
+            highlightthickness=1,
+            width=canvas_width,
+            height=canvas_height
+        )
+        self.main_panel.grid(row=4, column=0)
 
 
-        NUM_CLASSES = PreDataMul.class_name(number_class)
-        Prin("###############################################################")
-        print(NUM_CLASSES)
+
+
+        #NUM_CLASSES = PreDataMul.class_name(number_class)
+        print("###############################################################")
+        #print(NUM_CLASSES)
 
         Label(
             self,
@@ -61,6 +75,11 @@ class Mul_Object_Detection(Frame):
         self.mul_image_file_entry.grid(row=2, column=0)
         self.mul_image_file_entry.bind("<Button-1>", self.browse_mul_image_file)
 
+        Label(
+            self,
+            text="Before Object Detection\n"
+        ).grid(row=3, column=0, sticky='n', padx=pad_x, pady=pad_y)
+
         self.nav_panel = Frame(self)
         self.nav_panel.grid(row=10, column=0, sticky="s")
         Button(
@@ -75,6 +94,7 @@ class Mul_Object_Detection(Frame):
         self.controller.show_frame(TrainingMul)
 
 
+
     def browse_mul_image_file(self, _):
         self.selected_image_file = tkFileDialog.askopenfilename(initialdir = "~/Downloads",
                                                                   title = "Select file",
@@ -83,3 +103,16 @@ class Mul_Object_Detection(Frame):
         if self.selected_image_file:
             self.mul_image_file_entry.delete(0, END)
             self.mul_image_file_entry.insert(0, self.selected_image_file)
+        self.load_mul_image()
+
+    def load_mul_image(self):
+            image = Image.open(self.selected_image_file)
+            resize_value = (256,256)
+            image_resize = image.resize(resize_value)
+            self.tk_image = ImageTk.PhotoImage(image_resize)
+            self.main_panel.config(
+            width=max(256, 256), height=max(256, 256))
+            self.main_panel.create_image(0, 0, image=self.tk_image, anchor=NW)
+
+
+
